@@ -13,7 +13,7 @@ public class Rule_Based {
 	public static void main(String[] args){
 
 		// change this line for file path
-		String path =  Constants.SEBASTIAN;
+		String path =  Constants.SEBASTIAN + "/Library/";
 		
 		//adding of job description
 		Vector<String> paragraph = new Vector<String>();
