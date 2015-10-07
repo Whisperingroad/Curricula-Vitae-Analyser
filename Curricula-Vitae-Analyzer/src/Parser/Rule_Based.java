@@ -1,4 +1,7 @@
+package Parser;
+
 import java.util.Vector;
+import utils.Constants;
 
 public class Rule_Based {
 	
@@ -8,7 +11,10 @@ public class Rule_Based {
 	private static Vector<String> nationality = new Vector<String>();
 	
 	public static void main(String[] args){
-		String path = "C:\\Users\\AdminNUS\\Documents\\Java\\Rule_base\\";
+
+		// change this line for file path
+		String path =  Constants.SEBASTIAN;
+		
 		//adding of job description
 		Vector<String> paragraph = new Vector<String>();
 		paragraph.add( "Able to speak bilingual language as need to liaise with mandarin speaking students");
