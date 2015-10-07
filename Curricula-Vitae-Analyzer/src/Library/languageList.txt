@@ -1,0 +1,16 @@
+english
+chinese
+Mandarin
+japanese
+korean
+spanish
+hindi
+russian
+arabic
+portuguese
+french
+malay
+indonesian
+german
+italian
+thai

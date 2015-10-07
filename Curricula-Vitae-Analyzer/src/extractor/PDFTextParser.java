@@ -1,3 +1,5 @@
+package extractor;
+
 import org.apache.pdfbox.cos.COSDocument;
 import org.apache.pdfbox.pdfparser.PDFParser;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -8,6 +10,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.PrintWriter;
 import java.util.Scanner;
+
 
 public class PDFTextParser {
 	PDFParser parser;
