@@ -87,14 +87,13 @@ public class PDFTextParser {
 		//	System.out.println("Usage: java PDFTextParser <InputPDFFilename> <OutputTextFile>");
 		//	System.exit(1);
 		//}
-		
 		Scanner scanner = new Scanner(System.in);
 		String inputFile = scanner.nextLine();
 		String outputFile = scanner.nextLine();
 		scanner.close();
 		
-		//inputFile = Constants.SEBASTIAN + "Input/" + inputFile;
-		//outputFile = Constants.SEBASTIAN + "Input/" + outputFile;
+		inputFile = Constants.SEBASTIAN + "Input/" + inputFile;
+		outputFile = Constants.SEBASTIAN + "Input/" + outputFile;
 		
 		PDFTextParser pdfTextParserObj = new PDFTextParser();
 		String pdfToText = pdfTextParserObj.pdftoText(inputFile);
