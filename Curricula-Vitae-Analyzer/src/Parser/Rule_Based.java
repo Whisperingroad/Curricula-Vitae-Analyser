@@ -1,7 +1,11 @@
 package Parser;
 
+import java.util.Scanner;
 import java.util.Vector;
 import utils.Constants;
+import extractor.PDFTextParser;
+import storage.Storage;
+
 
 public class Rule_Based {
 	
@@ -13,6 +17,16 @@ public class Rule_Based {
 	public static void main(String[] args){
 
 		// change this line for file path
+		PDFTextParser pdfTextParserObj = new PDFTextParser();
+		String extractedData = "";
+		Scanner scanner = new Scanner(System.in);
+		String inputFile = scanner.nextLine();
+		String outputFile = scanner.nextLine();
+		extractedData = pdfTextParserObj.pdftoText(inputFile);
+		scanner.close();
+		Storage storage = new Storage();
+		storage.writeData(extractedData, outputFile);
+		
 		String path =  Constants.SEBASTIAN + "/Library/";
 		
 		//adding of job description

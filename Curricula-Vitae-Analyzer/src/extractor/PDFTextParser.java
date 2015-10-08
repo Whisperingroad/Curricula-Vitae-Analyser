@@ -8,11 +8,8 @@ import org.apache.pdfbox.util.PDFTextStripper;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.PrintWriter;
-import java.util.Scanner;
 
 import utils.Constants;
-
 
 public class PDFTextParser {
 	PDFParser parser;
@@ -21,19 +18,24 @@ public class PDFTextParser {
 	PDDocument pdDoc;
 	COSDocument cosDoc;
 	PDDocumentInformation pdDocInfo;
+	String path = Constants.SEBASTIAN + "Input/";
+	String postFix = ".pdf";
 
 	// PDFTextParser Constructor 
-	public PDFTextParser() {
+	public PDFTextParser() 
+	{
+		
 	}
 
 	// Extract text from PDF Document
-	String pdftoText(String fileName) {
+	public String pdftoText(String fileName) {
 
 		System.out.println("Parsing text from PDF file " + fileName + "....");
-		File f = new File(fileName);
+		String inputFile = path + fileName + postFix;
+		File f = new File(inputFile);
 
 		if (!f.isFile()) {
-			System.out.println("File " + fileName + " does not exist.");
+			System.out.println("File " + inputFile + " does not exist.");
 			return null;
 		}
 
@@ -63,49 +65,5 @@ public class PDFTextParser {
 		}      
 		System.out.println("Done.");
 		return parsedText;
-	}
-
-	// Write the parsed text from PDF to a file
-	void writeTexttoFile(String pdfText, String fileName) {
-
-		System.out.println("\nWriting PDF text to output text file " + fileName + "....");
-		try {
-			PrintWriter pw = new PrintWriter(fileName);
-			pw.print(pdfText);
-			pw.close();    	
-		} catch (Exception e) {
-			System.out.println("An exception occured in writing the pdf text to file.");
-			e.printStackTrace();
-		}
-		System.out.println("Done.");
-	}
-	//Extracts text from a PDF Document and writes it to a text file
-	public static void main(String args[])
-	{
-
-		//if (args.length != 2) {
-		//	System.out.println("Usage: java PDFTextParser <InputPDFFilename> <OutputTextFile>");
-		//	System.exit(1);
-		//}
-		Scanner scanner = new Scanner(System.in);
-		String inputFile = scanner.nextLine();
-		String outputFile = scanner.nextLine();
-		scanner.close();
-		
-		inputFile = Constants.SEBASTIAN + "Input/" + inputFile;
-		outputFile = Constants.SEBASTIAN + "Input/" + outputFile;
-		
-		PDFTextParser pdfTextParserObj = new PDFTextParser();
-		String pdfToText = pdfTextParserObj.pdftoText(inputFile);
-		
-
-
-		if (pdfToText == null) {
-			System.out.println("PDF to Text Conversion failed.");
-		}
-		else {
-			System.out.println("\nThe text parsed from the PDF Document....\n" + pdfToText);
-			pdfTextParserObj.writeTexttoFile(pdfToText, outputFile);
-		}
 	}
 }
