@@ -12,7 +12,7 @@ import java.io.PrintWriter;
 public class Storage {
 	
 	protected ArrayList<String> resumeNames = new ArrayList<String>();
-	String path = Constants.SEBASTIAN + "Storage/Database/";
+	String path = Constants.YIXIU + "Storage/Database/";
 	String postFix = ".txt";
 
 public Storage()
@@ -23,7 +23,7 @@ public Storage()
 public ArrayList<String> readData(String fileName) throws FileNotFoundException, IOException
 {
 	ArrayList<String> resume = new ArrayList<String>();
-	FileReader fileReader = new FileReader(Constants.SEBASTIAN + fileName);
+	FileReader fileReader = new FileReader(Constants.YIXIU + fileName);
 	BufferedReader bufferedReader = new BufferedReader(fileReader);
 	String line = "";
 	// Repeat until all lines are read

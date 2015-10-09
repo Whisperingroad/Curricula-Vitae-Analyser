@@ -26,8 +26,8 @@ public class Rule_Based {
 		scanner.close();
 		Storage storage = new Storage();
 		storage.writeData(extractedData, outputFile);
-		
-		String path =  Constants.SEBASTIAN + "/Library/";
+	
+		String path =  Constants.YIXIU + "/Library/";
 		
 		//adding of job description
 		Vector<String> paragraph = new Vector<String>();
