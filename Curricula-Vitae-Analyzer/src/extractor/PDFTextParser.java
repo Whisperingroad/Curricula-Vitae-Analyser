@@ -18,7 +18,7 @@ public class PDFTextParser {
 	PDDocument pdDoc;
 	COSDocument cosDoc;
 	PDDocumentInformation pdDocInfo;
-	String path = Constants.SEBASTIAN + "Input/";
+	String path = Constants.YIXIU + "Input/";
 	String postFix = ".pdf";
 
 	// PDFTextParser Constructor 

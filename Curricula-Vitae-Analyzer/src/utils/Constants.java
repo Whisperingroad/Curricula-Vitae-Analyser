@@ -7,7 +7,7 @@ public class Constants {
 	// nicholas' workspace
 	public static String NICHOLAS = "";
 	// yixiu's workspace
-	public static String YIXIU = "";
+	public static String YIXIU = "C:/Users/User/Documents/GitHub/Curricula-Vitae-Analyser/Curricula-Vitae-Analyzer/src/";
 	// yanqing's workspace
 	public static String YANQING = "";
 	
