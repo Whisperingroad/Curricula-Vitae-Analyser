@@ -9,7 +9,7 @@ public class Constants {
 	// yixiu's workspace
 	public static String YIXIU = "C:/Users/User/Documents/GitHub/Curricula-Vitae-Analyser/Curricula-Vitae-Analyzer/src/";
 	// yanqing's workspace
-	public static String YANQING = "";
+	public static String YANQING = "D:\\3219\\Curricula-Vitae-Analyzers\\Curricula-Vitae-Analyzers\\src\\";
 	
 	
 	
