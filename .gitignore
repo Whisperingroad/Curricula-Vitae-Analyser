@@ -11,6 +11,9 @@ tmp/
 local.properties
 .settings/
 .loadpath
+.jar
+
+
 
 
 # Eclipse Core

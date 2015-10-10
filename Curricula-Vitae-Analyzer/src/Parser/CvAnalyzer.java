@@ -5,7 +5,7 @@ import java.util.Scanner;
 import java.util.Vector;
 
 
-public class matchCV {
+public class CvAnalyzer {
 	private static int numCategories = 4;
 	private static String[] categories = new String[numCategories];
 	private static double score;

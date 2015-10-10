@@ -4,6 +4,7 @@ import utils.Constants;
 
 import java.util.ArrayList;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,18 +13,16 @@ import java.io.PrintWriter;
 public class Storage {
 	
 	protected ArrayList<String> resumeNames = new ArrayList<String>();
-	String path = Constants.YIXIU + "Storage/Database/";
-	String postFix = ".txt";
 
 public Storage()
 {
 
 }
 
-public ArrayList<String> readData(String fileName) throws FileNotFoundException, IOException
+public ArrayList<String> readData(File fileName) throws FileNotFoundException, IOException
 {
 	ArrayList<String> resume = new ArrayList<String>();
-	FileReader fileReader = new FileReader(Constants.YIXIU + fileName);
+	FileReader fileReader = new FileReader(fileName);
 	BufferedReader bufferedReader = new BufferedReader(fileReader);
 	String line = "";
 	// Repeat until all lines are read
@@ -40,7 +39,7 @@ public void writeData(String data, String fileName)
 {
 	try 
 	{
-		PrintWriter printWriter = new PrintWriter(path + fileName + postFix);
+		PrintWriter printWriter = new PrintWriter(fileName);
 		printWriter.print(data);
 		printWriter.close();
 	}
@@ -50,10 +49,24 @@ public void writeData(String data, String fileName)
 		e.printStackTrace();
 	}
 	System.out.println("Completed");
-	
 }
 
-
+public void writeData(ArrayList<String> data, String fileName)
+{
+	try
+	{
+		PrintWriter printWriter = new PrintWriter(fileName);
+		for (String line : data)
+		{
+			printWriter.println(line);
+		}
+	}
+	catch (Exception e)
+	{
+		System.out.println("error in writing data");
+		
+	}
+}
 }
 
 

@@ -11,6 +11,7 @@ public class Constants {
 	// yanqing's workspace
 	public static String YANQING = "D:\\3219\\Curricula-Vitae-Analyzers\\Curricula-Vitae-Analyzers\\src\\";
 	
-	
+	public static String txtPostFix = ".txt";
+	public static String pdfPostFix = ".pdf";
 	
 }

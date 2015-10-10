@@ -5,7 +5,7 @@ import java.util.Scanner;
 import java.util.Vector;
 
 
-public class readJobDescription {
+public class JobDescriptionAnalyzer {
 	private static int numCategories = 4;
 	private static String[] categories = new String[numCategories];
 	private static Vector<String> language = new Vector<String>();
@@ -15,6 +15,8 @@ public class readJobDescription {
 	
 	private static Vector<String> jobDescription = new Vector<String>();
 	
+	
+	// loading the types of categories
 	private static void loadCategories(String path){
 		int index = 0;
 		String rootPath = path + "mainCategories.txt";
@@ -31,10 +33,13 @@ public class readJobDescription {
 		}
 	}
 	
+	// looking through libraries of all categories
+	// comparing with a single line of job description
 	private static boolean[] findCategory(String paragraph, String rootPath){
 		int index = 0;
 		String word = null;
 		String categoryPath = null;
+		// values default to false
 		boolean[] categoryPresent = new boolean[numCategories];
 		
 		try {
@@ -42,10 +47,15 @@ public class readJobDescription {
 				categoryPath = rootPath + categories[i] + ".txt";
 				File categoriesPath = new File(categoryPath);
 				Scanner readFile = new Scanner(categoriesPath);
-				while (readFile.hasNext()){
+				// checking every word in a category
+				while (readFile.hasNext())
+				{
 					word = readFile.next();
 					word = word.toLowerCase();
-					if (paragraph.contains(word)){
+					// category is present
+					// attribute list for this category is processed
+					if (paragraph.contains(word))
+					{
 						categoryPresent[index] = true;
 					}
 				}
@@ -65,7 +75,10 @@ public class readJobDescription {
 		String path = null;
 		String attribute = null;
 		try {
-			for (int i = 0; i < numCategories; i++){
+			for (int i = 0; i < numCategories; i++)
+			{
+				// process attribute list
+				// for categories present
 				if (categoryPresent[i]){
 					path = rootPath + categories[i] + "List.txt";
 					System.out.println(path);
