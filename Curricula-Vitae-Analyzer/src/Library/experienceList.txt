@@ -1,8 +1,127 @@
+analytic capability
 communication
 interpersonal
 GST compliance
 MS-Excel
+MS Excel
+Microsoft Excel
+Microsoft-Excel
 Microsoft Office
+MS Office
 class 3 driving license
 people management
 organization
+organisation
+Python
+ R 
+,R 
+ R,
+,R,
+/R/
+,R/
+/R,
+ R/
+/R 
+ R.
+.R 
+C++
+ C 
+,C 
+ C,
+,C,
+/C/
+,C/
+/C,
+ C/
+/C 
+ C.
+.C 
+Java
+Ruby
+Common Lisp
+Matlab
+Octave
+Origin
+LabVIEW
+AutoCAD
+Unix
+statistical and mathematical modelling
+statistical and mathematical modeling
+statistical modelling
+statistical modeling
+mathematical modelling
+mathematical modeling
+shell programming
+shell programing
+machine learning
+data mining
+Nanofabrication
+photolithography
+Ion-milling
+Deposition
+Electrical transport measurements
+neurobiological
+electrophysiological
+Proteomics
+bioinformatics
+cancer genetics
+Data base mining
+genome data base
+care taking of the animals
+Husbandry
+training of animals
+Technical/Helpdesk Support
+Helpdesk Support
+Technical Support
+Troubleshooting Customer service
+Network & Infrastructure administration
+Network administration
+Infrastructure administration
+IT Service Management
+Project Management
+Event organization
+General administration
+Windows XP/Vista/7/8/Server 03/08
+Windows XP/Vista/7/8
+Windows XP/Vista/7
+Windows XP/Vista
+Windows Server 03
+Windows Server 3
+Windows Server 08
+Windows Server 8
+Windows Server 03/08
+MAC OSX
+VMWare
+MS-Office Suite
+Microsoft Office Suite
+Active Directory
+Remote Desktop
+VoIP
+Citrix
+Lotus Notes
+Adobe Photoshop
+Adobe Premeir
+WordPress
+HTML
+CSS
+JavaScript
+Dell Computers
+Macintosh
+IBM/Lenovo
+IBM
+Lenovo
+Polycom Conference
+HP/Canon/Fuji Xerox Printers
+HP Xerox Printers
+Canon Xerox Printers
+Fuji Xerox Printers
+Avaya
+Blackberry
+iPad
+Cloud Storage
+Google Productivity Suite
+OneNote
+Evernote
+Asana
+Trello
+Hipchat

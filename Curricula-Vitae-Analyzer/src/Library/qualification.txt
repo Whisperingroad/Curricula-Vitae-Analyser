@@ -1,3 +1,8 @@
 diploma
 degree
 master
+PhD
+MSc
+BE
+Certifications
+Bachelor of Science

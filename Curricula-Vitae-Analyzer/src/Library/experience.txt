@@ -1,5 +1,6 @@
 foundation
 experience
+expertise
 knowledge
 abilities
 skills
@@ -9,3 +10,9 @@ develop
 work
 demonstrate
 optimise
+programming language
+software tools
+productivity tools
+systems
+software
+hardware
