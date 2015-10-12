@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import Parser.CvAnalyzer;
 import Parser.Lemmatise;
@@ -31,6 +32,8 @@ public class Controller
 	ArrayList<String> qualification = new ArrayList<String>();
 	ArrayList<String> experience = new ArrayList<String>();
 	ArrayList<String> nationality = new ArrayList<String>();
+	
+	HashMap<String,String> nameScorePairs =  new HashMap<String,String>();
 	
 	
 	// default constructor
@@ -59,7 +62,7 @@ public class Controller
 		}
 	}
 	
-	public void startProcessing() throws IOException, FileNotFoundException
+	public HashMap<String,String> startProcessing() throws IOException, FileNotFoundException
 	{
 		extractCV();
 		// lemmatizing resumes 
@@ -106,8 +109,13 @@ public class Controller
 			cvInfo = storage.readData(lemmatisedCV);
 			cvAnalyzer.inputCV(cvInfo);
 			cvAnalyzer.execute(libraryPath, language, qualification, experience, nationality);
-			double score = cvAnalyzer.getScore();
+			String score = String.valueOf(cvAnalyzer.getScore());
+			String candidateName = (lemmatisedCV.toString()).replaceAll(lemmatisedResumePath, "");
+			candidateName = candidateName.replaceAll(Constants.txtPostFix, "");
+			// name of candidate and score
+			nameScorePairs.put(candidateName, score);
 		}
+		return nameScorePairs;
 		
 	}
 }
