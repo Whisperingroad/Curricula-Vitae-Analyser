@@ -1,6 +1,5 @@
 package storage;
 
-import utils.Constants;
 
 import java.util.ArrayList;
 import java.io.BufferedReader;
@@ -60,6 +59,7 @@ public void writeData(ArrayList<String> data, String fileName)
 		{
 			printWriter.println(line);
 		}
+		printWriter.close();
 	}
 	catch (Exception e)
 	{

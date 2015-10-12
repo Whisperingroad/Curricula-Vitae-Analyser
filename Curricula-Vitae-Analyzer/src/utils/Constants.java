@@ -14,4 +14,5 @@ public class Constants {
 	public static String txtPostFix = ".txt";
 	public static String pdfPostFix = ".pdf";
 	
+	
 }

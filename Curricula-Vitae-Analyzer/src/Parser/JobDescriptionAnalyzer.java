@@ -1,23 +1,24 @@
 package Parser;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.Vector;
+import utils.Constants;
 
 
 public class JobDescriptionAnalyzer {
 	private static int numCategories = 4;
 	private static String[] categories = new String[numCategories];
-	private static Vector<String> language = new Vector<String>();
-	private static Vector<String> qualification = new Vector<String>();
-	private static Vector<String> experience = new Vector<String>();
-	private static Vector<String> nationality = new Vector<String>();
+	private static ArrayList<String> language = new ArrayList<String>();
+	private static ArrayList<String> qualification = new ArrayList<String>();
+	private static ArrayList<String> experience = new ArrayList<String>();
+	private static ArrayList<String> nationality = new ArrayList<String>();
 	
-	private static Vector<String> jobDescription = new Vector<String>();
+	private static ArrayList<String> jobDescription = new ArrayList<String>();
 	
 	
 	// loading the types of categories
-	private static void loadCategories(String path){
+	public void loadCategories(String path){
 		int index = 0;
 		String rootPath = path + "mainCategories.txt";
 		File mainCategoriesPath = new File(rootPath);
@@ -35,7 +36,7 @@ public class JobDescriptionAnalyzer {
 	
 	// looking through libraries of all categories
 	// comparing with a single line of job description
-	private static boolean[] findCategory(String paragraph, String rootPath){
+	public boolean[] findCategory(String paragraph, String rootPath){
 		int index = 0;
 		String word = null;
 		String categoryPath = null;
@@ -44,7 +45,7 @@ public class JobDescriptionAnalyzer {
 		
 		try {
 			for (int i = 0; i < numCategories ; i++){
-				categoryPath = rootPath + categories[i] + ".txt";
+				categoryPath = rootPath + categories[i] + Constants.txtPostFix;
 				File categoriesPath = new File(categoryPath);
 				Scanner readFile = new Scanner(categoriesPath);
 				// checking every word in a category
@@ -70,7 +71,7 @@ public class JobDescriptionAnalyzer {
 		return categoryPresent;
 	}
 
-	private static void addRequirements(boolean[] categoryPresent, String paragraph, String rootPath){
+	public void addRequirements(boolean[] categoryPresent, String paragraph, String rootPath){
 		
 		String path = null;
 		String attribute = null;
@@ -107,7 +108,7 @@ public class JobDescriptionAnalyzer {
 		}
 	}
 
-	private static void addSpecialCase(boolean[] categoryPresent, String paragraph, String rootPath){
+	public void addSpecialCase(boolean[] categoryPresent, String paragraph, String rootPath){
 		String attribute = null;
 		String path = rootPath + "qualification.txt";
 		File listPath = new File(path);
@@ -127,27 +128,27 @@ public class JobDescriptionAnalyzer {
 		}
 	}
 
-	public static void setJobRequirement(Vector<String> input){
+	public void setJobRequirement(ArrayList<String> input){
 		jobDescription.addAll(input);
 	}
 
-	public static Vector<String> getLanguageReq(){
+	public ArrayList<String> getLanguageReq(){
 		return language;
 	}
 
-	public static Vector<String> getQualificationReq(){
+	public ArrayList<String> getQualificationReq(){
 		return qualification;
 	}
 
-	public static Vector<String> getExperienceReq(){
+	public ArrayList<String> getExperienceReq(){
 		return experience;
 	}
 
-	public static Vector<String> getNationalityReq(){
+	public ArrayList<String> getNationalityReq(){
 		return nationality;
 	}
 
-	public static void execute(String path) {
+	public void execute(String path) {
 		boolean[] categoryPresent = new boolean[numCategories];
 
 		loadCategories(path);
