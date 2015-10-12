@@ -1,22 +1,22 @@
 package Parser;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.Vector;
 
 
 public class CvAnalyzer {
-	private static int numCategories = 4;
-	private static String[] categories = new String[numCategories];
-	private static double score;
-	private static Vector<String> language = new Vector<String>();
-	private static Vector<String> qualification = new Vector<String>();
-	private static Vector<String> experience = new Vector<String>();
-	private static Vector<String> nationality = new Vector<String>();
+	private int numCategories = 4;
+	private String[] categories = new String[numCategories];
+	private double score;
+	private ArrayList<String> language = new ArrayList<String>();
+	private ArrayList<String> qualification = new ArrayList<String>();
+	private ArrayList<String> experience = new ArrayList<String>();
+	private ArrayList<String> nationality = new ArrayList<String>();
 	
-	private static Vector<String> CV = new Vector<String>();
+	private ArrayList<String> CV = new ArrayList<String>();
 	
-	private static void loadCategories(String path){
+	private void loadCategories(String path){
 		int index = 0;
 		String rootPath = path + "mainCategories.txt";
 		File mainCategoriesPath = new File(rootPath);
@@ -32,7 +32,7 @@ public class CvAnalyzer {
 		}
 	}
 
-	private static boolean[] findCategory(String paragraph, String rootPath){
+	private boolean[] findCategory(String paragraph, String rootPath){
 		int index = 0;
 		String word = null;
 		String categoryPath = null;
@@ -61,7 +61,7 @@ public class CvAnalyzer {
 		return categoryPresent;
 	}
 
-	private static void matchRequirement(boolean[] categoryPresent, String paragraph){
+	private void matchRequirement(boolean[] categoryPresent, String paragraph){
 		String attribute = null;
 		for (int category = 0; category < numCategories; category++){
 			if (categoryPresent[category]){
@@ -101,16 +101,16 @@ public class CvAnalyzer {
 		}
 	}
 	
-	public static void inputCV(Vector<String> input){
+	public void inputCV(ArrayList<String> input){
 		CV.addAll(input);
 	}
 
-	public static double getScore(){
+	public double getScore(){
 		double size = language.size() + qualification.size() + experience.size() + nationality.size();
 		return (score/size);
 	}
 
-	public static void execute(String path, Vector<String> languageInput,Vector<String> qualificationInput,Vector<String> experienceInput,Vector<String> nationalityInput){
+	public void execute(String path, ArrayList<String> languageInput,ArrayList<String> qualificationInput,ArrayList<String> experienceInput,ArrayList<String> nationalityInput){
 		boolean[] categoryPresent = new boolean[numCategories];
 		score = 0;
 		language.addAll(languageInput);

@@ -1,4 +1,4 @@
-package Parser;
+/*package Parser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,3 +53,4 @@ public ArrayList<String> lemmatiser(ArrayList<String> textInput){
 	return lemmas;
 }
 }
+*/
