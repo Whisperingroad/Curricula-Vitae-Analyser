@@ -1,14 +1,15 @@
 package controller;
 
-import extractor.PDFTextParser;
 import Parser.JobDescriptionAnalyzer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import extractor.TextExtractor;
 import Parser.CvAnalyzer;
 import Parser.Lemmatise;
 import storage.Storage;
@@ -17,7 +18,6 @@ import utils.Constants;
 
 public class Controller 
 {
-	protected PDFTextParser pdfExtractor = new PDFTextParser();
 	protected Lemmatise textLemmatiser = new Lemmatise();
 	protected JobDescriptionAnalyzer jobDescriptionAnalyzer = new JobDescriptionAnalyzer();
 	protected CvAnalyzer cvAnalyzer = new CvAnalyzer();
@@ -42,7 +42,7 @@ public class Controller
 		
 	}
 	
-	
+	/*
 	public void extractCV()
 	{
 		// extracting all resume information from .pdf and .doc files
@@ -59,6 +59,44 @@ public class Controller
 			System.out.println(cv.toString());
 			System.out.println(textResumeFile);
 			storage.writeData(extractedCV, textResumeFile);	
+		}
+	}*/
+	
+	public void extractCV() throws IOException
+	{
+		// extracting all resume information from .pdf and .doc files
+		// and convert them into .txt format
+		File cvFolder = new File(resumePath);
+		File[] listOfCVs = cvFolder.listFiles();
+		for (File cv : listOfCVs)
+		{
+			System.out.println(cv);
+			System.out.println(cv.toPath());
+			String fileType = Files.probeContentType(cv.toPath());
+			System.out.println("Document type is " + fileType);
+			String fileName = cv.getName();
+			System.out.println("File Name is " + fileName);
+			Boolean extractComplete = TextExtractor.execute(cv);
+			if(extractComplete == true)
+			{	
+				String textResumeFile = (cv.toString()).replaceAll(resumePath, textResumePath);
+				if(TextExtractor.getFilePostfix().equals(Constants.txtPostFix)){
+					storage.moveTxtFile(textResumeFile, cv);
+				}
+				else if(TextExtractor.getFilePostfix().equals("none")){
+					System.out.println("file not accepted");
+				}
+				//file type = ".pdf", ".doc", ".docx"
+				else{
+					
+					textResumeFile = textResumeFile.replaceAll(TextExtractor.getFilePostfix(), Constants.txtPostFix);
+					System.out.println("changed" + textResumeFile);
+					// for checking purposes
+					System.out.println(cv.toString());
+					System.out.println(textResumeFile);
+					storage.writeData(TextExtractor.getFileContent(), textResumeFile);
+				}
+			}
 		}
 	}
 	
@@ -116,6 +154,5 @@ public class Controller
 			nameScorePairs.put(candidateName, score);
 		}
 		return nameScorePairs;
-		
 	}
 }

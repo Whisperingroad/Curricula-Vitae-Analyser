@@ -2,10 +2,14 @@ package ui;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+
+import controller.Controller;
 
 /**
  * Created by workshop on 9/18/2015.
@@ -80,6 +84,17 @@ public class ui extends JFrame implements ActionListener{
         }else if (e.getSource() == startButton){
         	removeRows();
         	clearList();
+        	Controller controller = new Controller();
+        	try {
+				controller.startProcessing();
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+        	
         	
          //   SearchDemo searchDemo = new SearchDemo();
          //   resultFiles = searchDemo.resultList(queryAudio.getAbsolutePath(),0);

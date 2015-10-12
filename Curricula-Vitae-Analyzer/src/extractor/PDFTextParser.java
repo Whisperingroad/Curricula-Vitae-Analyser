@@ -1,5 +1,4 @@
 package extractor;
-
 import org.apache.pdfbox.cos.COSDocument;
 import org.apache.pdfbox.pdfparser.PDFParser;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -9,8 +8,6 @@ import org.apache.pdfbox.util.PDFTextStripper;
 import java.io.File;
 import java.io.FileInputStream;
 
-import utils.Constants;
-
 public class PDFTextParser {
 	PDFParser parser;
 	String parsedText;
@@ -18,24 +15,19 @@ public class PDFTextParser {
 	PDDocument pdDoc;
 	COSDocument cosDoc;
 	PDDocumentInformation pdDocInfo;
-	String path = Constants.YIXIU + "Input/";
-	String postFix = ".pdf";
 
 	// PDFTextParser Constructor 
-	public PDFTextParser() 
-	{
-		
+	public PDFTextParser() {
 	}
 
 	// Extract text from PDF Document
-	public String pdftoText(String fileName) {
-
+	String pdftoText(String fileName) {
+		String text;
 		System.out.println("Parsing text from PDF file " + fileName + "....");
-		String inputFile = path + fileName + postFix;
-		File f = new File(inputFile);
+		File f = new File(fileName);
 
 		if (!f.isFile()) {
-			System.out.println("File " + inputFile + " does not exist.");
+			System.out.println("File " + fileName + " does not exist.");
 			return null;
 		}
 
@@ -52,6 +44,19 @@ public class PDFTextParser {
 			pdfStripper = new PDFTextStripper();
 			pdDoc = new PDDocument(cosDoc);
 			parsedText = pdfStripper.getText(pdDoc); 
+			System.out.println(parsedText);
+			
+			StringBuilder textString = new StringBuilder();
+			textString.append(parsedText);
+			for(int i=0; i<textString.length(); i++){
+				int b = (int)textString.charAt(i);
+				if(b>127||(b<32 && b!=10)){
+					textString.replace(i, i+1, " ");
+				}
+			}
+			text = textString.toString();
+			text = text.replaceAll("^ +| +$| (?= )", "");
+			System.out.println(text);
 		} catch (Exception e) {
 			System.out.println("An exception occured in parsing the PDF Document.");
 			e.printStackTrace();
@@ -64,6 +69,35 @@ public class PDFTextParser {
 			return null;
 		}      
 		System.out.println("Done.");
-		return parsedText;
+		return text;
+	}
+/*
+	// Write the parsed text from PDF to a file
+	void writeTexttoFile(String pdfText, String fileName) {
+
+		System.out.println("\nWriting PDF text to output text file " + fileName + "....");
+		try {
+			PrintWriter pw = new PrintWriter(fileName);
+			pw.print(pdfText);
+			pw.close();    	
+		} catch (Exception e) {
+			System.out.println("An exception occured in writing the pdf text to file.");
+			e.printStackTrace();
+		}
+		System.out.println("Done.");
+	}*/
+	//Extracts text from a PDF Document and writes it to a text file
+	public static String PDFParser(String inputFile){
+
+		PDFTextParser pdfTextParserObj = new PDFTextParser();
+		String pdfToText = pdfTextParserObj.pdftoText(inputFile);
+
+		if (pdfToText == null) {
+			System.out.println("PDF to Text Conversion failed.");
+		}
+		else {
+			System.out.println("\nText parsed from the PDF Document....\n" + pdfToText);
+		}
+		return pdfToText;
 	}
 }
