@@ -7,7 +7,7 @@ import java.nio.file.Files;
 //import WordDocExtractor.WordDocumentExtractor;
 
 public class TextExtractor {
-	static String path = "D:\\3219\\Curricula-Vitae-Analyzers\\Curricula-Vitae-Analyzers\\src\\Input\\";
+	//static String path = "D:\\3219\\Curricula-Vitae-Analyzers\\Curricula-Vitae-Analyzers\\src\\Input\\";
 	static String filePostfix = "";
 	private static String text = "";
 	private enum Type {pdf, doc, docx, txt, none};
