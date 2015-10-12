@@ -129,13 +129,14 @@ public class ui extends JFrame implements ActionListener{
         	String data1 = null;
         	double data2 = 0.0;
         	
-        	for (Map.Entry f: resultList.entrySet()){
+        	for (Map.Entry<String,Double> f: resultList.entrySet()){
                 data1 = (String) f.getKey();
                 data2 = (double) f.getValue();
                 model.addRow( new Object[] { data1, data2 } );
         	}
         }
     }
+    
     private void removeRows(){
     	if (model.getRowCount() > 0) {
             for (int i = model.getRowCount() - 1; i > -1; i--) {
