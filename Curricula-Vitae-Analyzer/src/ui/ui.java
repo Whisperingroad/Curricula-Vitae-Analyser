@@ -3,7 +3,12 @@ package ui;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -51,7 +56,7 @@ public class ui extends JFrame implements ActionListener{
         
         resultPanel.setLayout(new GridLayout(1, 40, 60, 60));
         
-        String[] columnNames = {"CV name" ,"Score"};
+        String[] columnNames = {"CV name", "Score"};
         model = new DefaultTableModel(columnNames, 0);
         JTable table = new JTable(model);
         JScrollPane jScrollPanelTable = new JScrollPane(table);
@@ -80,9 +85,19 @@ public class ui extends JFrame implements ActionListener{
         }else if (e.getSource() == startButton){
         	removeRows();
         	clearList();
+        	HashMap<String,Double> resultList = new HashMap<String,Double>();
+        	resultList.put("yq.cv", 12.1);
+        	resultList.put("seb.cv", 31.1);
+        	resultList.put("yx.cv", 22.1);
+        	resultList.put("nic.cv", 42.1);
+        	
+        	int numEntry = resultList.size();
         	
          //   SearchDemo searchDemo = new SearchDemo();
          //   resultFiles = searchDemo.resultList(queryAudio.getAbsolutePath(),0);
+        	
+        	//Testing Purposes
+        	/*
         	resultFiles.add("1");
         	resultFiles.add("2");
         	resultFiles.add("3");
@@ -93,16 +108,15 @@ public class ui extends JFrame implements ActionListener{
         	resultFiles.add("8");
         	resultFiles.add("9");
         	resultFiles.add("10");
-        	
+        	*/
         	String data1 = null;
-        	String data2 = null;
+        	double data2 = 0.0;
         	
-        	
-            for (int i = 0; i < resultFiles.size(); i ++){
-            	data1 = data2 = resultFiles.get(i);
-            			
-            	model.addRow( new Object[] { data1, data2 } );      
-            }
+        	for (Map.Entry f: resultList.entrySet()){
+                data1 = (String) f.getKey();
+                data2 = (double) f.getValue();
+                model.addRow( new Object[] { data1, data2 } );
+        	}
         }
     }
     
@@ -118,9 +132,9 @@ public class ui extends JFrame implements ActionListener{
     	while (!resultFiles.isEmpty())
     		resultFiles.remove(0);
     }
-    
-	public static void main(String[] args) {
-        new ui();
+
+    public static void main(String[] args) {
+    	new ui();
     }
 }
 
