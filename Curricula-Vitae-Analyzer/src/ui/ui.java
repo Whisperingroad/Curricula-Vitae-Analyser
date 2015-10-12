@@ -2,14 +2,10 @@ package ui;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import controller.Controller;
-
 
 /**
  * Created by workshop on 9/18/2015.
@@ -38,7 +34,7 @@ public class ui extends JFrame implements ActionListener{
         textArea.setRows(10);
         textArea.setWrapStyleWord(true);
         
-        JScrollPane jScrollPanel = new JScrollPane(textArea);
+        JScrollPane jScrollPanelTxtArea = new JScrollPane(textArea);
     	
         readButton = new JButton("Read Job Description");
         readButton.addActionListener(this);
@@ -47,7 +43,7 @@ public class ui extends JFrame implements ActionListener{
         startButton.addActionListener(this);
 
         JPanel queryPanel = new JPanel();
-        queryPanel.add(jScrollPanel);
+        queryPanel.add(jScrollPanelTxtArea);
         queryPanel.add(readButton);
         queryPanel.add(startButton);
 
@@ -55,11 +51,12 @@ public class ui extends JFrame implements ActionListener{
         
         resultPanel.setLayout(new GridLayout(1, 40, 60, 60));
         
-        String[] columnNames = {"CV name","Name","Score"};
+        String[] columnNames = {"CV name" ,"Score"};
         model = new DefaultTableModel(columnNames, 0);
         JTable table = new JTable(model);
+        JScrollPane jScrollPanelTable = new JScrollPane(table);
         
-        resultPanel.add(table);
+        resultPanel.add(jScrollPanelTable);
 
         resultPanel.setBorder(BorderFactory.createEmptyBorder(30,16,10,16));
 
@@ -81,6 +78,9 @@ public class ui extends JFrame implements ActionListener{
             System.out.println(jobDescription);
 
         }else if (e.getSource() == startButton){
+        	removeRows();
+        	clearList();
+        	
          //   SearchDemo searchDemo = new SearchDemo();
          //   resultFiles = searchDemo.resultList(queryAudio.getAbsolutePath(),0);
         	resultFiles.add("1");
@@ -94,37 +94,33 @@ public class ui extends JFrame implements ActionListener{
         	resultFiles.add("9");
         	resultFiles.add("10");
         	
-        	String data1 = "CV Name";
-        	String data2 = "Name";
-        	String data3 = "Score";
+        	String data1 = null;
+        	String data2 = null;
         	
-        	model.addRow( new Object[] { data1, data2, data3 } );
+        	
             for (int i = 0; i < resultFiles.size(); i ++){
-            	data1 = data2 = data3 = resultFiles.get(i);
+            	data1 = data2 = resultFiles.get(i);
             			
-            	model.addRow( new Object[] { data1, data2, data3 } );
+            	model.addRow( new Object[] { data1, data2 } );      
             }
         }
     }
     
-	public static void main(String[] args) 
-	{
-        ui UI = new ui();
-        Controller controller = new Controller();
-        try 
-        {
-			controller.startProcessing();
-		} 
-        catch (FileNotFoundException e) 
-        {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        catch (IOException e) 
-        {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    private void removeRows(){
+    	if (model.getRowCount() > 0) {
+            for (int i = model.getRowCount() - 1; i > -1; i--) {
+                model.removeRow(i);
+            }
+        }
+    }
+    
+    private void clearList(){
+    	while (!resultFiles.isEmpty())
+    		resultFiles.remove(0);
+    }
+    
+	public static void main(String[] args) {
+        new ui();
     }
 }
 
