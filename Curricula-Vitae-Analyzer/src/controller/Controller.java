@@ -33,7 +33,7 @@ public class Controller
 	ArrayList<String> experience = new ArrayList<String>();
 	ArrayList<String> nationality = new ArrayList<String>();
 	
-	HashMap<String,String> nameScorePairs =  new HashMap<String,String>();
+	HashMap<String,Double> nameScorePairs =  new HashMap<String,Double>();
 	
 	
 	// default constructor
@@ -100,7 +100,7 @@ public class Controller
 		}
 	}
 	
-	public HashMap<String,String> startProcessing() throws IOException, FileNotFoundException
+	public HashMap<String,Double> startProcessing() throws IOException, FileNotFoundException
 	{
 		extractCV();
 		// lemmatizing resumes 
@@ -147,7 +147,7 @@ public class Controller
 			cvInfo = storage.readData(lemmatisedCV);
 			cvAnalyzer.inputCV(cvInfo);
 			cvAnalyzer.execute(libraryPath, language, qualification, experience, nationality);
-			String score = String.valueOf(cvAnalyzer.getScore());
+			Double score = cvAnalyzer.getScore();
 			String candidateName = (lemmatisedCV.toString()).replaceAll(lemmatisedResumePath, "");
 			candidateName = candidateName.replaceAll(Constants.txtPostFix, "");
 			// name of candidate and score
