@@ -43,25 +43,3 @@ local.properties
 
 # TeXlipse plugin
 .texlipse
-
-Curricula-Vitae-Analyser.git/packed-refs
-
-Curricula-Vitae-Analyser.git/hooks/pre-commit.sample
-
-*.sample
-
-Curricula-Vitae-Analyser.git/config
-
-Curricula-Vitae-Analyser.git/description
-
-Curricula-Vitae-Analyser.git/HEAD
-
-Curricula-Vitae-Analyser.git/info/exclude
-
-Curricula-Vitae-Analyser.git/objects/pack/pack-fea2c2a8906dacdebb300fbf036304e482774cbe.idx
-
-Curricula-Vitae-Analyzer/src/controller/Controller.java
-
-Curricula-Vitae-Analyzer/src/controller/Controller.java
-
-Curricula-Vitae-Analyser.git/objects/pack/pack-fea2c2a8906dacdebb300fbf036304e482774cbe.pack
