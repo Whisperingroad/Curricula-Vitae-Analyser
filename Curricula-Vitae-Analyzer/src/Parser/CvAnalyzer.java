@@ -125,7 +125,7 @@ public class CvAnalyzer {
 			loadCategories(path);
 			categoryPresent = findCategory(paragraph,path);
 			matchRequirement(categoryPresent,paragraph);
-			System.out.println(score);
+			//System.out.println(score);
 		}
 	}
 }

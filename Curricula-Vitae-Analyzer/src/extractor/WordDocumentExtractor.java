@@ -50,10 +50,10 @@ public class WordDocumentExtractor
 
 			//using HWPFWordExtractor Class
 			WordExtractor we = new WordExtractor(docx);
-			System.out.println(we.getText());
+			//System.out.println(we.getText());
 			text = we.getText();
 			text = formatting(text);
-			System.out.println(text);
+			//System.out.println(text);
 			//extractor.writeTexttoFile(text, outputFile);
 			we.close();
 		} catch (FileNotFoundException e) {

@@ -23,11 +23,23 @@ public class Lemmatise {
 		//Properties props = new Properties();
 		//props.put("annotators", "tokenize, ssplit, pos, parse, lemma");
 		//StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
-
+		ArrayList<String> sanitisedInput = new ArrayList<String>();
+		for(String s:textInput){
+			String words[] = s.split(" ");
+			String line = "";
+			for (String w:words){
+				//remove punctuation, and non word characters
+				w = w.replaceAll("\\W","");
+				line += w + " ";
+			}
+			line.trim();
+			sanitisedInput.add(line);
+		}
 		ArrayList<String> lemmas = new ArrayList<String>();
-		//String text = "program programs programming programmed";
-		for(String s:textInput)
+		//a sentence
+		for(String s:sanitisedInput)
 		{
+			
 			// create an empty Annotation just with the given text
 			Annotation annotation = new Annotation(s);
 			// run annotator on this string
@@ -45,7 +57,7 @@ public class Lemmatise {
 					line+= token.get(LemmaAnnotation.class) + " ";
 				}
 				line.trim();
-				System.out.println(line);
+				System.out.println("LEMMATISED" + line);
 				lemmas.add(line);
 			}
 		}

@@ -1,40 +1,357 @@
-Responsibilities	 Â -Â­â€â€¨Work	 Â on,	 Â improve	 Â and	 Â develop	 Â our	 Â front-Â­â€end	 Â client	 Â with	 Â 
-some	 Â new	 Â features	 Â and	 Â an	 Â impressive	 Â user	 Â interface.â€¨Work	 Â with	 Â the	 Â 
-backend	 Â team	 Â to	 Â come	 Â up	 Â with	 Â APIs	 Â and	 Â sync	 Â data	 Â across	 Â platform.â€¨Work	 Â 
-across	 Â teams	 Â in	 Â a	 Â project	 Â based	 Â way	 Â and	 Â be	 Â involved	 Â in	 Â feature	 Â creations,	 Â 
-product	 Â enhancements	 Â and	 Â experiments	 Â throughout	 Â the	 Â entire	 Â 
-development	 Â lifecycle,	 Â from	 Â databases	 Â over	 Â backend	 Â and	 Â APIs	 Â to	 Â frontend	 Â 
-and	 Â user	 Â experienceâ€¨Be	 Â part	 Â of	 Â a	 Â strong	 Â team	 Â that	 Â passionately	 Â believes	 Â in	 Â 
-what	 Â it	 Â doesâ€¨Get	 Â exceptional	 Â career	 Â opportunities	 Â 	 Â 
-Minimum	 Â Requirements	 Â -Â­â€â€¨Bachelor	 Â degree	 Â in	 Â computer	 Â science	 Â or	 Â a	 Â related	 Â 
-fieldâ€¨At	 Â least	 Â 1.5	 Â year	 Â of	 Â relevant	 Â work	 Â experience	 Â with	 Â iOS	 Â application	 Â 
-development,	 Â published	 Â apps	 Â or	 Â significant	 Â demonstrable	 Â equivalent	 Â 
-expertise.â€¨Programming	 Â experience	 Â in	 Â Swift.â€¨Ability	 Â to	 Â follow	 Â necessary	 Â 
-software	 Â engineering	 Â practices	 Â -Â­â€	 Â documentation,	 Â testing,	 Â etc.â€¨Strong	 Â 
-foundation	 Â in	 Â UIKit	 Â and	 Â CoreAnimation	 Â including	 Â UIKitDynamics	 Â and	 Â custom	 Â 
-CATransitions.	 Â Experience	 Â with	 Â multithreaded	 Â programming	 Â and	 Â 
-concurrency	 Â in	 Â iOSâ€¨Strong	 Â foundation	 Â in	 Â Autolayout	 Â and	 Â Size	 Â 
-Classesâ€¨Experience	 Â in	 Â architecting	 Â and	 Â optimizing	 Â persistent	 Â storage	 Â 
-solutions	 Â in	 Â iOS	 Â 	 Â 
-	 Â 
-Preferred	 Â Qualifications	 Â -Â­â€â€¨Considerable	 Â programming	 Â experience	 Â in	 Â Swift	 Â 
-and	 Â Objective-Â­â€C/C++.â€¨Deep	 Â technical	 Â knowledge	 Â of	 Â Cocoa	 Â touch	 Â ecosystem	 Â 
-and	 Â iOS	 Â development	 Â paradigms	 Â such	 Â as	 Â MVC,	 Â VIPER	 Â etc.	 Â 
-(http://www.objc.io/issue-Â­â€13/viper.html).â€¨Experience	 Â writing	 Â unit	 Â and	 Â 
-integration	 Â tests	 Â with	 Â Xcode.â€¨Knowledge	 Â of	 Â frameworks	 Â that	 Â can	 Â enhance	 Â 
-user	 Â experience	 Â (such	 Â as	 Â Facebook's	 Â Pop	 Â 
-(https://github.com/facebook/pop))	 Â MVP	 Â application	 Â design	 Â and	 Â complex,	 Â 
-reactive	 Â touch-Â­â€based	 Â User	 Â Experience.â€¨Good	 Â Contribution	 Â to	 Â the	 Â open	 Â 
-source	 Â community	 Â (Cocoa	 Â Control	 Â contributions	 Â would	 Â be	 Â interesting)	 Â 
-Strong	 Â foundation	 Â in	 Â computer	 Â science,	 Â with	 Â competencies	 Â in	 Â data	 Â 
-structures,	 Â algorithms	 Â and	 Â software	 Â design	 Â optimized	 Â for	 Â embedded	 Â 
-systems.â€¨Strong	 Â experience	 Â with	 Â designing	 Â and	 Â architecting	 Â client-Â­â€server	 Â 
-based	 Â apps	 Â on	 Â iOS.â€¨Passion	 Â for	 Â healthcare	 Â and	 Â making	 Â the	 Â world	 Â a	 Â better	 Â 
-place	 Â 	 Â 
-Location	 Â -Â­â€â€¨Applicants	 Â should	 Â not	 Â be	 Â barred	 Â from	 Â working	 Â in	 Â Singapore	 Â 	 Â 
-Keywords	 Â from	 Â the	 Â job	 Â description	 Â above	 Â would	 Â include	 Â but	 Â not	 Â be	 Â limited	 Â 
-toâ€¨Skills:	 Â Swift,	 Â ObjectiveC,	 Â C++,	 Â MVP	 Â Application	 Â design,	 Â iOS,	 Â Data	 Â 
-Structures,	 Â etc.	 Â Education:	 Â Bachelor	 Â (Computer	 Â Science)â€¨Location:	 Â 
-Singaporeâ€¨Work	 Â experience	 Â time:	 Â at	 Â least	 Â 1.5	 Â years	 Â (to	 Â be	 Â parsed	 Â from	 Â their	 Â 
-experience	 Â section	 Â of	 Â CV)	 Â 	 Â 
-	 Â 
+responsibility 
+â - ââ $ â $ ¨ work 
+â on , 
+â improve 
+â and 
+â develop 
+Â we 
+â front-â â $ end 
+â client 
+â with 
+â 
+some 
+Â new 
+â feature 
+â and 
+Â a 
+â impressive 
+Â user 
+â interface.â $ ¨ work 
+â with 
+â the 
+â 
+backend 
+Â team 
+â to 
+â come 
+â up 
+â with 
+Â api 
+â and 
+â sync 
+Â datum 
+â across 
+â platform.â $ ¨ work 
+â 
+across 
+â team 
+â in 
+â a 
+â project 
+â base 
+â way 
+â and 
+â be 
+â involve 
+â in 
+â feature 
+â creation , 
+â 
+product 
+â enhancement 
+â and 
+â experiment 
+â throughout 
+â the 
+â entire 
+â 
+development 
+â lifecycle , 
+â from 
+â database 
+â over 
+â backend 
+â and 
+Â api 
+â to 
+â frontend 
+â 
+and 
+Â user 
+â experienceâ $ ¨ be 
+â part 
+â of 
+â a 
+â strong 
+Â team 
+â that 
+â passionately 
+â believe 
+â in 
+â 
+what 
+â it 
+â doesâ $ ¨ get 
+â exceptional 
+â career 
+â opportunity 
+â 
+â 
+Minimum 
+Â requirement 
+â - ââ $ â $ ¨ bachelor 
+â degree 
+â in 
+â computer 
+â science 
+â or 
+â a 
+â related 
+â 
+fieldâ $ ¨ at 
+â least 
+â 1.5 
+â year 
+â of 
+â relevant 
+â work 
+â experience 
+â with 
+Â iOS 
+â application 
+â 
+development , 
+â publish 
+â app 
+â or 
+â significant 
+â demonstrable 
+â equivalent 
+â 
+expertise.â $ ¨ programming 
+â experience 
+â in 
+â swift.â $ ¨ ability 
+â to 
+â follow 
+â necessary 
+â 
+software 
+â engineering 
+â practice 
+â - ââ $ 
+â documentation , 
+â testing , 
+Â etc. â $ ¨ strong 
+â 
+foundation 
+â in 
+â uikit 
+â and 
+â coreanimation 
+â include 
+â uikitdynamic 
+â and 
+â custom 
+â 
+catransition . 
+â experience 
+â with 
+â multithread 
+Â programming 
+â and 
+â 
+concurrency 
+â in 
+â iosâ $ ¨ strong 
+â foundation 
+â in 
+â autolayout 
+â and 
+Â size 
+â 
+Classesâ $ ¨ experience 
+â in 
+â architecting 
+â and 
+â optimize 
+â persistent 
+â storage 
+â 
+solution 
+â in 
+Â iOS 
+â 
+â 
+â 
+Preferred 
+Â qualification 
+â - ââ $ â $ ¨ considerable 
+Â programming 
+â experience 
+â in 
+â Swift 
+â 
+and 
+â objective-â â $ c/c + + . 
+â $ ¨ deep 
+â technical 
+â knowledge 
+â of 
+Â Cocoa 
+â touch 
+â ecosystem 
+â 
+and 
+Â iOS 
+â development 
+â paradigm 
+â such 
+â as 
+Â MVC , 
+Â VIPER 
+Â etc. . 
+â 
+-lrb- http://www.objc.io/issue-â­â€?13/viper.html -rrb- . 
+â $ ¨ experience 
+â writing 
+â unit 
+â and 
+â 
+integration 
+â test 
+â with 
+â xcode.â $ ¨ knowledge 
+â of 
+â framework 
+â that 
+â can 
+â enhance 
+â 
+user 
+â experience 
+â -lrb- such 
+â as 
+Â Facebook 's 
+Â Pop 
+â 
+-lrb- https://github.com/facebook/pop -rrb- -rrb- 
+Â MVP 
+â application 
+â design 
+â and 
+â complex , 
+â 
+reactive 
+â touch-â â $ base 
+Â user 
+â experience.â $ ¨ good 
+Â contribution 
+â to 
+â the 
+â open 
+â 
+source 
+â community 
+â -lrb- Cocoa 
+Â Control 
+â contribution 
+â would 
+â be 
+â interesting -rrb- 
+â 
+strong 
+â foundation 
+â in 
+â computer 
+â science , 
+â with 
+â competency 
+â in 
+Â datum 
+â 
+structure , 
+â algorithm 
+â and 
+â software 
+â design 
+â optimize 
+â for 
+â embedded 
+â 
+systems.â $ ¨ strong 
+â experience 
+â with 
+â design 
+â and 
+â architecting 
+â client-â â $ server 
+â 
+base 
+â app 
+â on 
+â ios.â $ ¨ passion 
+â for 
+Â healthcare 
+â and 
+â making 
+â the 
+â world 
+â a 
+â better 
+â 
+place 
+â 
+â 
+Location 
+â - ââ $ â $ ¨ applicant 
+â should 
+â not 
+â be 
+â bar 
+â from 
+â working 
+â in 
+Â Singapore 
+â 
+â 
+keyword 
+â from 
+â the 
+â job 
+â description 
+â above 
+â would 
+â include 
+â but 
+â not 
+â be 
+â limited 
+â 
+toâ $ ¨ skill : 
+â Swift , 
+â objectivec , 
+â C++ , 
+Â MVP 
+Â application 
+â design , 
+Â iOS , 
+Â Data 
+â 
+structure , 
+Â etc. . 
+Â Education : 
+Â Bachelor 
+â -lrb- computer 
+Â Science -rrb- â $ ¨ Location : 
+â 
+Singaporeâ $ ¨ work 
+â experience 
+â time : 
+â at 
+â least 
+â 1.5 
+â year 
+â -lrb- to 
+â be 
+â parse 
+â from 
+Â they 
+â 
+experience 
+â section 
+â of 
+Â CV -rrb- 
+â 
+â 
+â 

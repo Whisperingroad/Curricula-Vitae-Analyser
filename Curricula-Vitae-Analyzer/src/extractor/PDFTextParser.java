@@ -57,6 +57,8 @@ public class PDFTextParser {
 			text = textString.toString();
 			text = text.replaceAll("^ +| +$| (?= )", "");
 			System.out.println(text);
+			if (cosDoc != null) cosDoc.close();
+			if (pdDoc != null) pdDoc.close();
 		} catch (Exception e) {
 			System.out.println("An exception occured in parsing the PDF Document.");
 			e.printStackTrace();
@@ -68,7 +70,7 @@ public class PDFTextParser {
 			}
 			return null;
 		}      
-		System.out.println("Done.");
+		//System.out.println("Done.");
 		return text;
 	}
 /*
@@ -93,10 +95,10 @@ public class PDFTextParser {
 		String pdfToText = pdfTextParserObj.pdftoText(inputFile);
 
 		if (pdfToText == null) {
-			System.out.println("PDF to Text Conversion failed.");
+			//System.out.println("PDF to Text Conversion failed.");
 		}
 		else {
-			System.out.println("\nText parsed from the PDF Document....\n" + pdfToText);
+			//System.out.println("\nText parsed from the PDF Document....\n" + pdfToText);
 		}
 		return pdfToText;
 	}

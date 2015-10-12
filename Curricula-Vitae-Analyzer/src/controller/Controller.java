@@ -23,10 +23,10 @@ public class Controller
 	protected CvAnalyzer cvAnalyzer = new CvAnalyzer();
 	protected Storage storage = new Storage(); 
 	
-	String resumePath = Constants.SEBASTIAN + "Input/";
-	String textResumePath = Constants.SEBASTIAN + "Storage/TextResumes/";
-	String lemmatisedResumePath = Constants.SEBASTIAN + "Storage/LemmatisedResumes/";
-	String libraryPath = Constants.SEBASTIAN + "Library/";
+	String resumePath = Constants.YIXIU + "Input\\";
+	String textResumePath = Constants.YIXIU + "Storage\\TextResumes\\";
+	String lemmatisedResumePath = Constants.YIXIU + "Storage\\LemmatisedResumes\\";
+	String libraryPath = Constants.YIXIU + "Library\\";
 	
 	ArrayList<String> language = new ArrayList<String>();
 	ArrayList<String> qualification = new ArrayList<String>();
@@ -71,7 +71,7 @@ public class Controller
 		for (File cv : listOfCVs)
 		{
 			System.out.println(cv);
-			System.out.println(cv.toPath());
+			//System.out.println(cv.toPath());
 			String fileType = Files.probeContentType(cv.toPath());
 			System.out.println("Document type is " + fileType);
 			String fileName = cv.getName();
@@ -79,7 +79,7 @@ public class Controller
 			Boolean extractComplete = TextExtractor.execute(cv);
 			if(extractComplete == true)
 			{	
-				String textResumeFile = (cv.toString()).replaceAll(resumePath, textResumePath);
+				String textResumeFile = (cv.toString()).replace(resumePath, textResumePath);		
 				if(TextExtractor.getFilePostfix().equals(Constants.txtPostFix)){
 					storage.moveTxtFile(textResumeFile, cv);
 				}
@@ -89,7 +89,7 @@ public class Controller
 				//file type = ".pdf", ".doc", ".docx"
 				else{
 					
-					textResumeFile = textResumeFile.replaceAll(TextExtractor.getFilePostfix(), Constants.txtPostFix);
+					textResumeFile = textResumeFile.replace(TextExtractor.getFilePostfix(), Constants.txtPostFix);
 					System.out.println("changed" + textResumeFile);
 					// for checking purposes
 					System.out.println(cv.toString());
@@ -113,7 +113,7 @@ public class Controller
  			resume = storage.readData(cvText);
  			lemmatisedResume = textLemmatiser.lemmatiser(resume);
  			// write to storage
- 			String lemmatisedResumeFile = (cvText.toString()).replaceAll(textResumePath, lemmatisedResumePath);
+ 			String lemmatisedResumeFile = (cvText.toString()).replace(textResumePath, lemmatisedResumePath);
  			storage.writeData(lemmatisedResume, lemmatisedResumeFile);	
 		}
 		// job description extraction
@@ -148,8 +148,8 @@ public class Controller
 			cvAnalyzer.inputCV(cvInfo);
 			cvAnalyzer.execute(libraryPath, language, qualification, experience, nationality);
 			Double score = cvAnalyzer.getScore();
-			String candidateName = (lemmatisedCV.toString()).replaceAll(lemmatisedResumePath, "");
-			candidateName = candidateName.replaceAll(Constants.txtPostFix, "");
+			String candidateName = (lemmatisedCV.toString()).replace(lemmatisedResumePath, "");
+			candidateName = candidateName.replace(Constants.txtPostFix, "");
 			// name of candidate and score
 			nameScorePairs.put(candidateName, score);
 		}

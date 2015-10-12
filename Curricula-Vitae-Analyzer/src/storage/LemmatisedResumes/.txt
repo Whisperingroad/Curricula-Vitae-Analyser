@@ -1,0 +1,311 @@
+responsibility 
+work 
+on 
+improve 
+and 
+develop 
+we 
+front end 
+client 
+with 
+some 
+new 
+feature 
+and 
+a 
+impressive 
+user 
+interface work 
+with 
+the 
+backend 
+team 
+to 
+come 
+up 
+with 
+api 
+and 
+sync 
+datum 
+across 
+platform work 
+across 
+team 
+in 
+a 
+project 
+base 
+way 
+and 
+be 
+involve 
+in 
+feature 
+creation 
+product 
+enhancement 
+and 
+experiment 
+throughout 
+the 
+entire 
+development 
+lifecycle 
+from 
+database 
+over 
+backend 
+and 
+api 
+to 
+frontend 
+and 
+user 
+experience be 
+part 
+of 
+a 
+strong 
+team 
+that 
+passionately 
+believe 
+in 
+what 
+it 
+do get 
+exceptional 
+career 
+opportunity 
+Minimum 
+requirement 
+bachelor 
+degree 
+in 
+computer 
+science 
+or 
+a 
+related 
+field at 
+least 
+15 
+year 
+of 
+relevant 
+work 
+experience 
+with 
+iOS 
+application 
+development 
+publish 
+app 
+or 
+significant 
+demonstrable 
+equivalent 
+expertise programming 
+experience 
+in 
+swift ability 
+to 
+follow 
+necessary 
+software 
+engineering 
+practice 
+documentation 
+testing 
+etc strong 
+foundation 
+in 
+uikit 
+and 
+coreanimation 
+include 
+uikitdynamic 
+and 
+custom 
+catransition 
+experience 
+with 
+multithread 
+programming 
+and 
+concurrency 
+in 
+io strong 
+foundation 
+in 
+autolayout 
+and 
+size 
+class experience 
+in 
+architect 
+and 
+optimize 
+persistent 
+storage 
+solution 
+in 
+iOS 
+Preferred 
+qualification 
+considerable 
+programming 
+experience 
+in 
+Swift 
+and 
+objective cc 
+deep 
+technical 
+knowledge 
+of 
+Cocoa 
+touch 
+ecosystem 
+and 
+iOS 
+development 
+paradigm 
+such 
+as 
+mvc 
+viper 
+etc 
+lrb httpwwwobjcioissue13viperhtml rrb 
+experience 
+write 
+unit 
+and 
+integration 
+test 
+with 
+xcode knowledge 
+of 
+framework 
+that 
+can 
+enhance 
+user 
+experience 
+lrb such 
+as 
+Facebook s 
+pop 
+lrb httpsgithubcomfacebookpop rrb rrb 
+mvp 
+application 
+design 
+and 
+complex 
+reactive 
+touch base 
+user 
+experience good 
+contribution 
+to 
+the 
+open 
+source 
+community 
+lrb Cocoa 
+control 
+contribution 
+would 
+be 
+interesting rrb 
+strong 
+foundation 
+in 
+computer 
+science 
+with 
+competency 
+in 
+datum 
+structure 
+algorithm 
+and 
+software 
+design 
+optimize 
+for 
+embedded 
+system strong 
+experience 
+with 
+design 
+and 
+architect 
+client server 
+base 
+app 
+on 
+io passion 
+for 
+healthcare 
+and 
+make 
+the 
+world 
+a 
+better 
+place 
+Location 
+applicant 
+should 
+not 
+be 
+bar 
+from 
+work 
+in 
+Singapore 
+keyword 
+from 
+the 
+job 
+description 
+above 
+would 
+include 
+but 
+not 
+be 
+limited 
+to skill 
+Swift 
+objectivec 
+c 
+mvp 
+application 
+design 
+iOS 
+datum 
+structure 
+etc 
+education 
+bachelor 
+lrb computer 
+Science rrb Location 
+Singapore work 
+experience 
+time 
+at 
+least 
+15 
+year 
+lrb to 
+be 
+parse 
+from 
+they 
+experience 
+section 
+of 
+cv rrb 
