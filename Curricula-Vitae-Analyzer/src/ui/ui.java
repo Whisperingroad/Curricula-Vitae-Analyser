@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -132,9 +134,9 @@ public class ui extends JFrame implements ActionListener{
         	String data1 = null;
         	double data2 = 0.0;
         	
-        	for (Map.Entry<String,Double> f: resultList.entrySet()){
-                data1 = (String) f.getKey();
-                data2 = (double) f.getValue();
+        	for (Entry<String, Double> f: resultList.entrySet()){
+        		data1 = f.getKey();
+        		data2 = f.getValue();
                 model.addRow( new Object[] { data1, data2 } );
         	}
         }

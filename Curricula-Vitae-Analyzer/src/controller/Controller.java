@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 import extractor.TextExtractor;
 import Parser.CvAnalyzer;
@@ -34,8 +35,8 @@ public class Controller
 	ArrayList<String> experience = new ArrayList<String>();
 	ArrayList<String> nationality = new ArrayList<String>();
 	
-	HashMap<String,Double> nameScorePairs =  new HashMap<String,Double>();
-	
+	TreeMap<Double,String> nameScorePairsTree =  new TreeMap<Double,String>();
+	HashMap<String,Double> nameScorePairsHash =  new HashMap<String,Double>();
 	
 	// default constructor
 	public Controller()
@@ -159,10 +160,12 @@ public class Controller
 			Double score = cvAnalyzer.getScore();
 			String candidateName = (lemmatisedCV.toString()).replace(lemmatisedResumePath, "");
 			candidateName = candidateName.replace(Constants.txtPostFix, "");
-		
 			// name of candidate and score
-			nameScorePairs.put(candidateName, score);
+			nameScorePairsHash.put(candidateName, score);
 		}
-		return nameScorePairs;
+		
+//		nameScorePairsTree.putAll(nameScorePairsHash);
+		
+		return nameScorePairsHash;
 	}
 }
