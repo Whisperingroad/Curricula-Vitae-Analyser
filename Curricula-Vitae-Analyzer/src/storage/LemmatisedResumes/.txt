@@ -1,311 +1,357 @@
 responsibility 
-work 
-on 
-improve 
-and 
-develop 
-we 
-front end 
-client 
-with 
+â - ââ $ â $ ¨ work 
+â on , 
+â improve 
+â and 
+â develop 
+â we 
+â front-â â $ end 
+â client 
+â with 
+â 
 some 
-new 
-feature 
-and 
-a 
-impressive 
-user 
-interface work 
-with 
-the 
+Â new 
+â feature 
+â and 
+â a 
+â impressive 
+Â user 
+â interface.â $ ¨ work 
+â with 
+â the 
+â 
 backend 
-team 
-to 
-come 
-up 
-with 
-api 
-and 
-sync 
-datum 
+Â team 
+â to 
+â come 
+â up 
+â with 
+Â api 
+â and 
+â sync 
+â datum 
+â across 
+â platform.â $ ¨ work 
+â 
 across 
-platform work 
-across 
-team 
-in 
-a 
-project 
-base 
-way 
-and 
-be 
-involve 
-in 
-feature 
-creation 
+â team 
+â in 
+â a 
+â project 
+â base 
+â way 
+â and 
+â be 
+â involve 
+â in 
+â feature 
+â creation , 
+â 
 product 
-enhancement 
-and 
-experiment 
-throughout 
-the 
-entire 
+â enhancement 
+â and 
+â experiment 
+â throughout 
+â the 
+â entire 
+â 
 development 
-lifecycle 
-from 
-database 
-over 
-backend 
+â lifecycle , 
+â from 
+â database 
+â over 
+â backend 
+â and 
+Â api 
+â to 
+â frontend 
+â 
 and 
-api 
-to 
-frontend 
-and 
-user 
-experience be 
-part 
-of 
-a 
-strong 
-team 
-that 
-passionately 
-believe 
-in 
+Â user 
+â experienceâ $ ¨ be 
+â part 
+â of 
+â a 
+â strong 
+Â team 
+â that 
+â passionately 
+â believe 
+â in 
+â 
 what 
-it 
-do get 
-exceptional 
-career 
-opportunity 
+â it 
+â doesâ $ ¨ get 
+â exceptional 
+â career 
+â opportunity 
+â 
+â 
 Minimum 
-requirement 
-bachelor 
-degree 
-in 
-computer 
-science 
-or 
-a 
-related 
-field at 
-least 
-15 
-year 
-of 
-relevant 
-work 
-experience 
-with 
-iOS 
-application 
-development 
-publish 
-app 
-or 
-significant 
-demonstrable 
-equivalent 
-expertise programming 
-experience 
-in 
-swift ability 
-to 
-follow 
-necessary 
+â requirement 
+â - ââ $ â $ ¨ bachelor 
+â degree 
+â in 
+â computer 
+â science 
+â or 
+â a 
+â related 
+â 
+fieldâ $ ¨ at 
+â least 
+â 1.5 
+â year 
+â of 
+â relevant 
+â work 
+â experience 
+â with 
+Â iOS 
+â application 
+â 
+development , 
+â publish 
+â app 
+â or 
+â significant 
+â demonstrable 
+â equivalent 
+â 
+expertise.â $ ¨ programming 
+â experience 
+â in 
+â swift.â $ ¨ ability 
+â to 
+â follow 
+â necessary 
+â 
 software 
-engineering 
-practice 
-documentation 
-testing 
-etc strong 
+â engineering 
+â practice 
+â - ââ $ 
+â documentation , 
+â testing , 
+Â etc. â $ ¨ strong 
+â 
 foundation 
-in 
-uikit 
-and 
-coreanimation 
-include 
-uikitdynamic 
-and 
-custom 
-catransition 
-experience 
-with 
-multithread 
-programming 
-and 
+â in 
+â uikit 
+â and 
+â coreanimation 
+â include 
+â uikitdynamic 
+â and 
+â custom 
+â 
+catransition . 
+â experience 
+â with 
+â multithread 
+Â programming 
+â and 
+â 
 concurrency 
-in 
-io strong 
-foundation 
-in 
-autolayout 
-and 
-size 
-class experience 
-in 
-architect 
-and 
-optimize 
-persistent 
-storage 
+â in 
+â iosâ $ ¨ strong 
+â foundation 
+â in 
+â autolayout 
+â and 
+â size 
+â 
+Classesâ $ ¨ experience 
+â in 
+â architect 
+â and 
+â optimize 
+â persistent 
+â storage 
+â 
 solution 
-in 
-iOS 
+â in 
+Â iOS 
+â 
+â 
+â 
 Preferred 
-qualification 
-considerable 
-programming 
-experience 
-in 
-Swift 
+â qualification 
+â - ââ $ â $ ¨ considerable 
+Â programming 
+â experience 
+â in 
+â Swift 
+â 
 and 
-objective cc 
-deep 
-technical 
-knowledge 
-of 
-Cocoa 
-touch 
-ecosystem 
+â objective-â â $ c/c + + . 
+â $ ¨ deep 
+â technical 
+â knowledge 
+â of 
+Â Cocoa 
+â touch 
+â ecosystem 
+â 
 and 
-iOS 
-development 
-paradigm 
-such 
-as 
-mvc 
-viper 
-etc 
-lrb httpwwwobjcioissue13viperhtml rrb 
-experience 
-write 
-unit 
-and 
+Â iOS 
+â development 
+â paradigm 
+â such 
+â as 
+Â MVC , 
+Â VIPER 
+Â etc. . 
+â 
+-lrb- http://www.objc.io/issue-â­â€?13/viper.html -rrb-_NN . 
+â $ ¨ experience 
+â writing 
+â unit 
+â and 
+â 
 integration 
-test 
-with 
-xcode knowledge 
-of 
-framework 
-that 
-can 
-enhance 
+â test 
+â with 
+â xcode.â $ ¨ knowledge 
+â of 
+â framework 
+â that 
+â can 
+â enhance 
+â 
 user 
-experience 
-lrb such 
-as 
-Facebook s 
-pop 
-lrb httpsgithubcomfacebookpop rrb rrb 
-mvp 
-application 
-design 
-and 
-complex 
+â experience 
+â -lrb- such 
+â as 
+Â Facebook 's 
+Â Pop 
+â 
+-lrb- https://github.com/facebook/pop -rrb- -rrb-_NN 
+Â MVP 
+â application 
+â design 
+â and 
+â complex , 
+â 
 reactive 
-touch base 
-user 
-experience good 
-contribution 
-to 
-the 
-open 
+â touch-â â $ base 
+Â user 
+â experience.â $ ¨ good 
+â contribution 
+â to 
+â the 
+â open 
+â 
 source 
-community 
-lrb Cocoa 
-control 
-contribution 
-would 
-be 
-interesting rrb 
+â community 
+â -lrb- Cocoa 
+Â Control 
+â contribution 
+â would 
+â be 
+â interesting -rrb-_NN 
+â 
 strong 
-foundation 
-in 
-computer 
-science 
-with 
-competency 
-in 
-datum 
-structure 
-algorithm 
-and 
-software 
-design 
-optimize 
-for 
-embedded 
-system strong 
-experience 
-with 
-design 
-and 
-architect 
-client server 
+â foundation 
+â in 
+â computer 
+â science , 
+â with 
+â competency 
+â in 
+â datum 
+â 
+structure , 
+â algorithm 
+â and 
+â software 
+â design 
+â optimize 
+â for 
+â embedded 
+â 
+systems.â $ ¨ strong 
+â experience 
+â with 
+â design 
+â and 
+â architect 
+â client-â â $ server 
+â 
 base 
-app 
-on 
-io passion 
-for 
-healthcare 
-and 
-make 
-the 
-world 
-a 
-better 
+â app 
+â on 
+â ios.â $ ¨ passion 
+â for 
+Â healthcare 
+â and 
+â making 
+â the 
+â world 
+â a 
+â better 
+â 
 place 
+â 
+â 
 Location 
-applicant 
-should 
-not 
-be 
-bar 
-from 
-work 
-in 
-Singapore 
+â - ââ $ â $ ¨ applicant 
+â should 
+â not 
+â be 
+â bar 
+â from 
+â working 
+â in 
+Â Singapore 
+â 
+â 
 keyword 
-from 
-the 
-job 
-description 
-above 
-would 
-include 
-but 
-not 
-be 
-limited 
-to skill 
-Swift 
-objectivec 
-c 
-mvp 
-application 
-design 
-iOS 
-datum 
-structure 
-etc 
-education 
-bachelor 
-lrb computer 
-Science rrb Location 
-Singapore work 
+â from 
+â the 
+â job 
+â description 
+â above 
+â would 
+â include 
+â but 
+â not 
+â be 
+â limited 
+â 
+toâ $ ¨ skill : 
+â Swift , 
+â objectivec , 
+â C++ , 
+Â MVP 
+â application 
+â design , 
+Â iOS , 
+Â Data 
+â 
+structure , 
+Â etc. . 
+Â Education : 
+Â Bachelor 
+â -lrb- computer 
+Â Science -rrb- â $ ¨ Location : 
+â 
+Singaporeâ $ ¨ work 
+â experience 
+â time : 
+â at 
+â least 
+â 1.5 
+â year 
+â -lrb- to 
+â be 
+â parse 
+â from 
+â they 
+â 
 experience 
-time 
-at 
-least 
-15 
-year 
-lrb to 
-be 
-parse 
-from 
-they 
-experience 
-section 
-of 
-cv rrb 
+â section 
+â of 
+Â CV -rrb- 
+â 
+â 
+â 

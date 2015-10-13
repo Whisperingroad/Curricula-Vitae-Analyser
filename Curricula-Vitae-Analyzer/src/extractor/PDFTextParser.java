@@ -44,7 +44,7 @@ public class PDFTextParser {
 			pdfStripper = new PDFTextStripper();
 			pdDoc = new PDDocument(cosDoc);
 			parsedText = pdfStripper.getText(pdDoc); 
-			System.out.println(parsedText);
+			//System.out.println(parsedText);
 			
 			StringBuilder textString = new StringBuilder();
 			textString.append(parsedText);

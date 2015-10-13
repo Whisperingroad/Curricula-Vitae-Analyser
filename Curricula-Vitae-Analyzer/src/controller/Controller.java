@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import extractor.TextExtractor;
@@ -100,8 +101,9 @@ public class Controller
 		}
 	}
 	
-	public HashMap<String,Double> startProcessing() throws IOException, FileNotFoundException
+	public HashMap<String,Double> startProcessing(String jobDescription) throws IOException, FileNotFoundException
 	{
+		System.out.println(jobDescription);
 		extractCV();
 		// lemmatizing resumes 
 		File cvTextFolder = new File(textResumePath);
@@ -117,8 +119,15 @@ public class Controller
  			storage.writeData(lemmatisedResume, lemmatisedResumeFile);	
 		}
 		// job description extraction
-		//jobDescriptionAnalyzer.setJobRequirement();
+		ArrayList<String> jobReq = new ArrayList<String>(Arrays.asList(jobDescription.split("\\r?\\n")));
+		jobDescriptionAnalyzer.setJobRequirement(jobReq);
 		jobDescriptionAnalyzer.execute(libraryPath);
+		
+		language.clear();
+		qualification.clear();
+		experience.clear();
+		nationality.clear();
+		
 		language  = jobDescriptionAnalyzer.getLanguageReq();
 		qualification = jobDescriptionAnalyzer.getQualificationReq();
 		experience = jobDescriptionAnalyzer.getExperienceReq();
@@ -150,6 +159,7 @@ public class Controller
 			Double score = cvAnalyzer.getScore();
 			String candidateName = (lemmatisedCV.toString()).replace(lemmatisedResumePath, "");
 			candidateName = candidateName.replace(Constants.txtPostFix, "");
+		
 			// name of candidate and score
 			nameScorePairs.put(candidateName, score);
 		}

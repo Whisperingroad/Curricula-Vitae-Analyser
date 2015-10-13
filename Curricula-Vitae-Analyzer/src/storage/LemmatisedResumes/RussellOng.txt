@@ -10,24 +10,24 @@ CMS/CRM/ERP Development , iOS/Android Development , Facebook/Twitter application
 Ruby , Ruby on Rails , objective-c , rest/soap framework , OAuth/OpenID integration 
 experience 
 senior Software Engineer at ReQall Technologies PTE ltd 
-March 2012 - present -lrb- 3 year 8 month -rrb- 
+March 2012 - present 3 year 8 month 
 - Mobile application development use native iOS and Android . 
 - integration with various smartwatch 
-sdk -lrb- Pebble , Samsung Gear/Gear Fit , Qualcomm Toq , Sony SmartWatch , Android wear , iWatch -rrb- - 
-integration with auto manufacturer sdk -lrb- myspin -rrb- 
+sdk Pebble , Samsung Gear/Gear Fit , Qualcomm Toq , Sony SmartWatch , Android wear , iWatch - 
+integration with auto manufacturer sdk myspin 
 Assistant Professor at Chiang Kai Shek College 
-June 2009 - April 2012 -lrb- 2 year 11 month -rrb- 
+June 2009 - April 2012 2 year 11 month 
 senior Software Engineer at Rivereo 
-January 2011 - March 2012 -lrb- 1 year 3 month -rrb- 
+January 2011 - March 2012 1 year 3 month 
 - Web/Mobile application development - various apus integration 
 Software Engineer at Exist Global 
-August 2010 - December 2010 -lrb- 5 month -rrb- 
+August 2010 - December 2010 5 month 
 web application development 
 senior Software Engineer at Brewed Concepts Inc 
-July 2006 - August 2010 -lrb- 4 year 2 month -rrb- 
+July 2006 - August 2010 4 year 2 month 
 web Developer Team Management Systems Architect 
 Web/Mobile Developer at E Commerce Percs 
-April 2006 - July 2006 -lrb- 4 month -rrb- 
+April 2006 - July 2006 4 month 
 Mobile/Web application development 
 project 
 zeroin 
@@ -138,10 +138,10 @@ a excellent programmer/developer who have strong dedication and appreciation
 in all of the project he handle . 
 he be full of idea and knowledge which he always share to he co-worker . 
 good job ! 
-:-rrb-_NN '' 
+: '' 
 Darryl Anne Gutierrez , work directly with Russell at Brewed Concepts Inc 
 `` Russell be a great team-player , a excellent ror geek , fast learner and a great buddy ! 
-;--rrb- keep it up ! '' 
+; - keep it up ! '' 
 Jeremy D. , work directly with Russell at Brewed Concepts Inc 
 `` Russell be unbeatable especially in programming technique . 
 he be self-motivated person . 

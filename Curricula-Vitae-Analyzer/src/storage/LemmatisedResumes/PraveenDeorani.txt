@@ -3,9 +3,9 @@ Praveen Deorani
 Research Scholar at National University of Singapore 
 experience 
 Research Scholar at National University of Singapore 
-January 2011 - present -lrb- 4 year 10 month -rrb- 
+January 2011 - present 4 year 10 month 
 Research Associate at Indian Institute of Technology , Kanpur 
-May 2010 - October 2010 -lrb- 6 month -rrb- 
+May 2010 - October 2010 6 month 
 Publications 
 role of spin mix conductance in spin pump : enhancement of spin pump efficiency in Ta/Cu/Py 
 structure 
@@ -37,10 +37,10 @@ author : Jae Hyun Kwon , Sankha Subhra Mukherjee , Praveen Deorani , Masamitsu H
 page2 
 volunteer experience 
 teacher at Shiksha Sopan , Kanpur 
-June 2007 - December 2007 -lrb- 7 month -rrb- 
+June 2007 - December 2007 7 month 
 language 
-English -lrb- Professional work proficiency -rrb- 
-Hindi -lrb- native or bilingual proficiency -rrb- 
+English Professional work proficiency 
+Hindi native or bilingual proficiency 
 skill & expertise 
 nanofabrication 
 photolithography 
@@ -57,7 +57,7 @@ common lisp
 statistics 
 education 
 National University of Singapore 
-doctor of philosophy -lrb- ph.d. -rrb- , electrical and Computer Engineering , 2011 - 2015 
+doctor of Philosophy Ph.D. , electrical and Computer Engineering , 2011 - 2015 
 Grade : 4.67 / 5 
 Indian Institute of Technology , Kanpur 
 master 's Degree , physics , 2005 - 2010 

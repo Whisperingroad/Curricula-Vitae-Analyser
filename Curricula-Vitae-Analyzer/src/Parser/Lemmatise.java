@@ -28,8 +28,10 @@ public class Lemmatise {
 			String words[] = s.split(" ");
 			String line = "";
 			for (String w:words){
-				//remove punctuation, and non word characters
-				w = w.replaceAll("\\W","");
+				//remove all brackets
+				w = w.replaceAll("[()]", "");
+				w = w.replaceAll("\\[", "").replaceAll("\\]","");
+				w = w.replaceAll("[{}]", "");
 				line += w + " ";
 			}
 			line.trim();
@@ -57,7 +59,7 @@ public class Lemmatise {
 					line+= token.get(LemmaAnnotation.class) + " ";
 				}
 				line.trim();
-				System.out.println("LEMMATISED" + line);
+				//System.out.println("LEMMATISED" + line);
 				lemmas.add(line);
 			}
 		}

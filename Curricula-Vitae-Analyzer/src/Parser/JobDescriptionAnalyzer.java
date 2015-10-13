@@ -149,16 +149,22 @@ public class JobDescriptionAnalyzer {
 	}
 
 	public void execute(String path) {
+		language.clear();
+		qualification.clear();
+		experience.clear();
+		nationality.clear();
+		
 		boolean[] categoryPresent = new boolean[numCategories];
-
+		System.out.println("JOB DESCIRPTION:" + jobDescription.size());
 		loadCategories(path);
 		for (int size = 0; size < jobDescription.size(); size++){
-			String paragraph = jobDescription.get(size);
-			System.out.println(paragraph);
+			String paragraph = jobDescription.get(size).toLowerCase();
+			System.out.println("JOB DESCIRPTION:" + paragraph);
 			categoryPresent = findCategory(paragraph, path);
 			addRequirements(categoryPresent,paragraph, path);
 			addSpecialCase(categoryPresent,paragraph, path);
 		}
+		jobDescription.clear();
 	}
 }
 

@@ -5,6 +5,7 @@ import java.awt.event.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -29,6 +30,7 @@ public class ui extends JFrame implements ActionListener{
     DefaultTableModel model;
 
     int resultSize = 20;
+    String jobReq = null;
 
     //to change to the relevant data type
     List<String> resultFiles = new ArrayList<String>();
@@ -82,9 +84,10 @@ public class ui extends JFrame implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent e){
-        if (e.getSource() == readButton){
-            String jobDescription = textArea.getText();
-            System.out.println(jobDescription);
+    	if (e.getSource() == readButton){
+            jobReq = textArea.getText();
+            System.out.println(jobReq);
+        
 
         }else if (e.getSource() == startButton){
         	removeRows();
@@ -93,7 +96,7 @@ public class ui extends JFrame implements ActionListener{
         	Controller controller = new Controller();
         	HashMap<String,Double> resultList = new HashMap<String,Double>();
         	try {
-				resultList = controller.startProcessing();
+				resultList = controller.startProcessing(jobReq);
 			} catch (FileNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

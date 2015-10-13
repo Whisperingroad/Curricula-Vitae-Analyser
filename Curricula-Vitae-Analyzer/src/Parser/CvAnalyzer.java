@@ -106,8 +106,9 @@ public class CvAnalyzer {
 	}
 
 	public double getScore(){
-		double size = language.size() + qualification.size() + experience.size() + nationality.size();
-		return (score/size);
+		//double size = language.size() + qualification.size() + experience.size() + nationality.size();
+		//return (score/size);
+		return score;
 	}
 
 	public void execute(String path, ArrayList<String> languageInput,ArrayList<String> qualificationInput,ArrayList<String> experienceInput,ArrayList<String> nationalityInput){

@@ -8,6 +8,7 @@ Microsoft Excel
 Microsoft-Excel
 Microsoft Office
 MS Office
+Java
 class 3 driving license
 people management
 organization
@@ -36,7 +37,6 @@ C++
 /C 
  C.
 .C 
-Java
 Ruby
 Common Lisp
 Matlab
