@@ -61,7 +61,9 @@ public class Storage {
 			PrintWriter printWriter = new PrintWriter(fileName);
 			for (String line : data)
 			{
-				printWriter.println(line);
+				String newLine;
+				newLine = line.trim();
+				printWriter.println(newLine);
 			}
 			printWriter.close();
 		}

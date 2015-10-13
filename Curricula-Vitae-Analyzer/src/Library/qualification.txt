@@ -1,8 +1,12 @@
-diploma
-degree
-master
-PhD
-MSc
-BE
-Certifications
-Bachelor of Science
+diploma 
+degree 
+master 
+phd 
+msc
+certification 
+bachelor 
+bsc 
+b.eng
+be
+b.eng
+b.eng.

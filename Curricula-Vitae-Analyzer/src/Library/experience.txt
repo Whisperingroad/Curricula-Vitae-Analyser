@@ -1,18 +1,54 @@
-foundation
-experience
-expertise
-knowledge
-abilities
-skills
-proficient
-possess
-develop
-work
-demonstrate
-optimise
-programming language
-software tools
-productivity tools
-systems
-software
-hardware
+coordinate 
+evaluate 
+Monitor 
+configure 
+Foundation 
+experience 
+expertise 
+knowledge 
+ability 
+skill 
+proficient 
+possess 
+develop 
+work 
+demonstrate 
+optimize 
+program language 
+Software tool 
+Productivity tool 
+Software development 
+software design 
+hardware 
+System 
+study 
+assess 
+use 
+design 
+execute 
+investigate 
+responsible 
+cater 
+maintain 
+investigate 
+present 
+help 
+write 
+assist 
+train 
+perform 
+analysis 
+create 
+support 
+troubleshoot 
+manage 
+organise 
+organize 
+improve 
+conduct 
+innovate 
+showcase 
+install 
+configure 
+update 
+deploy

@@ -68,33 +68,41 @@ public class CvAnalyzer {
 				if (category == 0){
 					for (int i = 0; i < language.size(); i++){
 						attribute = language.get(i);
-						attribute = attribute.toLowerCase();
-						if (paragraph.contains(attribute))
+						attribute = (attribute.toLowerCase()).trim();
+						if (paragraph.contains(attribute)){
+							language.remove(attribute);
 							score++;
+						}
 					}
 				}
 				else if (category == 1){
 					for (int i = 0; i < qualification.size(); i++){
 						attribute = qualification.get(i);
-						attribute = attribute.toLowerCase();
-						if (paragraph.contains(attribute))
+						attribute = (attribute.toLowerCase()).trim();
+						if (paragraph.contains(attribute)){
+							qualification.remove(attribute);
 							score++;
+						}
 					}
 				}
 				else if (category == 2){
 					for (int i = 0; i < experience.size(); i++){
 						attribute = experience.get(i);
-						attribute = attribute.toLowerCase();
-						if (paragraph.contains(attribute))
+						attribute = (attribute.toLowerCase()).trim();
+						if (paragraph.contains(attribute)){
+							experience.remove(attribute);
 							score++;
+						}
 					}
 				}
 				else{
 					for (int i = 0; i < nationality.size(); i++){
 						attribute = nationality.get(i);
-						attribute = attribute.toLowerCase();
-						if (paragraph.contains(attribute))
+						attribute = (attribute.toLowerCase()).trim();
+						if (paragraph.contains(attribute)){
+							nationality.remove(attribute);
 							score++;
+						}
 					}
 				}
 			}
@@ -107,17 +115,22 @@ public class CvAnalyzer {
 
 	public double getScore(){
 		double size = language.size() + qualification.size() + experience.size() + nationality.size();
-		return (score/size);
-
+		return (score/size)*100;
+		//return score;	
 	}
 
 	public void execute(String path, ArrayList<String> languageInput,ArrayList<String> qualificationInput,ArrayList<String> experienceInput,ArrayList<String> nationalityInput){
 		boolean[] categoryPresent = new boolean[numCategories];
 		score = 0;
+		language.clear();
+		qualification.clear();
+		experience.clear();
+		nationality.clear();
 		language.addAll(languageInput);
 		qualification.addAll(qualificationInput);
 		experience.addAll(experienceInput);
 		nationality.addAll(nationalityInput);
+	
 
 		String paragraph = null;
 		for (int i = 0; i < CV.size(); i++){

@@ -87,7 +87,7 @@ public class JobDescriptionAnalyzer {
 					Scanner readFile = new Scanner(listPath);
 					while (readFile.hasNextLine()){
 						attribute = readFile.nextLine();
-						attribute = attribute.toLowerCase();
+						attribute = (attribute.toLowerCase()).trim();
 						if (paragraph.contains(attribute)){
 							if (i == 0)
 								language.add(attribute);
