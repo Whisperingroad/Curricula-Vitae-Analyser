@@ -52,3 +52,5 @@ install
 configure 
 update 
 deploy
+excel in
+excel at

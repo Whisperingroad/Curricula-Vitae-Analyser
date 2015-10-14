@@ -76,7 +76,7 @@ public class WordDocumentExtractor
 			
 			text = we.getText();
 			text = formatting(text);
-			System.out.println(text);
+			//System.out.println(text);
 			//extractor.writeTexttoFile(text, outputFile);
 			we.close();
 		} catch (FileNotFoundException e) {

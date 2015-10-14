@@ -7,12 +7,12 @@ import utils.Constants;
 
 
 public class JobDescriptionAnalyzer {
-	private static int numCategories = 4;
-	private static String[] categories = new String[numCategories];
-	private static ArrayList<String> language = new ArrayList<String>();
-	private static ArrayList<String> qualification = new ArrayList<String>();
-	private static ArrayList<String> experience = new ArrayList<String>();
-	private static ArrayList<String> nationality = new ArrayList<String>();
+	private int numCategories = 4;
+	private String[] categories = new String[numCategories];
+	private ArrayList<String> language = new ArrayList<String>();
+	private ArrayList<String> qualification = new ArrayList<String>();
+	private ArrayList<String> experience = new ArrayList<String>();
+	private ArrayList<String> nationality = new ArrayList<String>();
 	
 	private static ArrayList<String> jobDescription = new ArrayList<String>();
 	
@@ -49,10 +49,11 @@ public class JobDescriptionAnalyzer {
 				File categoriesPath = new File(categoryPath);
 				Scanner readFile = new Scanner(categoriesPath);
 				// checking every word in a category
-				while (readFile.hasNext())
+				while (readFile.hasNextLine())
 				{
-					word = readFile.next();
+					word = readFile.nextLine();
 					word = word.toLowerCase();
+					word = word.trim();
 					// category is present
 					// attribute list for this category is processed
 					if (paragraph.contains(word))
@@ -89,13 +90,13 @@ public class JobDescriptionAnalyzer {
 						attribute = readFile.nextLine();
 						attribute = (attribute.toLowerCase()).trim();
 						if (paragraph.contains(attribute)){
-							if (i == 0)
+							if (i == 0 && !language.contains(attribute))
 								language.add(attribute);
-							else if (i == 1)
+							else if (i == 1 && !qualification.contains(attribute))
 								qualification.add(attribute);
-							else if (i == 2)
+							else if (i == 2 && !experience.contains(attribute))
 								experience.add(attribute);
-							else
+							else if (i == 3 && !nationality.contains(attribute))
 								nationality.add(attribute);
 						}
 					}

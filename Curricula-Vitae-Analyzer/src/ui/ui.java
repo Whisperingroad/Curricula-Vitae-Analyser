@@ -88,7 +88,7 @@ public class ui extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e){
     	if (e.getSource() == readButton){
             jobReq = textArea.getText();
-            System.out.println(jobReq);
+            //System.out.println(jobReq);
         
 
         }else if (e.getSource() == startButton){

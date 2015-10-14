@@ -3,6 +3,7 @@ package Parser;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.regex.Pattern;
 
 import edu.stanford.nlp.ling.*;
 import edu.stanford.nlp.ling.CoreAnnotations.LemmaAnnotation;
@@ -20,48 +21,47 @@ public class Lemmatise {
 	}
 
 	public ArrayList<String> lemmatiser(ArrayList<String> textInput){
-		//Properties props = new Properties();
-		//props.put("annotators", "tokenize, ssplit, pos, parse, lemma");
-		//StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
 		ArrayList<String> sanitisedInput = new ArrayList<String>();
 		for(String s:textInput){
-			String words[] = s.split(" ");
-			String line = "";
-			for (String w:words){
-				//remove all brackets
-				w = w.replaceAll("[()]", "");
-				w = w.replaceAll("\\[", "").replaceAll("\\]","");
-				w = w.replaceAll("[{}]", "");
-				line += w + " ";
-			}
-			line.trim();
-			sanitisedInput.add(line);
+			//String words[] = s.split(" ");
+			//String line = "";
+			//for (String w:words){
+			//remove all brackets
+			s = s.replaceAll("[()]","");
+			s = s.replaceAll("\\[","").replaceAll("\\]","");
+			s = s.replaceAll("[{}]","");
+			//line += w + " ";
+			//}
+			//s.trim();
+			sanitisedInput.add(s);
 		}
 		ArrayList<String> lemmas = new ArrayList<String>();
 		//a sentence
 		for(String s:sanitisedInput)
 		{
-			
+			String line = "";
 			// create an empty Annotation just with the given text
 			Annotation annotation = new Annotation(s);
 			// run annotator on this string
 			pipeline.annotate(annotation);
-			// a CoreMap is essentially a Map that uses class objects as keys and has values with custom types
-			// getting the sentences contained by an annotation
 			List<CoreMap> sentences = annotation.get(CoreAnnotations.SentencesAnnotation.class);
-
-			for(CoreMap sentence: sentences) {
-				String line = "";
-				// Iterate over all tokens in a sentence					
+			for(CoreMap sentence: sentences) {				
+				// Iterate over all tokens in a sentence
 				for (CoreLabel token: sentence.get(TokensAnnotation.class)) {
 					// Retrieve and add the lemma for each word into the list of lemmas
-					//lemmas.add(token.get(LemmaAnnotation.class));
-					line+= token.get(LemmaAnnotation.class) + " ";
+					String str = token.get(LemmaAnnotation.class);
+					if (Pattern.matches("\\p{Punct}", str)) {
+						line = line.trim() + str;
+					}
+					
+					else{
+					line = line + str + " ";
+					}
 				}
-				line.trim();
-				//System.out.println("LEMMATISED" + line);
-				lemmas.add(line);
+				
 			}
+			line.trim();
+			lemmas.add(line);
 		}
 
 		return lemmas;

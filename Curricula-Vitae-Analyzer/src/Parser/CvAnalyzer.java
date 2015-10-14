@@ -43,9 +43,9 @@ public class CvAnalyzer {
 				categoryPath = rootPath + categories[i] + ".txt";
 				File categoriesPath = new File(categoryPath);
 				Scanner readFile = new Scanner(categoriesPath);
-				while (readFile.hasNext()){
-					word = readFile.next();
-					word = word.toLowerCase();
+				while (readFile.hasNextLine()){
+					word = readFile.nextLine();
+					word = word.toLowerCase().trim();
 					if (paragraph.contains(word)){
 						categoryPresent[index] = true;
 					}
@@ -66,41 +66,53 @@ public class CvAnalyzer {
 		for (int category = 0; category < numCategories; category++){
 			if (categoryPresent[category]){
 				if (category == 0){
-					for (int i = 0; i < language.size(); i++){
+					for (int i = language.size()-1; i >= 0; i--){
 						attribute = language.get(i);
 						attribute = (attribute.toLowerCase()).trim();
 						if (paragraph.contains(attribute)){
-							language.remove(attribute);
+							System.out.println("CAT" + category);
+							System.out.println("MATCHED STRING" + paragraph);
+							System.out.println("REMOVED" + attribute);
+							language.remove(i);
 							score++;
 						}
 					}
 				}
 				else if (category == 1){
-					for (int i = 0; i < qualification.size(); i++){
+					for (int i = qualification.size()-1; i >= 0; i--){
 						attribute = qualification.get(i);
 						attribute = (attribute.toLowerCase()).trim();
 						if (paragraph.contains(attribute)){
-							qualification.remove(attribute);
+							System.out.println("CAT" + category);
+							System.out.println("MATCHED STRING" + paragraph);
+							System.out.println("REMOVED" + attribute);
+							qualification.remove(i);
 							score++;
 						}
 					}
 				}
 				else if (category == 2){
-					for (int i = 0; i < experience.size(); i++){
+					for (int i = experience.size()-1; i >=0; i--){
 						attribute = experience.get(i);
 						attribute = (attribute.toLowerCase()).trim();
 						if (paragraph.contains(attribute)){
-							experience.remove(attribute);
+							//System.out.println("CAT" + category);
+							//System.out.println("MATCHED STRING" + paragraph);
+							//System.out.println("REMOVED" + attribute);
+							experience.remove(i);
 							score++;
 						}
 					}
 				}
 				else{
-					for (int i = 0; i < nationality.size(); i++){
+					for (int i = nationality.size() -1; i >= 0; i--){
 						attribute = nationality.get(i);
 						attribute = (attribute.toLowerCase()).trim();
 						if (paragraph.contains(attribute)){
-							nationality.remove(attribute);
+							System.out.println("CAT" + category);
+							System.out.println("MATCHED STRING" + paragraph);
+							System.out.println("REMOVED" + attribute);
+							nationality.remove(i);
 							score++;
 						}
 					}
@@ -110,13 +122,14 @@ public class CvAnalyzer {
 	}
 	
 	public void inputCV(ArrayList<String> input){
+		CV.clear();
 		CV.addAll(input);
 	}
 
 	public double getScore(){
-		double size = language.size() + qualification.size() + experience.size() + nationality.size();
-		return (score/size)*100;
-		//return score;	
+		//double size = language.size() + qualification.size() + experience.size() + nationality.size();
+		//return (score/size)*100;
+		return score;	
 	}
 
 	public void execute(String path, ArrayList<String> languageInput,ArrayList<String> qualificationInput,ArrayList<String> experienceInput,ArrayList<String> nationalityInput){
@@ -126,17 +139,18 @@ public class CvAnalyzer {
 		qualification.clear();
 		experience.clear();
 		nationality.clear();
+
 		language.addAll(languageInput);
 		qualification.addAll(qualificationInput);
 		experience.addAll(experienceInput);
 		nationality.addAll(nationalityInput);
 	
-
+		loadCategories(path);
 		String paragraph = null;
 		for (int i = 0; i < CV.size(); i++){
 			paragraph = CV.get(i);
 			paragraph = paragraph.toLowerCase();
-			loadCategories(path);
+			//loadCategories(path);
 			categoryPresent = findCategory(paragraph,path);
 			matchRequirement(categoryPresent,paragraph);
 			//System.out.println(score);

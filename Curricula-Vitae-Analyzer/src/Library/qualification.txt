@@ -2,11 +2,11 @@ diploma
 degree 
 master 
 phd 
-msc
+msc 
 certification 
 bachelor 
 bsc 
-b.eng
-be
-b.eng
+b.eng 
+be 
+b.eng 
 b.eng.

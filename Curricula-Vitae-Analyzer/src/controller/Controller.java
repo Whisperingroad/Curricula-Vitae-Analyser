@@ -94,8 +94,8 @@ public class Controller
 					textResumeFile = textResumeFile.replace(TextExtractor.getFilePostfix(), Constants.txtPostFix);
 					System.out.println("changed" + textResumeFile);
 					// for checking purposes
-					System.out.println(cv.toString());
-					System.out.println(textResumeFile);
+					//System.out.println(cv.toString());
+					//System.out.println(textResumeFile);
 					storage.writeData(TextExtractor.getFileContent(), textResumeFile);
 				}
 			}
@@ -164,7 +164,6 @@ public class Controller
 			nameScorePairsHash.put(candidateName, score);
 		}
 		
-//		nameScorePairsTree.putAll(nameScorePairsHash);
 		
 		return nameScorePairsHash;
 	}

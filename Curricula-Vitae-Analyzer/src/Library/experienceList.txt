@@ -27,7 +27,7 @@ reactj
 golang 
 websocket 
 android development 
-MVP application design 
+mvp application design 
 visual studio 
 Eclipse 
 SQL server 
@@ -105,10 +105,10 @@ event organization
 administration 
 ms-office 
 Microsoft Office 
-ms Office 
+m Office 
 ms-office suite 
 Microsoft Office Suite 
-ms Office Suite 
+m Office Suite 
 active Directory 
 remote Desktop 
 voip 
@@ -185,7 +185,6 @@ Software application design
 application development 
 app development 
 test and optimization 
-visual basic.net 
 visual c#.net 
 brainstorm 
 Problem solve 
