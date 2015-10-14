@@ -131,9 +131,8 @@ public class CvAnalyzer {
 	}
 
 	public double getScore(){
-		//double size = language.size() + qualification.size() + experience.size() + nationality.size();
-		//return (score/size)*100;
-		return score;	
+		double size = language.size() + qualification.size() + experience.size() + nationality.size();
+		return (score/size)*100;	
 	}
 	
 	public void clearLists(){
@@ -167,7 +166,6 @@ public class CvAnalyzer {
 			paragraph = paragraph.toLowerCase();
 			categoryPresent = findCategory(paragraph,path);
 			matchRequirement(categoryPresent,paragraph);
-			//System.out.println(score);
 		}
 	}
 }

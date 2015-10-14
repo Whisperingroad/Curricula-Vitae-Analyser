@@ -23,16 +23,10 @@ public class Lemmatise {
 	public ArrayList<String> lemmatiser(ArrayList<String> textInput){
 		ArrayList<String> sanitisedInput = new ArrayList<String>();
 		for(String s:textInput){
-			//String words[] = s.split(" ");
-			//String line = "";
-			//for (String w:words){
 			//remove all brackets
 			s = s.replaceAll("[()]","");
 			s = s.replaceAll("\\[","").replaceAll("\\]","");
 			s = s.replaceAll("[{}]","");
-			//line += w + " ";
-			//}
-			//s.trim();
 			sanitisedInput.add(s);
 		}
 		ArrayList<String> lemmas = new ArrayList<String>();
