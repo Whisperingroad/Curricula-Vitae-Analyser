@@ -186,7 +186,7 @@ application development
 app development 
 test and optimization 
 visual c#.net 
-brainstorm 
+brainstorm
 Problem solve 
 Desktop application 
 Dataset management 

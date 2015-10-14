@@ -13,8 +13,12 @@ public class CvAnalyzer {
 	private ArrayList<String> qualification = new ArrayList<String>();
 	private ArrayList<String> experience = new ArrayList<String>();
 	private ArrayList<String> nationality = new ArrayList<String>();
-	
+	private ArrayList<String> ignore_language = new ArrayList<String>();
+	private ArrayList<String> ignore_qualification = new ArrayList<String>();
+	private ArrayList<String> ignore_experience = new ArrayList<String>();
+	private ArrayList<String> ignore_nationality = new ArrayList<String>();
 	private ArrayList<String> CV = new ArrayList<String>();
+	
 	
 	private void loadCategories(String path){
 		int index = 0;
@@ -69,11 +73,11 @@ public class CvAnalyzer {
 					for (int i = language.size()-1; i >= 0; i--){
 						attribute = language.get(i);
 						attribute = (attribute.toLowerCase()).trim();
-						if (paragraph.contains(attribute)){
-							System.out.println("CAT" + category);
-							System.out.println("MATCHED STRING" + paragraph);
-							System.out.println("REMOVED" + attribute);
-							language.remove(i);
+						if (paragraph.contains(attribute) && !ignore_language.contains(attribute)){
+							//System.out.println("CAT" + category);
+							//System.out.println("MATCHED STRING" + paragraph);
+							//System.out.println("REMOVED" + attribute);
+							ignore_language.add(attribute);
 							score++;
 						}
 					}
@@ -82,11 +86,11 @@ public class CvAnalyzer {
 					for (int i = qualification.size()-1; i >= 0; i--){
 						attribute = qualification.get(i);
 						attribute = (attribute.toLowerCase()).trim();
-						if (paragraph.contains(attribute)){
-							System.out.println("CAT" + category);
-							System.out.println("MATCHED STRING" + paragraph);
-							System.out.println("REMOVED" + attribute);
-							qualification.remove(i);
+						if (paragraph.contains(attribute) && !ignore_qualification.contains(attribute)){
+							//System.out.println("CAT" + category);
+							//System.out.println("MATCHED STRING" + paragraph);
+							//System.out.println("REMOVED" + attribute);
+							ignore_qualification.add(attribute);
 							score++;
 						}
 					}
@@ -95,11 +99,11 @@ public class CvAnalyzer {
 					for (int i = experience.size()-1; i >=0; i--){
 						attribute = experience.get(i);
 						attribute = (attribute.toLowerCase()).trim();
-						if (paragraph.contains(attribute)){
+						if (paragraph.contains(attribute) && !ignore_experience.contains(attribute)){
 							//System.out.println("CAT" + category);
 							//System.out.println("MATCHED STRING" + paragraph);
 							//System.out.println("REMOVED" + attribute);
-							experience.remove(i);
+							ignore_experience.add(attribute);
 							score++;
 						}
 					}
@@ -108,11 +112,11 @@ public class CvAnalyzer {
 					for (int i = nationality.size() -1; i >= 0; i--){
 						attribute = nationality.get(i);
 						attribute = (attribute.toLowerCase()).trim();
-						if (paragraph.contains(attribute)){
-							System.out.println("CAT" + category);
-							System.out.println("MATCHED STRING" + paragraph);
-							System.out.println("REMOVED" + attribute);
-							nationality.remove(i);
+						if (paragraph.contains(attribute) && !ignore_nationality.contains(attribute)){
+							//System.out.println("CAT" + category);
+							//System.out.println("MATCHED STRING" + paragraph);
+							//System.out.println("REMOVED" + attribute);
+							ignore_nationality.add(attribute);
 							score++;
 						}
 					}
@@ -131,26 +135,36 @@ public class CvAnalyzer {
 		//return (score/size)*100;
 		return score;	
 	}
-
-	public void execute(String path, ArrayList<String> languageInput,ArrayList<String> qualificationInput,ArrayList<String> experienceInput,ArrayList<String> nationalityInput){
-		boolean[] categoryPresent = new boolean[numCategories];
-		score = 0;
+	
+	public void clearLists(){
 		language.clear();
 		qualification.clear();
 		experience.clear();
 		nationality.clear();
-
+		ignore_language.clear();
+		ignore_qualification.clear();
+		ignore_experience.clear();
+		ignore_nationality.clear();
+	}
+	
+	public void addLists( ArrayList<String> languageInput,ArrayList<String> qualificationInput,ArrayList<String> experienceInput,ArrayList<String> nationalityInput){
 		language.addAll(languageInput);
 		qualification.addAll(qualificationInput);
 		experience.addAll(experienceInput);
 		nationality.addAll(nationalityInput);
 	
+	}
+
+	public void execute(String path, ArrayList<String> languageInput,ArrayList<String> qualificationInput,ArrayList<String> experienceInput,ArrayList<String> nationalityInput){
+		boolean[] categoryPresent = new boolean[numCategories];
+		score = 0;
+		clearLists();
+		addLists(languageInput,qualificationInput, experienceInput, nationalityInput);
 		loadCategories(path);
 		String paragraph = null;
 		for (int i = 0; i < CV.size(); i++){
 			paragraph = CV.get(i);
 			paragraph = paragraph.toLowerCase();
-			//loadCategories(path);
 			categoryPresent = findCategory(paragraph,path);
 			matchRequirement(categoryPresent,paragraph);
 			//System.out.println(score);

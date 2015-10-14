@@ -1,4 +1,5 @@
-bachelor in computer science 
+bachelor in computer science
+bachelor degree in computer science 
 bachelor of Science BSc Computer Science 
 bachelor of Science BSc,Computer Science 
 bachelor of science in Computer Science 
@@ -6,6 +7,7 @@ bachelor of Science Computer Science
 BSc Computer Science 
 bsc in Computer Science 
 master in computer science 
+master degree in computer science
 master of Science MSc Computer Science 
 master of Science MSc,Computer Science 
 master of science in Computer Science 
@@ -14,7 +16,8 @@ Msc Computer Science
 Msc in Computer Science 
 phd.in Computer science 
 phd in computer science 
-bachelor in biomedical engineering 
+bachelor in biomedical engineering
+bachelor degree in biomedical engineering 
 bachelor of Engineering be biomedical engineering 
 bachelor of Engineering be,biomedical engineering 
 bachelor of Engineering B.Eng Biomedical engineering 
@@ -33,7 +36,9 @@ master of Engineering MEng.,biomedical engineering
 master of Engineering M.Eng.biomedical engineering 
 master of Engineering M.Eng.,biomedical engineering 
 master of Engineering in Biomedical engineering 
-master of Engineering Biomedical engineering 
+master of Engineering Biomedical engineering
+MSc Biomedical engineering
+MSc. Biomedical engineering 
 MEng Biomedical engineering 
 MEng.biomedical engineering 
 m.eng.biomedical engineering 
@@ -42,7 +47,8 @@ MEng.in biomedical engineering
 m.eng.in biomedical engineering 
 phd.in biomedical engineering 
 phd in biomedical engineering 
-bachelor in Computer engineering 
+bachelor in Computer engineering
+bachelor degree in computer engineering 
 bachelor of Engineering be computer engineering 
 bachelor of Engineering be,Computer engineering 
 bachelor of Engineering B.Eng Computer engineering 
@@ -53,7 +59,8 @@ bachelor of Engineering in Computer engineering
 bachelor of Engineering Computer engineering 
 be Computer engineering 
 be in Computer engineering 
-master in Computer engineering 
+master in Computer engineering
+master degree in computer engineering 
 master of Engineering MEng Computer engineering 
 master of Engineering MEng,Computer engineering 
 master of Engineering MEng.computer engineering 
@@ -70,7 +77,8 @@ MEng.in Computer engineering
 m.eng.in Computer engineering 
 phd.in Computer engineering 
 phd in Computer engineering 
-bachelor in electrical engineering 
+bachelor in electrical engineering
+bachelor degree in electrical engineering 
 be in electrical engineering 
 msc in electrical engineering 
 phd in electrical engineering 
@@ -90,7 +98,7 @@ phd of science in information technology
 msc of science in information technology 
 be in information technology 
 be information technology 
-b.eng.in information technolog 
+b.eng.in information technology 
 itil foundation in it service management 
 Dell certify system expert 
 Dell system tear down

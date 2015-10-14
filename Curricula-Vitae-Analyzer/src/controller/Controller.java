@@ -44,25 +44,6 @@ public class Controller
 		
 	}
 	
-	/*
-	public void extractCV()
-	{
-		// extracting all resume information from .pdf and .doc files
-		// and convert them into .txt format
-		File cvFolder = new File(resumePath);
-		File[] listOfCVs = cvFolder.listFiles();
-		for (File cv : listOfCVs)
-		{
-			String extractedCV = "stub";
-			// write to storage
-			String textResumeFile = (cv.toString()).replaceAll(resumePath, textResumePath);
-			textResumeFile = textResumeFile.replaceAll(Constants.pdfPostFix, Constants.txtPostFix);
-			// for checking purposes
-			System.out.println(cv.toString());
-			System.out.println(textResumeFile);
-			storage.writeData(extractedCV, textResumeFile);	
-		}
-	}*/
 	
 	public void extractCV() throws IOException
 	{
@@ -102,6 +83,20 @@ public class Controller
 		}
 	}
 	
+	private void clearLists(){
+		language.clear();
+		qualification.clear();
+		experience.clear();
+		nationality.clear();
+	}
+	
+	private void updateLists(){	
+		language  = jobDescriptionAnalyzer.getLanguageReq();
+		qualification = jobDescriptionAnalyzer.getQualificationReq();
+		experience = jobDescriptionAnalyzer.getExperienceReq();
+		nationality = jobDescriptionAnalyzer.getNationalityReq();
+	}
+	
 	public HashMap<String,Double> startProcessing(String jobDescription) throws IOException, FileNotFoundException
 	{
 		System.out.println(jobDescription);
@@ -123,16 +118,9 @@ public class Controller
 		ArrayList<String> jobReq = new ArrayList<String>(Arrays.asList(jobDescription.split("\\r?\\n")));
 		jobDescriptionAnalyzer.setJobRequirement(jobReq);
 		jobDescriptionAnalyzer.execute(libraryPath);
-		
-		language.clear();
-		qualification.clear();
-		experience.clear();
-		nationality.clear();
-		
-		language  = jobDescriptionAnalyzer.getLanguageReq();
-		qualification = jobDescriptionAnalyzer.getQualificationReq();
-		experience = jobDescriptionAnalyzer.getExperienceReq();
-		nationality = jobDescriptionAnalyzer.getNationalityReq();
+	
+		clearLists();
+		updateLists();
 		
 		// for testing purposes
 		System.out.println("language");

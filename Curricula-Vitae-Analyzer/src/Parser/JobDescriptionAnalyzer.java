@@ -148,13 +148,17 @@ public class JobDescriptionAnalyzer {
 	public ArrayList<String> getNationalityReq(){
 		return nationality;
 	}
-
-	public void execute(String path) {
+	
+	private void clearLists(){
 		language.clear();
 		qualification.clear();
 		experience.clear();
 		nationality.clear();
+	}
+
+	public void execute(String path) {
 		
+		clearLists();		
 		boolean[] categoryPresent = new boolean[numCategories];
 		System.out.println("JOB DESCIRPTION:" + jobDescription.size());
 		loadCategories(path);

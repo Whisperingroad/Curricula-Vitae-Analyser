@@ -5,11 +5,13 @@ configure
 Foundation 
 experience 
 expertise 
-knowledge 
+knowledge
+code 
 ability 
 skill 
 proficient 
 possess 
+program
 develop 
 work 
 demonstrate 
