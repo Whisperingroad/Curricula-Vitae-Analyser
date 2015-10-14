@@ -1,0 +1,119 @@
+page1
+Russell Ong
+senior Software Engineer-iOS at ReQall PTE ltd
+summary
+-iOS and Android application development with app on the App Store-various smartwatch sdk
+implementation-web application development for various client use Ruby on Rails.-various Facebook
+apus integration-various oauth/openid integration specialty:Mobile/Web application development,
+CMS/CRM/ERP Development,iOS/Android Development,Facebook/Twitter application development,
+Ruby,Ruby on Rails,objective-c,rest/soap framework,OAuth/OpenID integration
+experience
+senior Software Engineer at ReQall Technologies PTE ltd
+March 2012-present 3 year 8 month
+-Mobile application development use native iOS and Android.-integration with various smartwatch
+sdk Pebble,Samsung Gear/Gear Fit,Qualcomm Toq,Sony SmartWatch,Android wear,iWatch-
+integration with auto manufacturer sdk myspin
+Assistant Professor at Chiang Kai Shek College
+June 2009-April 2012 2 year 11 month
+senior Software Engineer at Rivereo
+January 2011-March 2012 1 year 3 month
+-Web/Mobile application development-various apus integration
+Software Engineer at Exist Global
+August 2010-December 2010 5 month
+web application development
+senior Software Engineer at Brewed Concepts Inc
+July 2006-August 2010 4 year 2 month
+web Developer Team Management Systems Architect
+Web/Mobile Developer at E Commerce Percs
+April 2006-July 2006 4 month
+Mobile/Web application development
+project
+zeroin
+page2
+April 2013 to present
+member:Russell O.,Yat Pan Ng
+zeroin be the first context-aware,intelligent message app for the car.it use you personal smartphone
+to keep email distraction to a minimum,no matter what car you be in.only message that be important,
+contain actionable content and merit attention be read out,and driver can simply respond by voice to
+keep they eye on the road and hand on the wheel.Stay connect to what be important-zeroin restrict
+incoming message to just those from important contact,and then distil the content to just the part that
+require you attention.take action safely reply to both incoming and pend action item via voice.
+Recordr
+December 2012 to present
+member:Russell O.,Grae Joquico
+Recordr be the easiest audio/sound/voice recorder you can find.you can have the recording automatically
+sync across you device with icloud.it even allow you to record and play in the background!other
+feature include:1.Sync file via you iTunes.2.share recording via SoundCloud 3.backup media file
+to you dropbox account 4.upload to you Google Drive Account 5.send to friend via e-mail.Recordr
+produce high quality recording that can be use for interview.
+sofab.com.ph
+September 2010 to present
+member:Russell O.,Bryan Chan,Richard G.,Grae Joquico
+cmg.com.ph
+December 2010 to present
+member:Russell O.,Richard G.,Bryan Chan,Grae Joquico
+sofab iPad application
+January 2011 to present
+member:Russell O.,Richard G.,Bryan Chan
+language
+English
+Filipino
+chinese
+skill&expertise
+Ruby on Rails
+Ruby
+Facebook API
+objective-c
+AJAX
+jquery
+web Services
+iOS Developer
+JavaScript
+page3
+rest
+iOS
+git
+android
+postgresql
+HTML 5
+json
+Titanium
+soap
+education
+De La Salle University
+msc,it,2010-2012
+Chiang Kai Shek College
+BSCS,Computer Science,2002-2006
+interest
+Webdev,Photography,Scuba Diving,Travel
+Publications
+Qualcomm Developer of the month
+July 1,2014
+author:Russell O.
+page4
+Russell Ong
+senior Software Engineer-iOS at ReQall PTE ltd
+5 people have recommend Russell
+`` it be great work with Russell!a very intuitive guy and know where to punch and deliver code.he
+seamlessly integrate Facebook with one of we big project and cramped ton of AJAX functionality
+on another.on a different light,he be always eager to help and share he knowledge to other.and thirst
+to discover more,learn more trick and experiment with new technology,approach,technique and
+implementation.''
+Richard G.,manage Russell at Rivereo
+`` Russell be a very productive person a colleague and friend who have a `` can-do '' attitude.it be my pleasure
+work with he for 2 year with he on major business project and be impress with the depth of
+knowledge he possess.Russell be a careful and great software engineer.self motivated and a proactive
+strategist.deliver result all the time but make no mistake,the guy know how to have fun.that be Russell 's
+way.I strongly recommend he.''
+Jurgen Estanislao,UXC,Digital Projects Manager,Thousand Minds Social Media,work with Russell
+at Brewed Concepts Inc
+`` Russell be a great colleague!a excellent programmer/developer who have strong dedication and appreciation
+in all of the project he handle.he be full of idea and knowledge which he always share to he co-worker.
+good job!:''
+Darryl Anne Gutierrez,work directly with Russell at Brewed Concepts Inc
+`` Russell be a great team-player,a excellent ror geek,fast learner and a great buddy!;-keep it up!''
+Jeremy D.,work directly with Russell at Brewed Concepts Inc
+`` Russell be unbeatable especially in programming technique.he be self-motivated person.also I really like
+the way he treat he co-worker ... just continue be you and keep it up !!! ''
+Jenilee S.,work directly with Russell at Brewed Concepts Inc
+contact Russell on LinkedIn
