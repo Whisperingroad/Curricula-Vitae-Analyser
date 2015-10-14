@@ -166,11 +166,11 @@ public class CvAnalyzer {
 	}
 
 	public double execute(String path, ArrayList<String> languageInput,ArrayList<String> qualificationInput,ArrayList<String> experienceInput,ArrayList<String> nationalityInput){
-		if (checkAvail()){
+		clearLists();
+		addLists(languageInput,qualificationInput, experienceInput, nationalityInput);
+		if (checkAvail() == true){
 			boolean[] categoryPresent = new boolean[numCategories];
 			score = 0;
-			clearLists();
-			addLists(languageInput,qualificationInput, experienceInput, nationalityInput);
 			loadCategories(path);
 			String paragraph = null;
 			for (int i = 0; i < CV.size(); i++){
