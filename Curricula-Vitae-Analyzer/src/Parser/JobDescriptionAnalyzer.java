@@ -112,28 +112,32 @@ public class JobDescriptionAnalyzer {
 
 	public void addSpecialCase(boolean[] categoryPresent, String paragraph, String rootPath){
 		//experience with years required
-		String attribute = null;
-		String path = rootPath + "yearList.txt";
-		File listPath = new File(path);
 		int yearExp = 4;
 		if (categoryPresent[yearExp]){
 			String numYear = findYearReq(paragraph);
 			reqYearExp.add(numYear);
-			try {
-				Scanner readFile = new Scanner(listPath);
-				while (readFile.hasNextLine()){
-					attribute = readFile.nextLine().trim();
-					if (paragraph.contains(attribute))
-						reqYearExp.add(attribute);
+			if (paragraph.contains("relevant"))
+				reqYearExp.add("relevant");
+			else{
+				String attribute = null;
+				String path = rootPath + "yearList.txt";
+				try {
+					File listPath = new File(path);
+					Scanner readFile = new Scanner(listPath);
+					while (readFile.hasNextLine()){
+						attribute = readFile.nextLine().trim();
+						if (paragraph.contains(attribute))
+							reqYearExp.add(attribute);
+					}
+					readFile.close();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-				readFile.close();
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 		}
 	}
-	
+
 	private void clearAllArrayList(){
 		language.clear();
 		qualification.clear();
@@ -182,13 +186,13 @@ public class JobDescriptionAnalyzer {
 		}
 		jobDescription.clear();
 	}
-	/*
+	
 	public static void main(String[] args){
 		String path = "C:/Users/AdminNUS/Documents/git/Curricula-Vitae-Analyser/Curricula-Vitae-Analyzer/src/Library/";
 		JobDescriptionAnalyzer test = new JobDescriptionAnalyzer();
 		test.loadCategories("C:/Users/AdminNUS/Documents/git/Curricula-Vitae-Analyser/Curricula-Vitae-Analyzer/src/Library/");
 		//limitations - only can read in numeric values
-		String paragraph = "At least 3 years of web development experience will be added advantage";
+		String paragraph = "minimum of 3 year experience in the relevant field";
 		boolean[] categoryPresent = new boolean[test.numCategories];
 		categoryPresent = test.findCategory(paragraph, "C:/Users/AdminNUS/Documents/git/Curricula-Vitae-Analyser/Curricula-Vitae-Analyzer/src/Library/");
 		for (int i=0;i<5;i++)
@@ -200,6 +204,5 @@ public class JobDescriptionAnalyzer {
 		//	int year = reqYear();
 		//	String exp = reqExp();
 	}
-	*/
 }
 
