@@ -1,129 +1,37 @@
 package Parser;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 
 public class CvAnalyzer {
-	private int numCategories = 4;
-	private String[] categories = new String[numCategories];
+	//private int numCategories = 5;
+	//private String[] categories = new String[numCategories];
 	private double score;
 	private ArrayList<String> language = new ArrayList<String>();
 	private ArrayList<String> qualification = new ArrayList<String>();
 	private ArrayList<String> experience = new ArrayList<String>();
 	private ArrayList<String> nationality = new ArrayList<String>();
-	private ArrayList<String> ignore_language = new ArrayList<String>();
-	private ArrayList<String> ignore_qualification = new ArrayList<String>();
-	private ArrayList<String> ignore_experience = new ArrayList<String>();
-	private ArrayList<String> ignore_nationality = new ArrayList<String>();
 	private ArrayList<String> CV = new ArrayList<String>();
 	
+	private ArrayList<String> qualificationsFulfilled = new ArrayList<String>();
+	private ArrayList<String> experienceFulfilled = new ArrayList<String>();
+	private ArrayList<String> languageFulfilled = new ArrayList<String>();
+	private ArrayList<String> particularsFulfilled = new ArrayList<String>();
 	
-	private void loadCategories(String path){
-		int index = 0;
-		String rootPath = path + "mainCategories.txt";
-		File mainCategoriesPath = new File(rootPath);
-		Scanner txtFile;
-		try {
-			txtFile = new Scanner(mainCategoriesPath);
-			while (txtFile.hasNext())
-				categories[index++] = txtFile.next();
-			txtFile.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	private boolean[] findCategory(String paragraph, String rootPath){
-		int index = 0;
-		String word = null;
-		String categoryPath = null;
-		boolean[] categoryPresent = new boolean[numCategories];
-
-		try {
-			for (int i = 0; i < numCategories ; i++){
-				categoryPath = rootPath + categories[i] + ".txt";
-				File categoriesPath = new File(categoryPath);
-				Scanner readFile = new Scanner(categoriesPath);
-				while (readFile.hasNextLine()){
-					word = readFile.nextLine();
-					word = word.toLowerCase().trim();
-					if (paragraph.contains(word)){
-						categoryPresent[index] = true;
-					}
-				}
-				index++;
-				readFile.close();
-			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return categoryPresent;
-	}
-
-	private void matchRequirement(boolean[] categoryPresent, String paragraph){
-		String attribute = null;
-		for (int category = 0; category < numCategories; category++){
-			if (categoryPresent[category]){
-				if (category == 0){
-					for (int i = language.size()-1; i >= 0; i--){
-						attribute = language.get(i);
-						attribute = (attribute.toLowerCase()).trim();
-						if (paragraph.contains(attribute) && !ignore_language.contains(attribute)){
-							//System.out.println("CAT" + category);
-							//System.out.println("MATCHED STRING" + paragraph);
-							//System.out.println("REMOVED" + attribute);
-							ignore_language.add(attribute);
-							score++;
-						}
-					}
-				}
-				else if (category == 1){
-					for (int i = qualification.size()-1; i >= 0; i--){
-						attribute = qualification.get(i);
-						attribute = (attribute.toLowerCase()).trim();
-						if (paragraph.contains(attribute) && !ignore_qualification.contains(attribute)){
-							//System.out.println("CAT" + category);
-							//System.out.println("MATCHED STRING" + paragraph);
-							//System.out.println("REMOVED" + attribute);
-							ignore_qualification.add(attribute);
-							score++;
-						}
-					}
-				}
-				else if (category == 2){
-					for (int i = experience.size()-1; i >=0; i--){
-						attribute = experience.get(i);
-						attribute = (attribute.toLowerCase()).trim();
-						if (paragraph.contains(attribute) && !ignore_experience.contains(attribute)){
-							//System.out.println("CAT" + category);
-							//System.out.println("MATCHED STRING" + paragraph);
-							//System.out.println("REMOVED" + attribute);
-							ignore_experience.add(attribute);
-							score++;
-						}
-					}
-				}
-				else{
-					for (int i = nationality.size() -1; i >= 0; i--){
-						attribute = nationality.get(i);
-						attribute = (attribute.toLowerCase()).trim();
-						if (paragraph.contains(attribute) && !ignore_nationality.contains(attribute)){
-							//System.out.println("CAT" + category);
-							//System.out.println("MATCHED STRING" + paragraph);
-							//System.out.println("REMOVED" + attribute);
-							ignore_nationality.add(attribute);
-							score++;
-						}
-					}
-				}
-			}
-		}
-	}
+	
+	// for headers
+	private ArrayList<String> qualificationHeaders = new ArrayList<String>();
+	private ArrayList<String> experienceHeaders = new ArrayList<String>();
+	private ArrayList<String> languageHeaders = new ArrayList<String>();
+	private ArrayList<String> particularsHeaders = new ArrayList<String>();
+	
+	public enum HeaderTypes {QUALIFICATION, EXPERIENCE, LANGUAGE, PARTICULARS, INVALID};
 	
 	private double computeTotalAttribute(){
 		return (language.size() + qualification.size() + experience.size() + nationality.size());
@@ -151,10 +59,10 @@ public class CvAnalyzer {
 		qualification.clear();
 		experience.clear();
 		nationality.clear();
-		ignore_language.clear();
-		ignore_qualification.clear();
-		ignore_experience.clear();
-		ignore_nationality.clear();
+		languageFulfilled.clear();
+		qualificationsFulfilled.clear();
+		experienceFulfilled.clear();
+		particularsFulfilled.clear();
 	}
 	
 	public void addLists( ArrayList<String> languageInput,ArrayList<String> qualificationInput,ArrayList<String> experienceInput,ArrayList<String> nationalityInput){
@@ -162,22 +70,46 @@ public class CvAnalyzer {
 		qualification.addAll(qualificationInput);
 		experience.addAll(experienceInput);
 		nationality.addAll(nationalityInput);
+		System.out.println("check here");
+		for (String s : experience)
+		{	
+			System.out.println(s);
+		}
+		System.out.println(experience.size());
 	
 	}
 
-	public double execute(String path, ArrayList<String> languageInput,ArrayList<String> qualificationInput,ArrayList<String> experienceInput,ArrayList<String> nationalityInput){
+	public double execute(String path, ArrayList<String> languageInput,ArrayList<String> qualificationInput,ArrayList<String> experienceInput,ArrayList<String> nationalityInput) throws IOException
+	{
 		clearLists();
+		loadAllHeaderTypes(path);
 		addLists(languageInput,qualificationInput, experienceInput, nationalityInput);
+		System.out.println("experience size: " + experienceInput.size());
 		if (checkAvail() == true){
-			boolean[] categoryPresent = new boolean[numCategories];
 			score = 0;
-			loadCategories(path);
-			String paragraph = null;
+			String paragraph = null;		
+			// initialise header to be invalid
+			HeaderTypes header = HeaderTypes.INVALID;
 			for (int i = 0; i < CV.size(); i++){
 				paragraph = CV.get(i);
 				paragraph = paragraph.toLowerCase();
-				categoryPresent = findCategory(paragraph,path);
-				matchRequirement(categoryPresent,paragraph);
+				header = checkForHeader(paragraph, header);
+				if (header == HeaderTypes.QUALIFICATION)
+				{
+					matchQualificationDetails(paragraph);
+				}
+				else if (header == HeaderTypes.EXPERIENCE)
+				{
+					matchExperienceDetails(paragraph);
+				}
+				else if (header == HeaderTypes.LANGUAGE)
+				{
+					matchLanguageDetails(paragraph);
+				}
+				else if (header == HeaderTypes.PARTICULARS)
+				{
+					matchParticularDetails(paragraph);
+				}
 			}
 			double size = computeTotalAttribute();
 			return (score/size)*100;	
@@ -185,4 +117,153 @@ public class CvAnalyzer {
 		else
 			return 0.0;
 	}
+	
+	public void matchQualificationDetails(String line)
+	{
+		for (int i = qualification.size()-1; i >= 0; i--)
+		{
+			String attribute = qualification.get(i);
+			attribute = (attribute.toLowerCase()).trim();
+			if (line.contains(attribute) && !qualificationsFulfilled.contains(attribute))
+			{
+				qualificationsFulfilled.add(attribute);
+				score++;
+			}
+		}
+	}
+	
+	public void matchExperienceDetails(String line)
+	{
+		for (int i = experience.size()-1; i >= 0; i--)
+		{
+			String attribute = experience.get(i);
+			attribute = (attribute.toLowerCase()).trim();
+			if (line.contains(attribute) && !experienceFulfilled.contains(attribute))
+			{
+				experienceFulfilled.add(attribute);
+				score++;
+			}
+		}
+	}
+	public void matchLanguageDetails(String line)
+	{
+		for (int i = language.size()-1; i >= 0; i--)
+		{
+			String attribute = language.get(i);
+			attribute = (attribute.toLowerCase()).trim();
+			if (line.contains(attribute) && !languageFulfilled.contains(attribute))
+			{
+				languageFulfilled.add(attribute);
+				score++;
+			}
+		}
+		
+	}
+	public void matchParticularDetails(String line)
+	{
+		for (int i = nationality.size()-1; i >= 0; i--)
+		{
+			String attribute = nationality.get(i);
+			attribute = (attribute.toLowerCase()).trim();
+			if (line.contains(attribute) && !particularsFulfilled.contains(attribute))
+			{
+				particularsFulfilled.add(attribute);
+				score++;
+			}
+		}
+		
+	}
+	
+	// load all types predefined headers
+	public void loadAllHeaderTypes(String path) throws FileNotFoundException, IOException
+	{	
+		String educationPath = path + "qualificationHeaders.txt";
+		String experiencePath = path + "experienceHeaders.txt";
+		String languagePath = path + "languageHeaders.txt";
+		String particularsPath = path + "particularsHeaders.txt";
+		
+		loadHeaders(educationPath, qualificationHeaders);
+		loadHeaders(experiencePath, experienceHeaders);
+		loadHeaders(languagePath, languageHeaders);
+		loadHeaders(particularsPath, particularsHeaders);
+		
+	}
+	
+	// load headers of a particular type
+	public void loadHeaders(String headerFilePath, ArrayList<String> headerType) throws FileNotFoundException, IOException
+	{
+		FileReader fileReader = new FileReader(headerFilePath);
+		BufferedReader bufferedReader = new BufferedReader(fileReader);
+		String line = "";
+		// repeat until all headers are read
+		while ((line = bufferedReader.readLine())!= null)
+		{
+			headerType.add(line);
+		}
+	
+		bufferedReader.close();
+	}
+	
+	
+	public HeaderTypes checkForHeader(String line, HeaderTypes header)
+	{
+		// first check
+		if (checkWordLimit(line))
+		{
+			// passed first check
+			if(checkForDefinedHeaders(line,qualificationHeaders)== true)
+			{
+				return HeaderTypes.QUALIFICATION;
+			}
+			
+			else if (checkForDefinedHeaders(line,experienceHeaders)== true)
+			{
+				return HeaderTypes.EXPERIENCE;
+			}
+			else if (checkForDefinedHeaders(line,languageHeaders)== true)
+			{
+				return HeaderTypes.LANGUAGE;
+			}
+			
+			else if (checkForDefinedHeaders(line,particularsHeaders)== true)
+			{
+				return HeaderTypes.PARTICULARS;
+			}
+			else 
+				return header;				
+		}
+	return header;
+	}
+	
+	// header check 1
+	// check if the sentence has less than 4 words
+	public boolean checkWordLimit(String line)
+	{
+		System.out.println(line);
+		ArrayList<String> words = new ArrayList<String>(Arrays.asList(line.split(" |,|:")));
+		if (words.size() > 4)
+			return false;
+		else
+		{
+			System.out.println("test 1: sentence contains 4 words and less");
+			return true;
+		}
+	}
+	// header check 2
+	// check if sentence contains defined headers
+	public boolean checkForDefinedHeaders(String line, ArrayList<String> headerType)
+	{
+		String checkHeader = line.toLowerCase().trim();
+
+		for (String header : headerType)
+		{
+			if (checkHeader.contains(header.trim().toLowerCase()))
+			{
+				System.out.println("test 2: sentence contains defined headers");
+				return true;
+			}
+		}
+		return false;
+	}
+	
 }
