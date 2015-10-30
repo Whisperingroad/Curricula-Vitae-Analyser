@@ -45,11 +45,12 @@ public class Controller
 	}
 	
 	
-	public void extractCV(File cvFolder) throws IOException
+	public Boolean extractCV(File cvFolder) throws IOException
 	{
 		// extracting all resume information from .pdf and .doc files
 		// and convert them into .txt format
 		//File cvFolder = new File(resumePath);
+		Boolean extractComplete = false;
 		File[] listOfCVs = cvFolder.listFiles();
 		for (File cv : listOfCVs)
 		{
@@ -59,7 +60,7 @@ public class Controller
 			System.out.println("Document type is " + fileType);
 			String fileName = cv.getName();
 			System.out.println("File Name is " + fileName);
-			Boolean extractComplete = TextExtractor.execute(cv);
+			extractComplete = TextExtractor.execute(cv);
 			if(extractComplete == true)
 			{	
 				String textResumeFile = (cv.toString()).replace(cvFolder.toString(), textResumePath);		
@@ -80,7 +81,9 @@ public class Controller
 					storage.writeData(TextExtractor.getFileContent(), textResumeFile);
 				}
 			}
+			
 		}
+		return extractComplete;
 	}
 	
 	private void clearLists(){
@@ -100,7 +103,7 @@ public class Controller
 	public HashMap<String,Double> startProcessing(String jobDescription, File resumePath) throws IOException, FileNotFoundException
 	{
 		System.out.println(jobDescription);
-		extractCV(resumePath);
+		if(extractCV(resumePath)){
 		// lemmatizing resumes 
 		File cvTextFolder = new File(textResumePath);
 		File[] listOfTextCVs = cvTextFolder.listFiles();
@@ -154,5 +157,9 @@ public class Controller
 		
 		
 		return nameScorePairsHash;
+		}
+		else{
+			return null;
+		}
 	}
 }
