@@ -17,6 +17,7 @@ import java.util.TreeMap;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import controller.Controller;
 
@@ -74,7 +75,43 @@ public class ui extends JFrame implements ActionListener{
 
 		String[] columnNames = {"CV name", "Score"};
 		model = new DefaultTableModel(columnNames, 0);
-		JTable table = new JTable(model);
+		JTable table = new JTable(model){
+            //Implement table cell tool tips.
+            public String getToolTipText(MouseEvent e) {
+                String tip = null;
+                java.awt.Point p = e.getPoint();
+                int rowIndex = rowAtPoint(p);
+                int colIndex = columnAtPoint(p);
+                int realColumnIndex = convertColumnIndexToModel(colIndex);
+
+                if (realColumnIndex == 0) { //Sport column
+                    tip = "<html>"+"File: "
+                           + getValueAt(rowIndex, colIndex)
+                           + "<br>"
+                           + "Score: "
+                           + getValueAt(rowIndex, colIndex+1)
+                           + "</html>";
+                } else if (realColumnIndex == 2) { //Veggie column
+                    TableModel model = getModel();
+//                    String firstName = (String)model.getValueAt(rowIndex,0);
+//                    String lastName = (String)model.getValueAt(rowIndex,1);
+//                    Boolean veggie = (Boolean)model.getValueAt(rowIndex,4);
+//                    if (Boolean.TRUE.equals(veggie)) {
+//                        tip = firstName + " " + lastName
+//                              + " is a vegetarian";
+//                    } else {
+//                        tip = firstName + " " + lastName
+//                              + " is not a vegetarian";
+//                    }
+                } else { 
+                    //You can omit this part if you know you don't 
+                    //have any renderers that supply their own tool 
+                    //tips.
+                    tip = super.getToolTipText(e);
+                }
+                return tip;
+            }
+		};
 		JScrollPane jScrollPanelTable = new JScrollPane(table);
 
 		resultPanel.add(jScrollPanelTable);
@@ -177,33 +214,43 @@ public class ui extends JFrame implements ActionListener{
 	}
 
 	private void filePathInvalidDialog(){
-		JFrame frame = new JFrame("Folder invalid");
-		frame.setSize(300, 100);
-		browseError = new JPanel(new BorderLayout());
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-		String message = "Folder does not contain PDF or Word Documents";
-		JLabel content1 = new JLabel(message,JLabel.CENTER);
-		message = "Please choose another folder"; 
-		JLabel content2 = new JLabel(message,JLabel.CENTER);
-		browseError.add(content1, BorderLayout.NORTH);
-		browseError.add(content2, BorderLayout.CENTER);
-
-		frame.setContentPane(browseError);
-		frame.setVisible(true);
+		JFrame frame = new JFrame();
+		JOptionPane.showMessageDialog(frame,
+			    "Please select another folder",
+			    "Invalid Folder",
+			    JOptionPane.WARNING_MESSAGE);
+//		JFrame frame = new JFrame("Folder invalid");
+//		frame.setSize(300, 100);
+//		browseError = new JPanel(new BorderLayout());
+//		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//
+//		String message = "Folder does not contain PDF or Word Documents";
+//		JLabel content1 = new JLabel(message,JLabel.CENTER);
+//		message = "Please choose another folder"; 
+//		JLabel content2 = new JLabel(message,JLabel.CENTER);
+//		browseError.add(content1, BorderLayout.NORTH);
+//		browseError.add(content2, BorderLayout.CENTER);
+//
+//		frame.setContentPane(browseError);
+//		frame.setVisible(true);
 	}
 	private void missingFolderErrorDialog(){
-		JFrame frame = new JFrame("Missing Folder");
-		frame.setSize(300, 100);
-		browseError = new JPanel(new BorderLayout());
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-		String message = "Please choose a folder for processing"; 
-		JLabel content = new JLabel(message,JLabel.CENTER);
-		browseError.add(content, BorderLayout.CENTER);
-
-		frame.setContentPane(browseError);
-		frame.setVisible(true);
+		JFrame frame = new JFrame();
+		JOptionPane.showMessageDialog(frame,
+			    "Please select a folder",
+			    "No Folder Selected",
+			    JOptionPane.WARNING_MESSAGE);
+//		JFrame frame = new JFrame("Missing Folder");
+//		frame.setSize(300, 100);
+//		browseError = new JPanel(new BorderLayout());
+//		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//
+//		String message = "Please choose a folder for processing"; 
+//		JLabel content = new JLabel(message,JLabel.CENTER);
+//		browseError.add(content, BorderLayout.CENTER);
+//
+//		frame.setContentPane(browseError);
+//		frame.setVisible(true);
 	}
 
 	private File fileChooser(){
