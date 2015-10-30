@@ -30,6 +30,7 @@ public class Controller
 	String textResumePath = Constants.YIXIU + "Storage\\TextResumes\\";
 	String lemmatisedResumePath = Constants.YIXIU + "Storage\\LemmatisedResumes\\";
 	String libraryPath = Constants.YIXIU + "Library\\";
+
 	
 	ArrayList<String> language = new ArrayList<String>();
 	ArrayList<String> qualification = new ArrayList<String>();
@@ -46,11 +47,11 @@ public class Controller
 	}
 	
 	
-	public void extractCV() throws IOException
+	public void extractCV(File cvFolder) throws IOException
 	{
 		// extracting all resume information from .pdf and .doc files
 		// and convert them into .txt format
-		File cvFolder = new File(resumePath);
+		//File cvFolder = new File(resumePath);
 		File[] listOfCVs = cvFolder.listFiles();
 		for (int i=0;i< listOfCVs.length ; i++)
 		//for (File cv : listOfCVs)
@@ -65,7 +66,8 @@ public class Controller
 			Boolean extractComplete = TextExtractor.execute(listOfCVs[i]);
 			if(extractComplete == true)
 			{	
-				String textResumeFile = (listOfCVs[i].toString()).replace(resumePath, textResumePath);		
+				String textResumeFile = (listOfCVs[i].toString()).replace(cvFolder.toString(), textResumePath);		
+
 				if(TextExtractor.getFilePostfix().equals(Constants.txtPostFix)){
 					storage.moveTxtFile(textResumeFile, listOfCVs[i]);
 				}
@@ -100,10 +102,11 @@ public class Controller
 		nationality = jobDescriptionAnalyzer.getNationalityReq();
 	}
 	
-	public HashMap<String,Double> startProcessing(String jobDescription) throws IOException, FileNotFoundException
+	public HashMap<String,Double> startProcessing(String jobDescription, File resumePath) throws IOException, FileNotFoundException
 	{
 		//System.out.println(jobDescription);
-		extractCV();
+		extractCV(resumePath);
+
 		// lemmatizing resumes 
 		File cvTextFolder = new File(textResumePath);
 		File[] listOfTextCVs = cvTextFolder.listFiles();

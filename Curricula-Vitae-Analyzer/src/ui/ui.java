@@ -2,6 +2,7 @@ package ui;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,12 +25,13 @@ import controller.Controller;
  */
 public class ui extends JFrame implements ActionListener{
 
-    JPanel contentPane;
-    JButton readButton, startButton;
+    JPanel contentPane, browseError;
+    JButton readButton, startButton, browseButton;
     JTextField textField;
     JTextArea textArea;
     JTable table;
     DefaultTableModel model;
+    File filepath;
 
     int resultSize = 20;
     String jobReq = null;
@@ -39,51 +41,58 @@ public class ui extends JFrame implements ActionListener{
 
     // Constructor
     public ui() {
-    	//	textField = new JTextField(20);
-    	textArea = new JTextArea(5, 20);
+		//	textField = new JTextField(20);
+		textArea = new JTextArea(5, 20);
 
-        textArea.setColumns(40);
-        textArea.setLineWrap(true);
-        textArea.setRows(10);
-        textArea.setWrapStyleWord(true);
-        
-        JScrollPane jScrollPanelTxtArea = new JScrollPane(textArea);
-    	
-        readButton = new JButton("Read Job Description");
-        readButton.addActionListener(this);
+		textArea.setColumns(40);
+		textArea.setLineWrap(true);
+		textArea.setRows(10);
+		textArea.setWrapStyleWord(true);
 
-        startButton = new JButton("Start Processing");
-        startButton.addActionListener(this);
+		JScrollPane jScrollPanelTxtArea = new JScrollPane(textArea);
 
-        JPanel queryPanel = new JPanel();
-        queryPanel.add(jScrollPanelTxtArea);
-        queryPanel.add(readButton);
-        queryPanel.add(startButton);
+		readButton = new JButton("Read Job Description");
+		readButton.addActionListener(this);
 
-        JPanel resultPanel = new JPanel();
-        
-        resultPanel.setLayout(new GridLayout(1, 40, 60, 60));
-        
-        String[] columnNames = {"CV name", "Score"};
-        model = new DefaultTableModel(columnNames, 0);
-        JTable table = new JTable(model);
-        JScrollPane jScrollPanelTable = new JScrollPane(table);
-        
-        resultPanel.add(jScrollPanelTable);
+		startButton = new JButton("Start Processing");
+		startButton.addActionListener(this);
 
-        resultPanel.setBorder(BorderFactory.createEmptyBorder(30,16,10,16));
+		browseButton = new JButton("Browse Folder");
+		browseButton.addActionListener(this);
 
-        contentPane = (JPanel)this.getContentPane();
-        setSize(800,700);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JPanel queryPanel = new JPanel();
+		queryPanel.add(jScrollPanelTxtArea);
+		JPanel buttonPanel = new JPanel(new BorderLayout());
+		queryPanel.add(buttonPanel, BorderLayout.EAST);
+		buttonPanel.add(readButton, BorderLayout.NORTH);
+		buttonPanel.add(startButton, BorderLayout.CENTER);
+		buttonPanel.add(browseButton, BorderLayout.SOUTH);
 
-        contentPane.add(queryPanel, BorderLayout.PAGE_START);
-        contentPane.add(resultPanel, BorderLayout.CENTER);
+		JPanel resultPanel = new JPanel();
 
-        contentPane.setVisible(true);
-        setVisible(true);
+		resultPanel.setLayout(new GridLayout(1, 40, 60, 60));
 
-    }
+		String[] columnNames = {"CV name", "Score"};
+		model = new DefaultTableModel(columnNames, 0);
+		JTable table = new JTable(model);
+		JScrollPane jScrollPanelTable = new JScrollPane(table);
+
+		resultPanel.add(jScrollPanelTable);
+
+		resultPanel.setBorder(BorderFactory.createEmptyBorder(30,16,10,16));
+
+		contentPane = (JPanel)this.getContentPane();
+		setSize(800,700);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		contentPane.add(queryPanel, BorderLayout.PAGE_START);
+		contentPane.add(resultPanel, BorderLayout.CENTER);
+
+		contentPane.setSize(600, 500);
+		contentPane.setVisible(true);
+		setVisible(true);
+
+	}
 
     public void actionPerformed(ActionEvent e){
     	if (e.getSource() == readButton){
@@ -91,14 +100,18 @@ public class ui extends JFrame implements ActionListener{
             //System.out.println(jobReq);
         
 
-        }else if (e.getSource() == startButton){
+        }else if (e.getSource() == browseButton){
+			filepath = fileChooser();
+			System.out.println("1getSelectedFile() : " + filepath);
+		}else if (e.getSource() == startButton){
+			if(filepath != null){
         	removeRows();
         	clearList();
 
         	Controller controller = new Controller();
         	HashMap<String,Double> resultList = new HashMap<String,Double>();
         	try {
-				resultList = controller.startProcessing(jobReq);
+				resultList = controller.startProcessing(jobReq,filepath);
 			} catch (FileNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -139,6 +152,9 @@ public class ui extends JFrame implements ActionListener{
         		data2 = f.getValue();
                 model.addRow( new Object[] { data1, data2 } );
         	}
+			}else{
+				missingFolderError();
+			}
         }
     }
     
@@ -154,7 +170,45 @@ public class ui extends JFrame implements ActionListener{
     	while (!resultFiles.isEmpty())
     		resultFiles.remove(0);
     }
+    
+	private void missingFolderError(){
+		JFrame frame = new JFrame("Missing Folder");
+		frame.setSize(300, 100);
+		browseError = new JPanel(new BorderLayout());
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
+		String message = "Please choose a folder for processing"; 
+		JLabel content = new JLabel(message,JLabel.CENTER);
+		browseError.add(content, BorderLayout.CENTER);
+
+		frame.setContentPane(browseError);
+		frame.setVisible(true);
+	}
+	
+	private File fileChooser(){
+		JFileChooser chooser = new JFileChooser();
+		String folder = null;
+		if(filepath!=null){
+			folder = filepath.toString();
+		}else{
+			folder = ".";
+		}
+		chooser.setCurrentDirectory(new java.io.File(folder));
+		chooser.setDialogTitle("Browse Folder");
+		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		chooser.setAcceptAllFileFilterUsed(false);
+		File filePath = null;
+
+		if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+			System.out.println("getCurrentDirectory(): " + chooser.getCurrentDirectory());
+			System.out.println("getSelectedFile() : " + chooser.getSelectedFile());
+			filePath = chooser.getSelectedFile();
+		} else {
+			System.out.println("No Selection ");
+		}
+		return filePath;
+	}
+    
     public static void main(String[] args) {
     	new ui();
     }
