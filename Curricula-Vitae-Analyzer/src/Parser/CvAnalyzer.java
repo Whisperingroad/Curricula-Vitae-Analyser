@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 
 public class CvAnalyzer {
-	private int numCategories = 4;
+	private int numCategories = 5;
 	private String[] categories = new String[numCategories];
 	private double score;
 	private ArrayList<String> language = new ArrayList<String>();

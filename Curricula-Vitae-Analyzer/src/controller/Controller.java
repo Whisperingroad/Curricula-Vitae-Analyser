@@ -25,10 +25,10 @@ public class Controller
 	protected CvAnalyzer cvAnalyzer = new CvAnalyzer();
 	protected Storage storage = new Storage(); 
 	
-	String resumePath = Constants.SEBASTIAN + "Input\\";
-	String textResumePath = Constants.SEBASTIAN + "Storage\\TextResumes\\";
-	String lemmatisedResumePath = Constants.SEBASTIAN + "Storage\\LemmatisedResumes\\";
-	String libraryPath = Constants.SEBASTIAN + "Library\\";
+	//String resumePath = Constants.YANQING + "Input\\";
+	String textResumePath = Constants.YANQING + "Storage\\TextResumes\\";
+	String lemmatisedResumePath = Constants.YANQING + "Storage\\LemmatisedResumes\\";
+	String libraryPath = Constants.YANQING + "Library\\";
 	
 	ArrayList<String> language = new ArrayList<String>();
 	ArrayList<String> qualification = new ArrayList<String>();
@@ -45,11 +45,11 @@ public class Controller
 	}
 	
 	
-	public void extractCV() throws IOException
+	public void extractCV(File cvFolder) throws IOException
 	{
 		// extracting all resume information from .pdf and .doc files
 		// and convert them into .txt format
-		File cvFolder = new File(resumePath);
+		//File cvFolder = new File(resumePath);
 		File[] listOfCVs = cvFolder.listFiles();
 		for (File cv : listOfCVs)
 		{
@@ -62,7 +62,7 @@ public class Controller
 			Boolean extractComplete = TextExtractor.execute(cv);
 			if(extractComplete == true)
 			{	
-				String textResumeFile = (cv.toString()).replace(resumePath, textResumePath);		
+				String textResumeFile = (cv.toString()).replace(cvFolder.toString(), textResumePath);		
 				if(TextExtractor.getFilePostfix().equals(Constants.txtPostFix)){
 					storage.moveTxtFile(textResumeFile, cv);
 				}
@@ -97,10 +97,10 @@ public class Controller
 		nationality = jobDescriptionAnalyzer.getNationalityReq();
 	}
 	
-	public HashMap<String,Double> startProcessing(String jobDescription) throws IOException, FileNotFoundException
+	public HashMap<String,Double> startProcessing(String jobDescription, File resumePath) throws IOException, FileNotFoundException
 	{
 		System.out.println(jobDescription);
-		extractCV();
+		extractCV(resumePath);
 		// lemmatizing resumes 
 		File cvTextFolder = new File(textResumePath);
 		File[] listOfTextCVs = cvTextFolder.listFiles();
