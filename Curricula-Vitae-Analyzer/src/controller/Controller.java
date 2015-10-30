@@ -14,6 +14,7 @@ import java.util.TreeMap;
 import extractor.TextExtractor;
 import Parser.CvAnalyzer;
 import Parser.Lemmatise;
+import storage.Resume;
 import storage.Storage;
 import utils.Constants;
 
@@ -25,10 +26,10 @@ public class Controller
 	protected CvAnalyzer cvAnalyzer = new CvAnalyzer();
 	protected Storage storage = new Storage(); 
 	
-	String resumePath = Constants.SEBASTIAN + "Input\\";
-	String textResumePath = Constants.SEBASTIAN + "Storage\\TextResumes\\";
-	String lemmatisedResumePath = Constants.SEBASTIAN + "Storage\\LemmatisedResumes\\";
-	String libraryPath = Constants.SEBASTIAN + "Library\\";
+	String resumePath = Constants.YIXIU + "Input\\";
+	String textResumePath = Constants.YIXIU + "Storage\\TextResumes\\";
+	String lemmatisedResumePath = Constants.YIXIU + "Storage\\LemmatisedResumes\\";
+	String libraryPath = Constants.YIXIU + "Library\\";
 	
 	ArrayList<String> language = new ArrayList<String>();
 	ArrayList<String> qualification = new ArrayList<String>();
@@ -51,20 +52,22 @@ public class Controller
 		// and convert them into .txt format
 		File cvFolder = new File(resumePath);
 		File[] listOfCVs = cvFolder.listFiles();
-		for (File cv : listOfCVs)
+		for (int i=0;i< listOfCVs.length ; i++)
+		//for (File cv : listOfCVs)
 		{
-			System.out.println(cv);
+			//System.out.println(cv);
 			//System.out.println(cv.toPath());
-			String fileType = Files.probeContentType(cv.toPath());
-			System.out.println("Document type is " + fileType);
-			String fileName = cv.getName();
-			System.out.println("File Name is " + fileName);
-			Boolean extractComplete = TextExtractor.execute(cv);
+			String fileType = Files.probeContentType(listOfCVs[i].toPath());
+			//System.out.println("Document type is " + fileType);
+			String fileName = listOfCVs[i].getName();
+			storage.addResume(fileName);
+			//System.out.println("File Name is " + fileName);
+			Boolean extractComplete = TextExtractor.execute(listOfCVs[i]);
 			if(extractComplete == true)
 			{	
-				String textResumeFile = (cv.toString()).replace(resumePath, textResumePath);		
+				String textResumeFile = (listOfCVs[i].toString()).replace(resumePath, textResumePath);		
 				if(TextExtractor.getFilePostfix().equals(Constants.txtPostFix)){
-					storage.moveTxtFile(textResumeFile, cv);
+					storage.moveTxtFile(textResumeFile, listOfCVs[i]);
 				}
 				else if(TextExtractor.getFilePostfix().equals("none")){
 					System.out.println("file not accepted");
@@ -73,7 +76,7 @@ public class Controller
 				else{
 					
 					textResumeFile = textResumeFile.replace(TextExtractor.getFilePostfix(), Constants.txtPostFix);
-					System.out.println("changed" + textResumeFile);
+					//System.out.println("changed" + textResumeFile);
 					// for checking purposes
 					//System.out.println(cv.toString());
 					//System.out.println(textResumeFile);
@@ -99,7 +102,7 @@ public class Controller
 	
 	public HashMap<String,Double> startProcessing(String jobDescription) throws IOException, FileNotFoundException
 	{
-		System.out.println(jobDescription);
+		//System.out.println(jobDescription);
 		extractCV();
 		// lemmatizing resumes 
 		File cvTextFolder = new File(textResumePath);
@@ -139,19 +142,24 @@ public class Controller
 		// match cv
 		File lemmatisedCVFolder = new File(lemmatisedResumePath);
 		File[] listOfLemmatisedCVs = lemmatisedCVFolder.listFiles();
-		for (File lemmatisedCV : listOfLemmatisedCVs)
+		for (int i=0; i<listOfLemmatisedCVs.length ;i++)
 		{
 			ArrayList<String> cvInfo = new ArrayList<String>();
-			cvInfo = storage.readData(lemmatisedCV);
+			cvInfo = storage.readData(listOfLemmatisedCVs[i]);
 			cvAnalyzer.inputCV(cvInfo);
 			double score = cvAnalyzer.execute(libraryPath, language, qualification, experience, nationality);
-			//double score = cvAnalyzer.getScore();
-			String candidateName = (lemmatisedCV.toString()).replace(lemmatisedResumePath, "");
+			String candidateName = (listOfLemmatisedCVs[i].toString()).replace(lemmatisedResumePath, "");
 			candidateName = candidateName.replace(Constants.txtPostFix, "");
-			// name of candidate and score
 			nameScorePairsHash.put(candidateName, score);
+			storage.getResume(i).setResume(score, candidateName);
 		}
 		
+		for (int i= 0; i<listOfLemmatisedCVs.length;i++){
+			String filename = storage.getResume(i).getFileName();
+			String name = storage.getResume(i).getName();
+			double score = storage.getResume(i).getScore();
+			System.out.println(filename + " " + name + " " + score);
+		}
 		
 		return nameScorePairsHash;
 	}
