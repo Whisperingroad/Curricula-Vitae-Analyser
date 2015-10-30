@@ -25,28 +25,29 @@ public class Controller
 	protected JobDescriptionAnalyzer jobDescriptionAnalyzer = new JobDescriptionAnalyzer();
 	protected CvAnalyzer cvAnalyzer = new CvAnalyzer();
 	protected Storage storage = new Storage(); 
-	
+
 	String resumePath = Constants.YIXIU + "Input\\";
 	String textResumePath = Constants.YIXIU + "Storage\\TextResumes\\";
 	String lemmatisedResumePath = Constants.YIXIU + "Storage\\LemmatisedResumes\\";
 	String libraryPath = Constants.YIXIU + "Library\\";
 
-	
+
 	ArrayList<String> language = new ArrayList<String>();
 	ArrayList<String> qualification = new ArrayList<String>();
 	ArrayList<String> experience = new ArrayList<String>();
 	ArrayList<String> nationality = new ArrayList<String>();
 	private ArrayList<String> reqYearExp = new ArrayList<String>();
 	private ArrayList<String> VVVIPList = new ArrayList<String>();
-	
-	TreeMap<Double,String> nameScorePairsTree =  new TreeMap<Double,String>();
+
+
 	HashMap<String,Double> nameScorePairsHash =  new HashMap<String,Double>();
-	
+
 	// default constructor
 	public Controller()
 	{
-		
+
 	}
+
 	
 	
 	public String extractCV(File CV) throws IOException
@@ -59,8 +60,9 @@ public class Controller
 			return TextExtractor.getFileContent();
 		else
 			return null;
+
 	}
-	
+
 	private void clearLists(){
 		language.clear();
 		qualification.clear();
@@ -69,7 +71,7 @@ public class Controller
 		reqYearExp.clear();
 		VVVIPList.clear();
 	}
-	
+
 	private void updateLists(){	
 		language  = jobDescriptionAnalyzer.getLanguageReq();
 		qualification = jobDescriptionAnalyzer.getQualificationReq();
@@ -78,9 +80,10 @@ public class Controller
 		reqYearExp = jobDescriptionAnalyzer.getreqYearExp();
 		VVVIPList = jobDescriptionAnalyzer.getVVVIPList();
 	}
-	
+
 	public HashMap<String,Double> startProcessing(String jobDescription, File resumePath) throws IOException, FileNotFoundException
 	{
+
 		// job description extraction
 		ArrayList<String> jobReq = new ArrayList<String>(Arrays.asList(jobDescription.split("\\r?\\n")));
 		jobReq = textLemmatiser.lemmatiser(jobReq);
@@ -126,5 +129,6 @@ public class Controller
 		}
 		ArrayList<Resume> resumeList = storage.getResumeList();
 		return nameScorePairsHash;
+
 	}
 }
