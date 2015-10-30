@@ -81,7 +81,7 @@ public class Controller
 		VVVIPList = jobDescriptionAnalyzer.getVVVIPList();
 	}
 
-	public HashMap<String,Double> startProcessing(String jobDescription, File resumePath) throws IOException, FileNotFoundException
+	public ArrayList<String> startProcessing(String jobDescription, File resumePath) throws IOException, FileNotFoundException
 	{
 
 		// job description extraction
@@ -127,8 +127,17 @@ public class Controller
 			nameScorePairsHash.put(candidateName, score);
 			storage.getResume(i).setResume(score, candidateName);
 		}
-		ArrayList<Resume> resumeList = storage.getResumeList();
-		return nameScorePairsHash;
+		
+		 storage.sortResumeList();
+		 
+		 ArrayList<String> resultList = new ArrayList<String>(); 
+		 for (int i=0;i< listOfCVs.length ; i++)
+		 {	 
+			 resultList.add(storage.getResume(i).getName());
+			 resultList.add(String.valueOf(storage.getResume(i).getScore()));
+		 }
+		 
+		return resultList;
 
 	}
 }

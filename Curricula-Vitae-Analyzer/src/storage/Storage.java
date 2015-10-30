@@ -2,6 +2,8 @@ package storage;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,7 +17,6 @@ import java.io.PrintWriter;
 
 public class Storage {
 
-	//protected ArrayList<String> resumeNames = new ArrayList<String>();
 	protected ArrayList<Resume> resumeList = new ArrayList<Resume>();
 	public Storage()
 	{
@@ -107,29 +108,14 @@ public class Storage {
 		inStream.close();
 		outStream.close();
 	}
-	
+
 	public void sortResumeList(){
-		double max = 0.0;
-		double score = 0.0;
-		for (int size = 0; size < resumeList.size() ; size++){
-			score = resumeList.get(size).getScore();
-			
-		}
+		Collections.sort(resumeList,new Comparator<Resume>(){
+            public int compare(Resume r1,Resume r2){
+                return (int) (r2.resumeScore - r1.resumeScore);
+          }});
 	}
-	
-	public static void main(String[] args){
-		Storage test = new Storage();
-		Resume new1 = new Resume("1");
-		new1.setResume(15.5, "nc");
-		Resume new2 = new Resume("2");
-		new1.setResume(13.5, "nc");
-		Resume new3 = new Resume("3");
-		new1.setResume(17.5, "nc");
-		test.resumeList.add(new1);
-		test.resumeList.add(new2);
-		test.resumeList.add(new3);
-		test.sortResumeList();
-	}
+
 }
 
 
