@@ -144,8 +144,8 @@ public class Controller
 			ArrayList<String> cvInfo = new ArrayList<String>();
 			cvInfo = storage.readData(lemmatisedCV);
 			cvAnalyzer.inputCV(cvInfo);
-			cvAnalyzer.execute(libraryPath, language, qualification, experience, nationality);
-			double score = cvAnalyzer.getScore();
+			double score = cvAnalyzer.execute(libraryPath, language, qualification, experience, nationality);
+			//double score = cvAnalyzer.getScore();
 			String candidateName = (lemmatisedCV.toString()).replace(lemmatisedResumePath, "");
 			candidateName = candidateName.replace(Constants.txtPostFix, "");
 			// name of candidate and score

@@ -7,6 +7,5 @@ certification
 bachelor 
 bsc 
 b.eng 
-be 
 b.eng 
 b.eng.

@@ -7,14 +7,15 @@ import utils.Constants;
 
 
 public class JobDescriptionAnalyzer {
-	private int numCategories = 4;
+	private int numCategories = 5;
 	private String[] categories = new String[numCategories];
 	private ArrayList<String> language = new ArrayList<String>();
 	private ArrayList<String> qualification = new ArrayList<String>();
 	private ArrayList<String> experience = new ArrayList<String>();
 	private ArrayList<String> nationality = new ArrayList<String>();
+	private ArrayList<String> reqYearExp = new ArrayList<String>();
 	
-	private static ArrayList<String> jobDescription = new ArrayList<String>();
+	private ArrayList<String> jobDescription = new ArrayList<String>();
 	
 	
 	// loading the types of categories
@@ -110,23 +111,44 @@ public class JobDescriptionAnalyzer {
 	}
 
 	public void addSpecialCase(boolean[] categoryPresent, String paragraph, String rootPath){
-		String attribute = null;
-		String path = rootPath + "qualification.txt";
-		File listPath = new File(path);
-		try {
-			Scanner readFile = new Scanner(listPath);
-			if (categoryPresent[1] && !paragraph.contains("in")){
-				while (readFile.hasNextLine()){
-					attribute = readFile.nextLine();
-					if (paragraph.contains(attribute))
-						qualification.add(attribute);
+		//experience with years required
+		int yearExp = 4;
+		if (categoryPresent[yearExp]){
+			String numYear = findYearReq(paragraph);
+			reqYearExp.add(numYear);
+			if (paragraph.contains("relevant"))
+				reqYearExp.add("relevant");
+			else{
+				String attribute = null;
+				String path = rootPath + "yearList.txt";
+				try {
+					File listPath = new File(path);
+					Scanner readFile = new Scanner(listPath);
+					while (readFile.hasNextLine()){
+						attribute = readFile.nextLine().trim();
+						if (paragraph.contains(attribute))
+							reqYearExp.add(attribute);
+					}
+					readFile.close();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
-			readFile.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
+	}
+
+	private void clearAllArrayList(){
+		language.clear();
+		qualification.clear();
+		experience.clear();
+		nationality.clear();
+		reqYearExp.clear();
+	}
+	
+	private String findYearReq(String input){
+		input = input.replaceAll("[^0-9]+", " ").trim();
+		return (input.substring(0, 1));
 	}
 
 	public void setJobRequirement(ArrayList<String> input){
@@ -148,17 +170,10 @@ public class JobDescriptionAnalyzer {
 	public ArrayList<String> getNationalityReq(){
 		return nationality;
 	}
-	
-	private void clearLists(){
-		language.clear();
-		qualification.clear();
-		experience.clear();
-		nationality.clear();
-	}
 
 	public void execute(String path) {
+		clearAllArrayList();
 		
-		clearLists();		
 		boolean[] categoryPresent = new boolean[numCategories];
 		System.out.println("JOB DESCIRPTION:" + jobDescription.size());
 		loadCategories(path);
@@ -170,6 +185,24 @@ public class JobDescriptionAnalyzer {
 			addSpecialCase(categoryPresent,paragraph, path);
 		}
 		jobDescription.clear();
+	}
+	
+	public static void main(String[] args){
+		String path = "C:/Users/AdminNUS/Documents/git/Curricula-Vitae-Analyser/Curricula-Vitae-Analyzer/src/Library/";
+		JobDescriptionAnalyzer test = new JobDescriptionAnalyzer();
+		test.loadCategories("C:/Users/AdminNUS/Documents/git/Curricula-Vitae-Analyser/Curricula-Vitae-Analyzer/src/Library/");
+		//limitations - only can read in numeric values
+		String paragraph = "minimum of 3 year experience in the relevant field";
+		boolean[] categoryPresent = new boolean[test.numCategories];
+		categoryPresent = test.findCategory(paragraph, "C:/Users/AdminNUS/Documents/git/Curricula-Vitae-Analyser/Curricula-Vitae-Analyzer/src/Library/");
+		for (int i=0;i<5;i++)
+			System.out.println(categoryPresent[i]);
+		test.addSpecialCase(categoryPresent,paragraph,path);
+		for (int i=0;i<test.reqYearExp.size();i++)
+			System.out.println(test.reqYearExp.get(i));
+		//do something
+		//	int year = reqYear();
+		//	String exp = reqExp();
 	}
 }
 

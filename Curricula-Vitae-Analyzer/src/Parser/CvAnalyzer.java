@@ -125,13 +125,24 @@ public class CvAnalyzer {
 		}
 	}
 	
+	private double computeTotalAttribute(){
+		return (language.size() + qualification.size() + experience.size() + nationality.size());
+	}
+	
+	private boolean checkAvail(){
+		if (computeTotalAttribute() == 0)
+			return false;
+		else 
+			return true;
+	}
+	
 	public void inputCV(ArrayList<String> input){
 		CV.clear();
 		CV.addAll(input);
 	}
 
 	public double getScore(){
-		double size = language.size() + qualification.size() + experience.size() + nationality.size();
+		double size = computeTotalAttribute();
 		return (score/size)*100;	
 	}
 	
@@ -154,18 +165,24 @@ public class CvAnalyzer {
 	
 	}
 
-	public void execute(String path, ArrayList<String> languageInput,ArrayList<String> qualificationInput,ArrayList<String> experienceInput,ArrayList<String> nationalityInput){
-		boolean[] categoryPresent = new boolean[numCategories];
-		score = 0;
+	public double execute(String path, ArrayList<String> languageInput,ArrayList<String> qualificationInput,ArrayList<String> experienceInput,ArrayList<String> nationalityInput){
 		clearLists();
 		addLists(languageInput,qualificationInput, experienceInput, nationalityInput);
-		loadCategories(path);
-		String paragraph = null;
-		for (int i = 0; i < CV.size(); i++){
-			paragraph = CV.get(i);
-			paragraph = paragraph.toLowerCase();
-			categoryPresent = findCategory(paragraph,path);
-			matchRequirement(categoryPresent,paragraph);
+		if (checkAvail() == true){
+			boolean[] categoryPresent = new boolean[numCategories];
+			score = 0;
+			loadCategories(path);
+			String paragraph = null;
+			for (int i = 0; i < CV.size(); i++){
+				paragraph = CV.get(i);
+				paragraph = paragraph.toLowerCase();
+				categoryPresent = findCategory(paragraph,path);
+				matchRequirement(categoryPresent,paragraph);
+			}
+			double size = computeTotalAttribute();
+			return (score/size)*100;	
 		}
+		else
+			return 0.0;
 	}
 }
