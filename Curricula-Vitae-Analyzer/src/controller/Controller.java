@@ -14,6 +14,7 @@ import java.util.TreeMap;
 import extractor.TextExtractor;
 import Parser.CvAnalyzer;
 import Parser.Lemmatise;
+import storage.Resume;
 import storage.Storage;
 import utils.Constants;
 
@@ -24,101 +25,72 @@ public class Controller
 	protected JobDescriptionAnalyzer jobDescriptionAnalyzer = new JobDescriptionAnalyzer();
 	protected CvAnalyzer cvAnalyzer = new CvAnalyzer();
 	protected Storage storage = new Storage(); 
-	
-	String resumePath = Constants.SEBASTIAN + "Input\\";
-	String textResumePath = Constants.SEBASTIAN + "Storage\\TextResumes\\";
-	String lemmatisedResumePath = Constants.SEBASTIAN + "Storage\\LemmatisedResumes\\";
-	String libraryPath = Constants.SEBASTIAN + "Library\\";
-	
+
+	String resumePath = Constants.YIXIU + "Input\\";
+	String textResumePath = Constants.YIXIU + "Storage\\TextResumes\\";
+	String lemmatisedResumePath = Constants.YIXIU + "Storage\\LemmatisedResumes\\";
+	String libraryPath = Constants.YIXIU + "Library\\";
+
+
 	ArrayList<String> language = new ArrayList<String>();
 	ArrayList<String> qualification = new ArrayList<String>();
 	ArrayList<String> experience = new ArrayList<String>();
 	ArrayList<String> nationality = new ArrayList<String>();
-	
-	TreeMap<Double,String> nameScorePairsTree =  new TreeMap<Double,String>();
+	private ArrayList<String> reqYearExp = new ArrayList<String>();
+	private ArrayList<String> VVVIPList = new ArrayList<String>();
+
+
 	HashMap<String,Double> nameScorePairsHash =  new HashMap<String,Double>();
-	
+
 	// default constructor
 	public Controller()
 	{
-		
+
 	}
+
 	
 	
-	public void extractCV() throws IOException
+	public String extractCV(File CV) throws IOException
 	{
-		// extracting all resume information from .pdf and .doc files
-		// and convert them into .txt format
-		File cvFolder = new File(resumePath);
-		File[] listOfCVs = cvFolder.listFiles();
-		for (File cv : listOfCVs)
-		{
-			System.out.println(cv);
-			//System.out.println(cv.toPath());
-			String fileType = Files.probeContentType(cv.toPath());
-			System.out.println("Document type is " + fileType);
-			String fileName = cv.getName();
-			System.out.println("File Name is " + fileName);
-			Boolean extractComplete = TextExtractor.execute(cv);
-			if(extractComplete == true)
-			{	
-				String textResumeFile = (cv.toString()).replace(resumePath, textResumePath);		
-				if(TextExtractor.getFilePostfix().equals(Constants.txtPostFix)){
-					storage.moveTxtFile(textResumeFile, cv);
-				}
-				else if(TextExtractor.getFilePostfix().equals("none")){
-					System.out.println("file not accepted");
-				}
-				//file type = ".pdf", ".doc", ".docx"
-				else{
-					
-					textResumeFile = textResumeFile.replace(TextExtractor.getFilePostfix(), Constants.txtPostFix);
-					System.out.println("changed" + textResumeFile);
-					// for checking purposes
-					//System.out.println(cv.toString());
-					//System.out.println(textResumeFile);
-					storage.writeData(TextExtractor.getFileContent(), textResumeFile);
-				}
-			}
-		}
+		String fileName = CV.getName();
+		storage.addResume(fileName);
+		//System.out.println("File Name is " + fileName);
+		Boolean extractComplete = TextExtractor.execute(CV);
+		if(extractComplete == true)
+			return TextExtractor.getFileContent();
+		else
+			return null;
+
 	}
-	
+
 	private void clearLists(){
 		language.clear();
 		qualification.clear();
 		experience.clear();
 		nationality.clear();
+		reqYearExp.clear();
+		VVVIPList.clear();
 	}
-	
+
 	private void updateLists(){	
 		language  = jobDescriptionAnalyzer.getLanguageReq();
 		qualification = jobDescriptionAnalyzer.getQualificationReq();
 		experience = jobDescriptionAnalyzer.getExperienceReq();
 		nationality = jobDescriptionAnalyzer.getNationalityReq();
+		reqYearExp = jobDescriptionAnalyzer.getreqYearExp();
+		VVVIPList = jobDescriptionAnalyzer.getVVVIPList();
 	}
-	
-	public HashMap<String,Double> startProcessing(String jobDescription) throws IOException, FileNotFoundException
+
+	public HashMap<String,Double> startProcessing(String jobDescription, File resumePath) throws IOException, FileNotFoundException
 	{
-		System.out.println(jobDescription);
-		extractCV();
-		// lemmatizing resumes 
-		File cvTextFolder = new File(textResumePath);
-		File[] listOfTextCVs = cvTextFolder.listFiles();
-		for (File cvText : listOfTextCVs)
-		{
-			ArrayList<String> resume = new ArrayList<String>();
-			ArrayList<String> lemmatisedResume = new ArrayList<String>();
- 			resume = storage.readData(cvText);
- 			lemmatisedResume = textLemmatiser.lemmatiser(resume);
- 			// write to storage
- 			String lemmatisedResumeFile = (cvText.toString()).replace(textResumePath, lemmatisedResumePath);
- 			storage.writeData(lemmatisedResume, lemmatisedResumeFile);	
-		}
+
 		// job description extraction
 		ArrayList<String> jobReq = new ArrayList<String>(Arrays.asList(jobDescription.split("\\r?\\n")));
+		jobReq = textLemmatiser.lemmatiser(jobReq);
+		System.out.println(jobReq.toString());
 		jobDescriptionAnalyzer.setJobRequirement(jobReq);
 		jobDescriptionAnalyzer.execute(libraryPath);
-	
+		
 		clearLists();
 		updateLists();
 		
@@ -135,24 +107,28 @@ public class Controller
 		System.out.println("nationality");
 		for (int i=0;i<nationality.size();i++)
 			System.out.println(nationality.get(i));
+		System.out.println("reqYearExp");
+		for (int i=0;i<reqYearExp.size();i++)
+			System.out.println(reqYearExp.get(i));
+		System.out.println("VVVIPList");
+		for (int i=0;i<VVVIPList.size();i++)
+			System.out.println(VVVIPList.get(i));
 		
-		// match cv
-		File lemmatisedCVFolder = new File(lemmatisedResumePath);
-		File[] listOfLemmatisedCVs = lemmatisedCVFolder.listFiles();
-		for (File lemmatisedCV : listOfLemmatisedCVs)
+		File[] listOfCVs = resumePath.listFiles();
+		for (int i=0;i< listOfCVs.length ; i++)
 		{
-			ArrayList<String> cvInfo = new ArrayList<String>();
-			cvInfo = storage.readData(lemmatisedCV);
-			cvAnalyzer.inputCV(cvInfo);
+			String txtCV = extractCV(listOfCVs[i]);
+			ArrayList<String> resume = new ArrayList<String>(Arrays.asList(txtCV.split("\n")));	
+			ArrayList<String> lemmatisedResume = new ArrayList<String>(textLemmatiser.lemmatiser(resume));
+			cvAnalyzer.inputCV(lemmatisedResume);
 			double score = cvAnalyzer.execute(libraryPath, language, qualification, experience, nationality);
-			//double score = cvAnalyzer.getScore();
-			String candidateName = (lemmatisedCV.toString()).replace(lemmatisedResumePath, "");
+			String candidateName = (listOfCVs[i].getName()).replace(lemmatisedResumePath, "");
 			candidateName = candidateName.replace(Constants.txtPostFix, "");
-			// name of candidate and score
 			nameScorePairsHash.put(candidateName, score);
+			storage.getResume(i).setResume(score, candidateName);
 		}
-		
-		
+		ArrayList<Resume> resumeList = storage.getResumeList();
 		return nameScorePairsHash;
+
 	}
 }
