@@ -36,6 +36,8 @@ public class Controller
 	ArrayList<String> qualification = new ArrayList<String>();
 	ArrayList<String> experience = new ArrayList<String>();
 	ArrayList<String> nationality = new ArrayList<String>();
+	private ArrayList<String> reqYearExp = new ArrayList<String>();
+	private ArrayList<String> VVVIPList = new ArrayList<String>();
 	
 	TreeMap<Double,String> nameScorePairsTree =  new TreeMap<Double,String>();
 	HashMap<String,Double> nameScorePairsHash =  new HashMap<String,Double>();
@@ -47,45 +49,16 @@ public class Controller
 	}
 	
 	
-	public void extractCV(File cvFolder) throws IOException
+	public String extractCV(File CV) throws IOException
 	{
-		// extracting all resume information from .pdf and .doc files
-		// and convert them into .txt format
-		//File cvFolder = new File(resumePath);
-		File[] listOfCVs = cvFolder.listFiles();
-		for (int i=0;i< listOfCVs.length ; i++)
-		//for (File cv : listOfCVs)
-		{
-			//System.out.println(cv);
-			//System.out.println(cv.toPath());
-			String fileType = Files.probeContentType(listOfCVs[i].toPath());
-			//System.out.println("Document type is " + fileType);
-			String fileName = listOfCVs[i].getName();
-			storage.addResume(fileName);
-			//System.out.println("File Name is " + fileName);
-			Boolean extractComplete = TextExtractor.execute(listOfCVs[i]);
-			if(extractComplete == true)
-			{	
-				String textResumeFile = (listOfCVs[i].toString()).replace(cvFolder.toString(), textResumePath);		
-
-				if(TextExtractor.getFilePostfix().equals(Constants.txtPostFix)){
-					storage.moveTxtFile(textResumeFile, listOfCVs[i]);
-				}
-				else if(TextExtractor.getFilePostfix().equals("none")){
-					System.out.println("file not accepted");
-				}
-				//file type = ".pdf", ".doc", ".docx"
-				else{
-					
-					textResumeFile = textResumeFile.replace(TextExtractor.getFilePostfix(), Constants.txtPostFix);
-					//System.out.println("changed" + textResumeFile);
-					// for checking purposes
-					//System.out.println(cv.toString());
-					//System.out.println(textResumeFile);
-					storage.writeData(TextExtractor.getFileContent(), textResumeFile);
-				}
-			}
-		}
+		String fileName = CV.getName();
+		storage.addResume(fileName);
+		//System.out.println("File Name is " + fileName);
+		Boolean extractComplete = TextExtractor.execute(CV);
+		if(extractComplete == true)
+			return TextExtractor.getFileContent();
+		else
+			return null;
 	}
 	
 	private void clearLists(){
@@ -93,6 +66,8 @@ public class Controller
 		qualification.clear();
 		experience.clear();
 		nationality.clear();
+		reqYearExp.clear();
+		VVVIPList.clear();
 	}
 	
 	private void updateLists(){	
@@ -100,31 +75,19 @@ public class Controller
 		qualification = jobDescriptionAnalyzer.getQualificationReq();
 		experience = jobDescriptionAnalyzer.getExperienceReq();
 		nationality = jobDescriptionAnalyzer.getNationalityReq();
+		reqYearExp = jobDescriptionAnalyzer.getreqYearExp();
+		VVVIPList = jobDescriptionAnalyzer.getVVVIPList();
 	}
 	
 	public HashMap<String,Double> startProcessing(String jobDescription, File resumePath) throws IOException, FileNotFoundException
 	{
-		//System.out.println(jobDescription);
-		extractCV(resumePath);
-
-		// lemmatizing resumes 
-		File cvTextFolder = new File(textResumePath);
-		File[] listOfTextCVs = cvTextFolder.listFiles();
-		for (File cvText : listOfTextCVs)
-		{
-			ArrayList<String> resume = new ArrayList<String>();
-			ArrayList<String> lemmatisedResume = new ArrayList<String>();
- 			resume = storage.readData(cvText);
- 			lemmatisedResume = textLemmatiser.lemmatiser(resume);
- 			// write to storage
- 			String lemmatisedResumeFile = (cvText.toString()).replace(textResumePath, lemmatisedResumePath);
- 			storage.writeData(lemmatisedResume, lemmatisedResumeFile);	
-		}
 		// job description extraction
 		ArrayList<String> jobReq = new ArrayList<String>(Arrays.asList(jobDescription.split("\\r?\\n")));
+		jobReq = textLemmatiser.lemmatiser(jobReq);
+		System.out.println(jobReq.toString());
 		jobDescriptionAnalyzer.setJobRequirement(jobReq);
 		jobDescriptionAnalyzer.execute(libraryPath);
-	
+		
 		clearLists();
 		updateLists();
 		
@@ -141,29 +104,27 @@ public class Controller
 		System.out.println("nationality");
 		for (int i=0;i<nationality.size();i++)
 			System.out.println(nationality.get(i));
+		System.out.println("reqYearExp");
+		for (int i=0;i<reqYearExp.size();i++)
+			System.out.println(reqYearExp.get(i));
+		System.out.println("VVVIPList");
+		for (int i=0;i<VVVIPList.size();i++)
+			System.out.println(VVVIPList.get(i));
 		
-		// match cv
-		File lemmatisedCVFolder = new File(lemmatisedResumePath);
-		File[] listOfLemmatisedCVs = lemmatisedCVFolder.listFiles();
-		for (int i=0; i<listOfLemmatisedCVs.length ;i++)
+		File[] listOfCVs = resumePath.listFiles();
+		for (int i=0;i< listOfCVs.length ; i++)
 		{
-			ArrayList<String> cvInfo = new ArrayList<String>();
-			cvInfo = storage.readData(listOfLemmatisedCVs[i]);
-			cvAnalyzer.inputCV(cvInfo);
+			String txtCV = extractCV(listOfCVs[i]);
+			ArrayList<String> resume = new ArrayList<String>(Arrays.asList(txtCV.split("\n")));	
+			ArrayList<String> lemmatisedResume = new ArrayList<String>(textLemmatiser.lemmatiser(resume));
+			cvAnalyzer.inputCV(lemmatisedResume);
 			double score = cvAnalyzer.execute(libraryPath, language, qualification, experience, nationality);
-			String candidateName = (listOfLemmatisedCVs[i].toString()).replace(lemmatisedResumePath, "");
+			String candidateName = (listOfCVs[i].getName()).replace(lemmatisedResumePath, "");
 			candidateName = candidateName.replace(Constants.txtPostFix, "");
 			nameScorePairsHash.put(candidateName, score);
 			storage.getResume(i).setResume(score, candidateName);
 		}
-		
-		for (int i= 0; i<listOfLemmatisedCVs.length;i++){
-			String filename = storage.getResume(i).getFileName();
-			String name = storage.getResume(i).getName();
-			double score = storage.getResume(i).getScore();
-			System.out.println(filename + " " + name + " " + score);
-		}
-		
+		ArrayList<Resume> resumeList = storage.getResumeList();
 		return nameScorePairsHash;
 	}
 }

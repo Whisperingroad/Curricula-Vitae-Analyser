@@ -231,6 +231,10 @@ public class JobDescriptionAnalyzer {
 		return nationality;
 	}
 	
+	public ArrayList<String> getreqYearExp(){
+		return reqYearExp;
+	}
+	
 	public ArrayList<String> getVVVIPList(){
 		return VVVIPList;
 	}
@@ -258,7 +262,7 @@ public class JobDescriptionAnalyzer {
 		}
 		jobDescription.clear();
 	}
-	
+	/*
 	public static void main(String[] args){
 		String path = "C:/Users/AdminNUS/Documents/git/Curricula-Vitae-Analyser/Curricula-Vitae-Analyzer/src/Library/";
 		JobDescriptionAnalyzer test = new JobDescriptionAnalyzer();
@@ -272,6 +276,6 @@ public class JobDescriptionAnalyzer {
 		test.setJobRequirement(paragraphs);
 		test.execute(path);
 		test.checkList();
-	}
+	}*/
 }
 
