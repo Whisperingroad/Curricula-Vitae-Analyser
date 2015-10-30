@@ -27,7 +27,7 @@ public class ui extends JFrame implements ActionListener{
 
 	JPanel contentPane, browseError;
 	JButton readButton, startButton, browseButton;
-	JTextField textField;
+//	JTextField textField;
 	JTextArea textArea;
 	JTable table;
 	DefaultTableModel model;
@@ -41,7 +41,6 @@ public class ui extends JFrame implements ActionListener{
 
 	// Constructor
 	public ui() {
-		//	textField = new JTextField(20);
 		textArea = new JTextArea(5, 20);
 
 		textArea.setColumns(40);
@@ -99,7 +98,6 @@ public class ui extends JFrame implements ActionListener{
 			jobReq = textArea.getText();
 			//System.out.println(jobReq);
 
-
 		}else if (e.getSource() == browseButton){
 			filepath = fileChooser();
 			System.out.println("1getSelectedFile() : " + filepath);
@@ -109,7 +107,8 @@ public class ui extends JFrame implements ActionListener{
 				clearList();
 
 				Controller controller = new Controller();
-				HashMap<String,Double> resultList = new HashMap<String,Double>();
+				ArrayList<String> resultList = new ArrayList<String>();
+				
 				try {
 					resultList = controller.startProcessing(jobReq,filepath);
 				} catch (FileNotFoundException e1) {
@@ -120,37 +119,13 @@ public class ui extends JFrame implements ActionListener{
 					e1.printStackTrace();
 				}	
 
-				//HashMap<String,Double> resultList = new HashMap<String,Double>();
-				//resultList.put("yq.cv", 12.1);
-				//resultList.put("seb.cv", 31.1);
-				//resultList.put("yx.cv", 22.1);
-				//resultList.put("nic.cv", 42.1);
-
-				//int numEntry = resultList.size();
-
-				//   SearchDemo searchDemo = new SearchDemo();
-				//   resultFiles = searchDemo.resultList(queryAudio.getAbsolutePath(),0);
-
-				//Testing Purposes
-				/*
-        	resultFiles.add("1");
-        	resultFiles.add("2");
-        	resultFiles.add("3");
-        	resultFiles.add("4");
-        	resultFiles.add("5");
-        	resultFiles.add("6");
-        	resultFiles.add("7");
-        	resultFiles.add("8");
-        	resultFiles.add("9");
-        	resultFiles.add("10");
-				 */
 				if(resultList!=null){
 					String data1 = null;
-					double data2 = 0.0;
+					String data2 = null;
 
-					for (Entry<String, Double> f: resultList.entrySet()){
-						data1 = f.getKey();
-						data2 = f.getValue();
+					for (int i = 0; i < resultList.size(); i+=2){
+						data1 = resultList.get(i);
+						data2 = resultList.get(i+1);
 						model.addRow( new Object[] { data1, data2 } );
 					}
 				}
