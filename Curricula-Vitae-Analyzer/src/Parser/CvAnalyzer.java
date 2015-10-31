@@ -68,14 +68,7 @@ public class CvAnalyzer {
 		language.addAll(languageInput);
 		qualification.addAll(qualificationInput);
 		experience.addAll(experienceInput);
-		nationality.addAll(nationalityInput);
-		System.out.println("check here");
-		for (String s : experience)
-		{	
-			System.out.println(s);
-		}
-		System.out.println(experience.size());
-	
+		nationality.addAll(nationalityInput);	
 	}
 
 	public double execute(String path, ArrayList<String> languageInput,ArrayList<String> qualificationInput,ArrayList<String> experienceInput,ArrayList<String> nationalityInput) throws IOException
@@ -83,7 +76,7 @@ public class CvAnalyzer {
 		clearLists();
 		loadAllHeaderTypes(path);
 		addLists(languageInput,qualificationInput, experienceInput, nationalityInput);
-		System.out.println("experience size: " + experienceInput.size());
+
 		if (checkAvail() == true){
 			score = 0;
 			String paragraph = null;		
@@ -238,7 +231,7 @@ public class CvAnalyzer {
 	// check if the sentence has less than 4 words
 	public boolean checkWordLimit(String line)
 	{
-		System.out.println(line);
+		//System.out.println(line);
 		ArrayList<String> words = new ArrayList<String>(Arrays.asList(line.split(" |,|:")));
 		if (words.size() > 4)
 			return false;
