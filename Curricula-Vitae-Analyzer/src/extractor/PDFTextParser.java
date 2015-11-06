@@ -56,7 +56,6 @@ public class PDFTextParser {
 			}
 			text = textString.toString();
 			text = text.replaceAll("^ +| +$| (?= )", "");
-			System.out.println(text);
 			if (cosDoc != null) cosDoc.close();
 			if (pdDoc != null) pdDoc.close();
 		} catch (Exception e) {

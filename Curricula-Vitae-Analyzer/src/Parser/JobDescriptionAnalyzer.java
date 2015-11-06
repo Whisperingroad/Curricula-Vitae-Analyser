@@ -13,6 +13,19 @@ public class JobDescriptionAnalyzer {
 	
 	private String jobClass = null;
 	
+	ArrayList<String> experienceStorage = new ArrayList<String>();
+	ArrayList<String> experienceListStorage = new ArrayList<String>();
+	ArrayList<String> languageStorage = new ArrayList<String>();
+	ArrayList<String> languageListStorage = new ArrayList<String>();
+	ArrayList<String> mainCategoriesStorage = new ArrayList<String>();
+	ArrayList<String> modalsStorage = new ArrayList<String>();
+	ArrayList<String> nationalityStorage = new ArrayList<String>();
+	ArrayList<String> nationalityListStorage = new ArrayList<String>();
+	ArrayList<String> qualificationStorage = new ArrayList<String>();
+	ArrayList<String> qualificationListStorage = new ArrayList<String>();
+	ArrayList<String> yearStorage = new ArrayList<String>();
+	ArrayList<String> yearListStorage = new ArrayList<String>();
+	
 	private ArrayList<String> language = new ArrayList<String>();
 	private ArrayList<String> qualification = new ArrayList<String>();
 	private ArrayList<String> experience = new ArrayList<String>();
@@ -22,137 +35,157 @@ public class JobDescriptionAnalyzer {
 	
 	private ArrayList<String> jobDescription = new ArrayList<String>();
 		
+	//constructor
+	public JobDescriptionAnalyzer(ArrayList<String> mainCategoriesInput, ArrayList<String> experienceInput, ArrayList<String> experienceListInput, ArrayList<String> languageInput,
+			ArrayList<String> languageListInput, ArrayList<String> nationalityInput, ArrayList<String> nationalityListInput, ArrayList<String> qualificationInput, ArrayList<String> qualificationListInput, 
+			ArrayList<String> yearInput, ArrayList<String> yearListInput, ArrayList<String> modalsInput){
+		mainCategoriesStorage.addAll(mainCategoriesInput);
+		experienceStorage.addAll(experienceInput);
+		experienceListStorage.addAll(experienceListInput);
+		languageStorage.addAll(languageInput);
+		languageListStorage.addAll(languageListInput);
+		nationalityStorage.addAll(nationalityInput);
+		nationalityListStorage.addAll(nationalityListInput);
+		qualificationStorage.addAll(qualificationInput);
+		qualificationListStorage.addAll(qualificationListInput);
+		yearStorage.addAll(yearInput);
+		yearListStorage.addAll(yearListInput);
+		modalsStorage.addAll(modalsInput);
+	}
+	
 	// loading the types of categories
-	public void loadCategories(String path){
-		int index = 0;
-		String rootPath = path + "mainCategories.txt";
-		File mainCategoriesPath = new File(rootPath);
-		Scanner txtFile;
-		try {
-			txtFile = new Scanner(mainCategoriesPath);
-			while (txtFile.hasNext())
-				categories[index++] = txtFile.next();
-			txtFile.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	public void loadCategories(){
+		for (int size = 0; size < mainCategoriesStorage.size(); size++){
+			categories[size] = mainCategoriesStorage.get(size);
 		}
 	}
 	
 	// looking through libraries of all categories
 	// comparing with a single line of job description
-	public boolean[] findCategory(String paragraph, String rootPath){
-		int index = 0;
+	public boolean[] findCategory(String paragraph){
 		String word = null;
-		String categoryPath = null;
 		// values default to false
 		boolean[] categoryPresent = new boolean[numCategories];
 		
-		try {
-			for (int i = 0; i < numCategories ; i++){
-				categoryPath = rootPath + categories[i] + Constants.txtPostFix;
-				File categoriesPath = new File(categoryPath);
-				Scanner readFile = new Scanner(categoriesPath);
-				// checking every word in a category
-				while (readFile.hasNextLine())
-				{
-					word = readFile.nextLine();
-					word = word.toLowerCase();
-					word = word.trim();
-					// category is present
-					// attribute list for this category is processed
-					if (paragraph.contains(word))
-					{
-						categoryPresent[index] = true;
-					}
-				}
-				index++;
-				readFile.close();
+		for (int i = 0; i < languageStorage.size(); i++){
+			word = languageStorage.get(i);
+			word = word.toLowerCase();
+			word = word.trim();
+			if (paragraph.contains(word))
+			{
+				categoryPresent[0] = true;
 			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-
+		for (int i = 0; i < qualificationStorage.size(); i++){
+			word = qualificationStorage.get(i);
+			word = word.toLowerCase();
+			word = word.trim();
+			if (paragraph.contains(word))
+			{
+				categoryPresent[1] = true;
+			}
+		}
+		for (int i = 0; i < experienceStorage.size(); i++){
+			word = experienceStorage.get(i);
+			word = word.toLowerCase();
+			word = word.trim();
+			if (paragraph.contains(word))
+			{
+				categoryPresent[2] = true;
+			}
+		}
+		for (int i = 0; i < nationalityStorage.size(); i++){
+			word = nationalityStorage.get(i);
+			word = word.toLowerCase();
+			word = word.trim();
+			if (paragraph.contains(word))
+			{
+				categoryPresent[3] = true;
+			}
+		}
+		for (int i = 0; i < yearStorage.size(); i++){
+			word = yearStorage.get(i);
+			word = word.toLowerCase();
+			word = word.trim();
+			if (paragraph.contains(word))
+			{
+				categoryPresent[4] = true;
+			}
+		}
 		return categoryPresent;
 	}
 	
-	boolean checkModal(String paragraph, String rootPath){
-		String path = rootPath + "modals.txt";
-		String modal = null;
-		try {
-			File listPath = new File(path);
-			Scanner readFile = new Scanner(listPath);
-			while (readFile.hasNextLine()){
-				modal = readFile.nextLine();
-				if (paragraph.contains(modal)){
-					readFile.close();
-					return true;
-				}
-			}
-			readFile.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	boolean checkModal(String paragraph){
+		for (int i = 0; i < modalsStorage.size(); i++){
+			if (paragraph.contains(modalsStorage.get(i)))
+				return true;
 		}
 		return false;
 	}
 
-	public void addRequirements(boolean[] categoryPresent, String paragraph, String rootPath, boolean impt){
+	public void addRequirements(boolean[] categoryPresent, String paragraph, boolean impt){
 		
-		String path = null;
 		String attribute = null;
-		try {
-			for (int i = 0; i < numCategories; i++)
-			{
-				// process attribute list
-				// for categories present
-				if (categoryPresent[i]){
-					path = rootPath + categories[i] + "List.txt";
-					System.out.println(path);
-					File listPath = new File(path);
-					Scanner readFile = new Scanner(listPath);
-					while (readFile.hasNextLine()){
-						attribute = readFile.nextLine();
-						attribute = (attribute.toLowerCase()).trim();
-						if (paragraph.contains(attribute)){
-							if (i == 0 && !language.contains(attribute)){
-								language.add(attribute);
-								if (impt == true){
-									VVVIPList.add(attribute);
-								}
-							}
-							else if (i == 1 && !qualification.contains(attribute)){
-								qualification.add(attribute);
-								if (impt == true){
-									VVVIPList.add(attribute);
-								}
-							}
-							else if (i == 2 && !experience.contains(attribute)){
-								experience.add(attribute);
-								if (impt == true){
-									VVVIPList.add(attribute);
-								}
-							}
-							else if (i == 3 && !nationality.contains(attribute)){
-								nationality.add(attribute);
-								if (impt == true){
-									VVVIPList.add(attribute);
-								}
-							}
+		if (categoryPresent[0]){
+			for (int i = 0; i < languageListStorage.size(); i++){
+				attribute = languageListStorage.get(i);
+				attribute = (attribute.toLowerCase()).trim();
+				if (paragraph.contains(attribute)){
+					if (!language.contains(attribute)){
+						language.add(attribute);
+						if (impt == true){
+							VVVIPList.add(attribute);
 						}
 					}
-					readFile.close();
 				}
 			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		}
+		if (categoryPresent[1]){
+			for (int i = 0; i < qualificationListStorage.size(); i++){
+				attribute = qualificationListStorage.get(i);
+				attribute = (attribute.toLowerCase()).trim();
+				if (paragraph.contains(attribute)){
+					if (!qualification.contains(attribute)){
+						qualification.add(attribute);
+						if (impt == true){
+							VVVIPList.add(attribute);
+						}
+					}
+				}
+			}
+		}
+		if (categoryPresent[2]){
+			for (int i = 0; i < experienceListStorage.size(); i++){
+				attribute = experienceListStorage.get(i);
+				attribute = (attribute.toLowerCase()).trim();
+				if (paragraph.contains(attribute)){
+					if (!experience.contains(attribute)){
+						experience.add(attribute);
+						if (impt == true){
+							VVVIPList.add(attribute);
+						}
+					}
+				}
+			}
+		}
+		if (categoryPresent[3]){
+			for (int i = 0; i < nationalityListStorage.size(); i++){
+				attribute = nationalityListStorage.get(i);
+				attribute = (attribute.toLowerCase()).trim();
+				if (paragraph.contains(attribute)){
+					if (!nationality.contains(attribute)){
+						nationality.add(attribute);
+						if (impt == true){
+							VVVIPList.add(attribute);
+						}
+					}
+				}
+			}
 		}
 	}
 
 
-	public void addSpecialCase(boolean[] categoryPresent, String paragraph, String rootPath, boolean impt){
+	public void addSpecialCase(boolean[] categoryPresent, String paragraph, boolean impt){
 		//experience with years required
 		int yearExp = 4;
 		if (categoryPresent[yearExp]){
@@ -162,20 +195,10 @@ public class JobDescriptionAnalyzer {
 				reqYearExp.add(jobClass);
 			else{
 				String attribute = null;
-				String path = rootPath + "yearList.txt";
-				try {
-					File listPath = new File(path);
-					Scanner readFile = new Scanner(listPath);
-					while (readFile.hasNextLine()){
-						attribute = readFile.nextLine().trim().toLowerCase();
-						System.out.println(attribute);
-						if (paragraph.contains(attribute))
-							reqYearExp.add(attribute);
-					}
-					readFile.close();
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				for (int i = 0; i < yearListStorage.size(); i++){
+					attribute = yearListStorage.get(i).trim().toLowerCase();
+					if (paragraph.contains(attribute))
+						reqYearExp.add(attribute);
 				}
 			}
 		}
@@ -256,19 +279,19 @@ public class JobDescriptionAnalyzer {
 		boolean[] categoryPresent = new boolean[numCategories];
 		System.out.println("JOB DESCIRPTION:" + jobDescription.size());
 		jobClass = jobDescription.get(0);
-		loadCategories(path);
+		loadCategories();
 		for (int size = 1; size < jobDescription.size(); size++){
 			String paragraph = jobDescription.get(size).toLowerCase();
 			System.out.println("JOB DESCIRPTION:" + paragraph);
-			categoryPresent = findCategory(paragraph, path);
-			if (checkModal(paragraph, path)){
+			categoryPresent = findCategory(paragraph);
+			if (checkModal(paragraph)){
 				impt = true;
-				addRequirements(categoryPresent, paragraph, path, impt);
+				addRequirements(categoryPresent, paragraph, impt);
 			}
 			else{
 				impt = false;
-				addRequirements(categoryPresent, paragraph, path, impt);
-				addSpecialCase(categoryPresent, paragraph, path, impt);
+				addRequirements(categoryPresent, paragraph, impt);
+				addSpecialCase(categoryPresent, paragraph, impt);
 			}
 		}
 		

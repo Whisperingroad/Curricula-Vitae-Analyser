@@ -281,6 +281,14 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 		else if (e.getSource() == doneButton){
 			if(filepath != null){
 				ArrayList<Resume> resultList = new ArrayList<Resume>();
+				System.out.println("checking here");
+				System.out.println(experience.size());
+				for (int i=0;i<experience.size();i++)
+					System.out.println(experience.get(i));
+				System.out.println(language.size());
+				System.out.println(qualification.size());
+				System.out.println(nationality.size());
+				
 				try {
 					controller.setExperienceList(experience);
 					controller.setLanguageList(language);
@@ -289,6 +297,7 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 					resultList.clear();
 					resultList = controller.startProcessing(filepath);
 					ui UI = new ui(resultList);
+					controller.writeAllToLib();
 				} catch (FileNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
