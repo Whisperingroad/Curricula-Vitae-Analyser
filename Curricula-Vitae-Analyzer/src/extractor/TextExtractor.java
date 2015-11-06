@@ -15,7 +15,7 @@ public class TextExtractor {
 	
 	public TextExtractor(){}
 	
-	private static Type checkFileType(File file) throws IOException{
+	private static Type checkFileType(File file) throws IOException, NullPointerException {
 		String fileType = Files.probeContentType(file.toPath());
 		System.out.println("Document type is " + fileType);
 		Type type;
@@ -44,7 +44,7 @@ public class TextExtractor {
 		
 	}
 	
-	private static void callParser(Type type, String file)throws FileNotFoundException, IOException{
+	private static void callParser(Type type, String file)throws FileNotFoundException, IOException,org.apache.poi.POIXMLException{
 		text="";
 		switch(type){
 		case pdf:
@@ -71,7 +71,7 @@ public class TextExtractor {
 		return text;
 	}
 	
-	public static Boolean execute(File file) throws IOException
+	public static Boolean execute(File file) throws IOException, NullPointerException,org.apache.poi.POIXMLException
 	{
 			if(file.exists() && !file.isDirectory()) { 
 				Type fileType = checkFileType(file);

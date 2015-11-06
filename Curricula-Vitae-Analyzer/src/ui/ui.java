@@ -131,12 +131,13 @@ public class ui extends JFrame implements ActionListener{
 		message = buildResultDialogMessage(message, fufilled);
 		JOptionPane.showMessageDialog(frame,
 				message,
-			    "Categories Fufilled",
+			    "Requirements Fufilled",
 			    JOptionPane.PLAIN_MESSAGE);
 	}
 	
 	private ArrayList<ArrayList<String>> buildFufilledArray(int row){
 		ArrayList<ArrayList<String>> fufilled = new ArrayList<ArrayList<String>>();
+		fufilled.add(candidateList.get(row).getMatchedImportant());
 		fufilled.add(candidateList.get(row).getMatchedExperience());
 		fufilled.add(candidateList.get(row).getMatchedQualification());
 		fufilled.add(candidateList.get(row).getMatchedLanguage());
@@ -146,7 +147,7 @@ public class ui extends JFrame implements ActionListener{
 	
 	private String buildResultDialogMessage(String message, ArrayList<ArrayList<String>> fufilled){
 		
-		String[] heading = {"Experience: ", "Qualification: ", "Language: ", "Particulars: "};
+		String[] heading = {"Vital Requirements: ", "Experience: ", "Qualification: ", "Language: ", "Particulars: "};
 		for(int j=0; j<heading.length; j++){
 			message += heading[j];
 			int listSize = fufilled.get(j).size();

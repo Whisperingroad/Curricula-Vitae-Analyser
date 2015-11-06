@@ -93,13 +93,6 @@ public class PDFTextParser {
 
 		PDFTextParser pdfTextParserObj = new PDFTextParser();
 		String pdfToText = pdfTextParserObj.pdftoText(inputFile);
-
-		if (pdfToText == null) {
-			//System.out.println("PDF to Text Conversion failed.");
-		}
-		else {
-			//System.out.println("\nText parsed from the PDF Document....\n" + pdfToText);
-		}
 		return pdfToText;
 	}
 }
