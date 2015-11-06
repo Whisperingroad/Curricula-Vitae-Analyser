@@ -13,18 +13,19 @@ public class JobDescriptionAnalyzer {
 	
 	private String jobClass = null;
 	
-	ArrayList<String> experienceStorage = new ArrayList<String>();
-	ArrayList<String> experienceListStorage = new ArrayList<String>();
-	ArrayList<String> languageStorage = new ArrayList<String>();
-	ArrayList<String> languageListStorage = new ArrayList<String>();
-	ArrayList<String> mainCategoriesStorage = new ArrayList<String>();
-	ArrayList<String> modalsStorage = new ArrayList<String>();
-	ArrayList<String> nationalityStorage = new ArrayList<String>();
-	ArrayList<String> nationalityListStorage = new ArrayList<String>();
-	ArrayList<String> qualificationStorage = new ArrayList<String>();
-	ArrayList<String> qualificationListStorage = new ArrayList<String>();
-	ArrayList<String> yearStorage = new ArrayList<String>();
-	ArrayList<String> yearListStorage = new ArrayList<String>();
+	//loading of Dictionary
+	protected ArrayList<String> experienceStorage = new ArrayList<String>();
+	protected ArrayList<String> experienceListStorage = new ArrayList<String>();
+	protected ArrayList<String> languageStorage = new ArrayList<String>();
+	protected ArrayList<String> languageListStorage = new ArrayList<String>();
+	protected ArrayList<String> mainCategoriesStorage = new ArrayList<String>();
+	protected ArrayList<String> modalsStorage = new ArrayList<String>();
+	protected ArrayList<String> nationalityStorage = new ArrayList<String>();
+	protected ArrayList<String> nationalityListStorage = new ArrayList<String>();
+	protected ArrayList<String> qualificationStorage = new ArrayList<String>();
+	protected ArrayList<String> qualificationListStorage = new ArrayList<String>();
+	protected ArrayList<String> yearStorage = new ArrayList<String>();
+	protected ArrayList<String> yearListStorage = new ArrayList<String>();
 	
 	private ArrayList<String> language = new ArrayList<String>();
 	private ArrayList<String> qualification = new ArrayList<String>();
@@ -39,6 +40,7 @@ public class JobDescriptionAnalyzer {
 	public JobDescriptionAnalyzer(ArrayList<String> mainCategoriesInput, ArrayList<String> experienceInput, ArrayList<String> experienceListInput, ArrayList<String> languageInput,
 			ArrayList<String> languageListInput, ArrayList<String> nationalityInput, ArrayList<String> nationalityListInput, ArrayList<String> qualificationInput, ArrayList<String> qualificationListInput, 
 			ArrayList<String> yearInput, ArrayList<String> yearListInput, ArrayList<String> modalsInput){
+		//loading of dictionaries into ArrayList
 		mainCategoriesStorage.addAll(mainCategoriesInput);
 		experienceStorage.addAll(experienceInput);
 		experienceListStorage.addAll(experienceListInput);
@@ -115,6 +117,7 @@ public class JobDescriptionAnalyzer {
 		return categoryPresent;
 	}
 	
+	//check whether sentence contains modals
 	boolean checkModal(String paragraph){
 		for (int i = 0; i < modalsStorage.size(); i++){
 			if (paragraph.contains(modalsStorage.get(i)))
@@ -184,7 +187,7 @@ public class JobDescriptionAnalyzer {
 		}
 	}
 
-
+	//adding the number of years of experience in the field required
 	public void addSpecialCase(boolean[] categoryPresent, String paragraph, boolean impt){
 		//experience with years required
 		int yearExp = 4;
@@ -213,6 +216,7 @@ public class JobDescriptionAnalyzer {
 		VVVIPList.clear();
 	}
 
+	//finding number 0~9 in the sentence
 	private String findYearReq(String input){
 		input = input.replaceAll("[^0-9]+", " ").trim();
 		return (input.substring(0, 1));

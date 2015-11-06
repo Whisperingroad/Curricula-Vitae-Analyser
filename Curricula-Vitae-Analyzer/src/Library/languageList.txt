@@ -1,6 +1,6 @@
 english
 chinese
-Mandarin
+mandarin
 japanese
 korean
 spanish

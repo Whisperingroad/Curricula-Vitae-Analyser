@@ -11,6 +11,14 @@ import java.util.List;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.ImageIcon;
+
+import utils.Constants;
+
+
+
+
+import com.sun.org.apache.bcel.internal.classfile.ConstantNameAndType;
 
 import storage.Resume;
 import controller.Controller;
@@ -20,7 +28,7 @@ import controller.Controller;
  */
 public class jobDescriptionUI extends JFrame implements ActionListener{
 
-	JTextArea inputJDArea, textAreaExperience, textAreaLanguage, textAreaNationality, textAreaQualification;
+	JTextArea inputJDArea, textAreaExperience, textAreaLanguage, textAreaNationality, textAreaQualification, textJobTitleArea;
 	JButton readJDButton, doneButton, addExperienceButton, removeExperienceButton, addLanguageButton, removeLanguageButton, 
 	addNationalityButton, removeNationalityButton, addQualificationButton, removeQualificationButton, browseButton;
 	
@@ -31,7 +39,7 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 	String languageString = null;
 	String nationalityString = null;
 	String qualificationString = null;
-
+	
 	//to change to the relevant data type
 	List<String> resultFiles = new ArrayList<String>();
 	ArrayList<String> experience = new ArrayList<String>();
@@ -69,15 +77,17 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 		inputJDArea.setLineWrap(true);
 		inputJDArea.setRows(10);
 		inputJDArea.setWrapStyleWord(true);
+		inputJDArea.setText("Please enter Job Title in first line");
 
 		JScrollPane jScrollPanelInputJDArea = new JScrollPane(inputJDArea);
 		
+		
 		readJDButton = new JButton("Read Job Description");
 		readJDButton.addActionListener(this);
-		
 		JPanel inputJDPanel = new JPanel();
 		inputJDPanel.add(jScrollPanelInputJDArea);
 		inputJDPanel.add(readJDButton);
+		
 		
 		//Attribute Table Panel
 		String[] experienceColumns = {"Experience"};

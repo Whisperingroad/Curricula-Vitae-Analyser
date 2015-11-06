@@ -52,6 +52,7 @@ public class Controller
 	String lemmatisedResumePath = Constants.YIXIU + "Storage\\LemmatisedResumes\\";
 	String libraryPath = Constants.YIXIU + "Library\\";
 */
+
 	ArrayList<String> language = new ArrayList<String>();
 	ArrayList<String> qualification = new ArrayList<String>();
 	ArrayList<String> experience = new ArrayList<String>();
@@ -138,7 +139,7 @@ public class Controller
 	
 		ArrayList<String> jobReq = new ArrayList<String>(Arrays.asList(jobDescription.split("\\r?\\n")));
 		jobReq = textLemmatiser.lemmatiser(jobReq);
-		System.out.println(jobReq.toString());
+		//System.out.println(jobReq.toString());
 		jobDescriptionAnalyzer.setJobRequirement(jobReq);
 		jobDescriptionAnalyzer.execute(libraryPath);
 		
@@ -203,17 +204,10 @@ public class Controller
 		return qualification;
 	}
 
+
 	public ArrayList<Resume> startProcessing(File resumePath) throws IOException, FileNotFoundException, NullPointerException,org.apache.poi.POIXMLException
 	{
-		System.out.println("controller here");
-		System.out.println(experience.size());
-		for (int i=0;i<experience.size();i++)
-			System.out.println(experience.get(i));
-		System.out.println(language.size());
-		System.out.println(qualification.size());
-		System.out.println(nationality.size());
-		
-		
+
 		storage.clearList();
 		File[] listOfCVs = resumePath.listFiles();
 		for (int i=0;i< listOfCVs.length ; i++)
@@ -222,7 +216,7 @@ public class Controller
 			ArrayList<String> resume = new ArrayList<String>(Arrays.asList(txtCV.split("\n")));	
 			ArrayList<String> lemmatisedResume = new ArrayList<String>(textLemmatiser.lemmatiser(resume));
 			cvAnalyzer.inputCV(lemmatisedResume);
-			double score = cvAnalyzer.execute(libraryPath, language, qualification, experience, nationality);
+			double score = cvAnalyzer.execute(libraryPath, language, qualification, experience, nationality, VVVIPList);
 			String candidateName = (listOfCVs[i].getName()).replace(lemmatisedResumePath, "");
 			candidateName = candidateName.replace(Constants.txtPostFix, "");
 			//nameScorePairsHash.put(candidateName, score);
@@ -242,22 +236,24 @@ public class Controller
 	
 	public void writeAllToLib() throws FileNotFoundException, IOException{
 		for (int i = 0; i < experience.size(); i++){
-			if (!experienceListStorage.equals(experience.get(i)))
+			System.out.println(experience.size());
+			if (!experienceListStorage.contains(experience.get(i).toLowerCase())){
 				experienceListStorage.add(experience.get(i));
+			}
 		}
 		storage.writeData(experienceListStorage, libraryPath + "experienceList.txt");
 		for (int i = 0; i < language.size(); i++){
-			if (!languageListStorage.equals(language.get(i)))
+			if (!languageListStorage.contains(language.get(i).toLowerCase()))
 				languageListStorage.add(language.get(i));
 		}
 		storage.writeData(languageListStorage, libraryPath + "languageList.txt");
 		for (int i = 0; i < nationality.size(); i++){
-			if (!nationalityListStorage.equals(nationality.get(i)))
+			if (!nationalityListStorage.contains(nationality.get(i).toLowerCase()))
 				nationalityListStorage.add(nationality.get(i));
 		}
 		storage.writeData(nationalityListStorage, libraryPath + "nationalityList.txt");
 		for (int i = 0; i < qualification.size(); i++){
-			if (!qualificationListStorage.equals(qualification.get(i)))
+			if (!qualificationListStorage.contains(qualification.get(i).toLowerCase()))
 				qualificationListStorage.add(qualification.get(i));
 		}
 		storage.writeData(qualificationListStorage, libraryPath + "qualificationList.txt");
