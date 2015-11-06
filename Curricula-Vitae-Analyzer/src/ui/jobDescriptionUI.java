@@ -48,18 +48,30 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 	ArrayList<String> qualification = new ArrayList<String>();
 	
 	File filepath;
-	
-	//Create controller
-	Controller controller = new Controller();
 
+	//Create controller
+	//Controller controller = new Controller();
+	Controller controller;
+	
 	// Constructor
 	public jobDescriptionUI() {
 		//Read Job Description Panel
+		try{
+		controller = new Controller();
+		}
+		catch(FileNotFoundException e){
+			e.printStackTrace();
+		}
+		catch(IOException e1){
+			e1.printStackTrace();
+		}
+		
 		inputJDArea = new JTextArea(5, 20);
 		inputJDArea.setColumns(50);
 		inputJDArea.setLineWrap(true);
 		inputJDArea.setRows(10);
 		inputJDArea.setWrapStyleWord(true);
+		inputJDArea.setText("Please enter Job Title in first line");
 
 		JScrollPane jScrollPanelInputJDArea = new JScrollPane(inputJDArea);
 		
@@ -300,10 +312,8 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 					ui UI = new ui(resultList);
 					controller.writeAllToLib();
 				} catch (FileNotFoundException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			/* checking purposes
@@ -521,5 +531,6 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 	
 	public static void main(String[] args) {
 		new jobDescriptionUI();
+	
 	}
 }

@@ -1,5 +1,6 @@
 package extractor;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 
@@ -43,7 +44,7 @@ public class TextExtractor {
 		
 	}
 	
-	private static void callParser(Type type, String file){
+	private static void callParser(Type type, String file)throws FileNotFoundException, IOException{
 		text="";
 		switch(type){
 		case pdf:

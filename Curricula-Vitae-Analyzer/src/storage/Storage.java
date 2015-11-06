@@ -49,46 +49,46 @@ public class Storage {
 		// Repeat until all lines are read
 		while ((line = bufferedReader.readLine()) != null)
 		{
-			resume.add(line);
+			resume.add(line.toLowerCase());
 		}
 		bufferedReader.close();
 		return resume;
 	}
 
-	public void writeData(String data, String fileName)
+	public void writeData(String data, String fileName) throws FileNotFoundException, IOException
 	{
-		try 
-		{
-			PrintWriter printWriter = new PrintWriter(fileName);
-			printWriter.print(data);
-			printWriter.close();
-		}
-		catch (Exception e)
-		{
-			System.out.println("An exception occured in writing the pdf text to file.");
-			e.printStackTrace();
-		}
+		//try 
+		//{
+		PrintWriter printWriter = new PrintWriter(fileName);
+		printWriter.print(data);
+		printWriter.close();
+		//}
+		//catch (Exception e)
+		//{
+		//	System.out.println("An exception occured in writing the pdf text to file.");
+		//	e.printStackTrace();
+		//}
 		System.out.println("Completed");
 	}
 
-	public void writeData(ArrayList<String> data, String fileName)
+	public void writeData(ArrayList<String> data, String fileName) throws FileNotFoundException, IOException
 	{
-		try
+		//try
+		//{
+		PrintWriter printWriter = new PrintWriter(fileName);
+		for (String line : data)
 		{
-			PrintWriter printWriter = new PrintWriter(fileName);
-			for (String line : data)
-			{
-				String newLine;
-				newLine = line.trim();
-				printWriter.println(newLine);
-			}
-			printWriter.close();
+			String newLine;
+			newLine = line.trim();
+			printWriter.println(newLine);
 		}
-		catch (Exception e)
-		{
-			System.out.println("error in writing data");
+		printWriter.close();
+		//}
+		//catch (Exception e)
+		//{
+		//	System.out.println("error in writing data");
 
-		}
+		//}
 	}
 
 	public void moveTxtFile(String destination, File file) throws IOException{
