@@ -27,7 +27,6 @@ bachelor of engineering biomedical engineering
 be biomedical engineering
 be in biomedical engineering
 master in biomedical engineering
-<<<<<<< HEAD
 master of engineering meng biomedical engineering
 master of engineering meng,biomedical engineering
 master of engineering meng.biomedical engineering
@@ -37,16 +36,15 @@ master of engineering m.eng.,biomedical engineering
 master of engineering in biomedical engineering
 master of engineering biomedical engineering
 meng biomedical engineering
-=======
-master of Engineering MEng Biomedical engineering
-master of Engineering MEng,biomedical engineering
-master of Engineering MEng.biomedical engineering
-master of Engineering MEng.,biomedical engineering
-master of Engineering M.Eng.biomedical engineering
-master of Engineering M.Eng.,biomedical engineering
-master of Engineering in Biomedical engineering
-master of Engineering Biomedical engineering
-MEng Biomedical engineering
+master of engineering meng biomedical engineering
+master of engineering meng,biomedical engineering
+master of engineering meng.biomedical engineering
+master of engineering meng.,biomedical engineering
+master of engineering m.eng.biomedical engineering
+master of engineering m.eng.,biomedical engineering
+master of engineering in biomedical engineering
+master of engineering biomedical engineering
+meng biomedical engineering
 >>>>>>> 732da0f696721a53b6b5f11a460099b9f3702dd5
 meng.biomedical engineering
 m.eng.biomedical engineering
@@ -55,7 +53,7 @@ meng.in biomedical engineering
 m.eng.in biomedical engineering
 phd.in biomedical engineering
 phd in biomedical engineering
-<<<<<<< HEAD
+<<<<<<< head
 bachelor in computer engineering
 bachelor of engineering be computer engineering
 bachelor of engineering be,computer engineering
@@ -77,29 +75,27 @@ master of engineering m.eng.,computer engineering
 master of engineering in computer engineering
 master of engineering computer engineering
 meng computer engineering
-=======
-bachelor in Computer engineering
-bachelor of Engineering be computer engineering
-bachelor of Engineering be,Computer engineering
-bachelor of Engineering B.Eng Computer engineering
-bachelor of Engineering B.Eng,Computer engineering
-bachelor of Engineering B.Eng.computer engineering
-bachelor of Engineering B.Eng.,Computer engineering
-bachelor of Engineering in Computer engineering
-bachelor of Engineering Computer engineering
-be Computer engineering
-be in Computer engineering
-master in Computer engineering
-master of Engineering MEng Computer engineering
-master of Engineering MEng,Computer engineering
-master of Engineering MEng.computer engineering
-master of Engineering MEng.,Computer engineering
-master of Engineering M.Eng.computer engineering
-master of Engineering M.Eng.,Computer engineering
-master of Engineering in Computer engineering
-master of Engineering Computer engineering
-MEng Computer engineering
->>>>>>> 732da0f696721a53b6b5f11a460099b9f3702dd5
+bachelor in computer engineering
+bachelor of engineering be computer engineering
+bachelor of engineering be,computer engineering
+bachelor of engineering b.eng computer engineering
+bachelor of engineering b.eng,computer engineering
+bachelor of engineering b.eng.computer engineering
+bachelor of engineering b.eng.,computer engineering
+bachelor of engineering in computer engineering
+bachelor of engineering computer engineering
+be computer engineering
+be in computer engineering
+master in computer engineering
+master of engineering meng computer engineering
+master of engineering meng,computer engineering
+master of engineering meng.computer engineering
+master of engineering meng.,computer engineering
+master of engineering m.eng.computer engineering
+master of engineering m.eng.,computer engineering
+master of engineering in computer engineering
+master of engineering computer engineering
+meng computer engineering
 meng.computer engineering
 m.eng.computer engineering
 meng in computer engineering
@@ -129,10 +125,5 @@ be in information technology
 be information technology
 b.eng.in information technolog
 itil foundation in it service management
-<<<<<<< HEAD
 dell certify system expert
 dell system tear down
-=======
-Dell certify system expert
-Dell system tear down
->>>>>>> 732da0f696721a53b6b5f11a460099b9f3702dd5

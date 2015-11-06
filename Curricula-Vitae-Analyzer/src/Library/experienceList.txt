@@ -200,8 +200,3 @@ advanced object-oriented
 ios/android
 mobile application development
 artificial intelligence
-<<<<<<< HEAD
-web development
-=======
-web development
->>>>>>> 732da0f696721a53b6b5f11a460099b9f3702dd5
