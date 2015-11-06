@@ -166,9 +166,8 @@ public class CvAnalyzer {
 					matchRequirements(nationality, particularsFulfilled, lineInCV);
 					//matchParticularDetails(paragraph);
 				}
-			}
+			}			
 			double score = computeScore();
-			System.out.println("HERE LAH" + score);
 			return score;
 		}
 		else
