@@ -24,10 +24,10 @@ public class Controller
 	protected CvAnalyzer cvAnalyzer = new CvAnalyzer();
 	protected Storage storage = new Storage(); 
 
-	String resumePath = Constants.NICHOLAS + "Input\\";
-	String textResumePath = Constants.NICHOLAS + "Storage\\TextResumes\\";
-	String lemmatisedResumePath = Constants.NICHOLAS + "Storage\\LemmatisedResumes\\";
-	String libraryPath = Constants.NICHOLAS + "Library\\";
+	String resumePath = Constants.SEBASTIAN + "Input\\";
+	String textResumePath = Constants.SEBASTIAN + "Storage\\TextResumes\\";
+	String lemmatisedResumePath = Constants.SEBASTIAN + "Storage\\LemmatisedResumes\\";
+	String libraryPath = Constants.SEBASTIAN + "Library\\";
 
 	ArrayList<String> language = new ArrayList<String>();
 	ArrayList<String> qualification = new ArrayList<String>();
@@ -81,7 +81,7 @@ public class Controller
 		JobDescriptionAnalyzer jobDescriptionAnalyzer = new JobDescriptionAnalyzer();
 		ArrayList<String> jobReq = new ArrayList<String>(Arrays.asList(jobDescription.split("\\r?\\n")));
 		jobReq = textLemmatiser.lemmatiser(jobReq);
-		System.out.println(jobReq.toString());
+		//System.out.println(jobReq.toString());
 		jobDescriptionAnalyzer.setJobRequirement(jobReq);
 		jobDescriptionAnalyzer.execute(libraryPath);
 		
@@ -146,6 +146,8 @@ public class Controller
 		storage.clearList();
 		System.out.println("check");
 		System.out.println(experience.size());
+		for (int i =0 ;i <experience.size();i++)
+		System.out.println(experience.get(i));
 		System.out.println(language.size());
 		System.out.println(nationality.size());
 		System.out.println(qualification.size());
