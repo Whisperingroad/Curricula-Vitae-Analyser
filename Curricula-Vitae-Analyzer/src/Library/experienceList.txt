@@ -201,15 +201,3 @@ ios/android
 Mobile application development
 artificial intelligence
 web development
-java
-java
-java
-java
-java
-java
-java
-java
-java
-java
-java
-java

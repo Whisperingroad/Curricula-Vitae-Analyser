@@ -36,10 +36,10 @@ master of Engineering M.Eng.,biomedical engineering
 master of Engineering in Biomedical engineering
 master of Engineering Biomedical engineering
 MEng Biomedical engineering
-MEng.biomedical engineering
+meng.biomedical engineering
 m.eng.biomedical engineering
 meng in biomedical engineering
-MEng.in biomedical engineering
+meng.in biomedical engineering
 m.eng.in biomedical engineering
 phd.in biomedical engineering
 phd in biomedical engineering
@@ -64,7 +64,7 @@ master of Engineering M.Eng.,Computer engineering
 master of Engineering in Computer engineering
 master of Engineering Computer engineering
 MEng Computer engineering
-MEng.computer engineering
+meng.computer engineering
 m.eng.computer engineering
 MEng in Computer engineering
 MEng.in Computer engineering
