@@ -54,7 +54,7 @@ public class Lemmatise {
 				}
 				
 			}
-			line.trim();
+			line = line.trim();
 			lemmas.add(line);
 		}
 
