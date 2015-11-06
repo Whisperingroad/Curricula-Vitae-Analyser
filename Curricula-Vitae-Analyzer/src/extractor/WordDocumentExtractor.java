@@ -43,49 +43,49 @@ public class WordDocumentExtractor
 		return text;
 	}
 	
-	public static String extractDocText(String inputFile){
+	public static String extractDocText(String inputFile) throws FileNotFoundException, IOException{
 		String text = "";
-		try {
-			HWPFDocument docx = new HWPFDocument(new FileInputStream(inputFile));
+		//try {
+		HWPFDocument docx = new HWPFDocument(new FileInputStream(inputFile));
 
-			//using HWPFWordExtractor Class
-			WordExtractor we = new WordExtractor(docx);
-			//System.out.println(we.getText());
-			text = we.getText();
-			text = formatting(text);
-			//System.out.println(text);
-			//extractor.writeTexttoFile(text, outputFile);
-			we.close();
-		} catch (FileNotFoundException e) {
+		//using HWPFWordExtractor Class
+		WordExtractor we = new WordExtractor(docx);
+		//System.out.println(we.getText());
+		text = we.getText();
+		text = formatting(text);
+		//System.out.println(text);
+		//extractor.writeTexttoFile(text, outputFile);
+		we.close();
+		//} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
+		//	e.printStackTrace();
+		//} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		//	e.printStackTrace();
+		//}
 		return text;
 	}
 
-	public static String extractDocxText(String inputFile){
+	public static String extractDocxText(String inputFile) throws FileNotFoundException, IOException{
 		String text = "";
-		try {
-			XWPFDocument docx = new XWPFDocument(
-					new FileInputStream(inputFile));
-			//using XWPFWordExtractor Class
-			XWPFWordExtractor we = new XWPFWordExtractor(docx);
-			
-			text = we.getText();
-			text = formatting(text);
-			//System.out.println(text);
-			//extractor.writeTexttoFile(text, outputFile);
-			we.close();
-		} catch (FileNotFoundException e) {
+		//try {
+		XWPFDocument docx = new XWPFDocument(
+				new FileInputStream(inputFile));
+		//using XWPFWordExtractor Class
+		XWPFWordExtractor we = new XWPFWordExtractor(docx);
+
+		text = we.getText();
+		text = formatting(text);
+		//System.out.println(text);
+		//extractor.writeTexttoFile(text, outputFile);
+		we.close();
+		//} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
+		//	e.printStackTrace();
+		//} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		//	e.printStackTrace();
+		//}
 		return text;
 	}
 }

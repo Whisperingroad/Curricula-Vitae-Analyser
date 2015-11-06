@@ -1,4 +1,4 @@
-educationHeaders
-experienceHeaders
-languageHeaders
-particularsHeaders
+educationheader
+experienceheader
+languageheader
+particularsheader

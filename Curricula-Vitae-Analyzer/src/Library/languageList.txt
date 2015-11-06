@@ -4,7 +4,7 @@ mandarin
 japanese
 korean
 spanish
-hindi
+hindus
 russian
 arabic
 portuguese
@@ -13,5 +13,9 @@ malay
 indonesian
 german
 italian
+<<<<<<< HEAD
 thai
 bangla
+=======
+thai
+>>>>>>> 732da0f696721a53b6b5f11a460099b9f3702dd5
