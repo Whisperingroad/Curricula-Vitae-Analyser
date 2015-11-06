@@ -131,7 +131,7 @@ public class ui extends JFrame implements ActionListener{
 		message = buildResultDialogMessage(message, fufilled);
 		JOptionPane.showMessageDialog(frame,
 				message,
-			    "Categories Fufilled",
+			    "Requirements Fufilled",
 			    JOptionPane.PLAIN_MESSAGE);
 	}
 	
