@@ -39,7 +39,6 @@ public class PDFTextParser {
 			//System.out.println("Unable to open PDF Parser.");
 		//	return null;
 		//}
-
 		//try {
 		parser.parse();
 		cosDoc = parser.getDocument();

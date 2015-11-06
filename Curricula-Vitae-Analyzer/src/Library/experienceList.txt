@@ -1,14 +1,14 @@
-python
-c++
-java
-javascript
+Python
+C++
+Java
+Javascript
 sql
-vba
-ruby
-ruby on rails
-swift
+VBA
+Ruby
+Ruby on Rails
+Swift
 php
-html
+HTML
 objectivec
 objective c
 objective-c
@@ -29,19 +29,19 @@ websocket
 android development
 mvp application design
 visual studio
-eclipse
-sql server
+Eclipse
+SQL server
 .net framework
-android sdk
+Android sdk
 m access
-microsoft access
+Microsoft access
 microsoft exchange
-windows
-bmc remedy
+Windows
+BMC Remedy
 visual basic
 datum structure
-ios application
-ios app
+iOS application
+iOS app
 android platform
 android application
 android app
@@ -57,26 +57,26 @@ multithread
 multi-thread
 autolayout
 persistent storage
-cocoa touch ecosystem
+Cocoa touch ecosystem
 mvc
-viper
+Viper
 xcode
 integration test
 touch-based user experience
 datum structure
 embed system
 strong programming skill
-analytic capability
+Analytic capability
 statistical and mathematical modeling
 machine learning
 datum mine
 nanofabrication
 common lisp
 c/c++
-matlab
-octave
+Matlab
+Octave
 photolithography
-system administration
+System Administration
 ion-milling
 neurobiological
 behavioral test
@@ -85,11 +85,11 @@ protein composition
 bioinformatic
 cancer genetics
 database mining
-data base mining
-motion capture
-motor function
-movement analysis
-vpn
+Data base mining
+Motion capture
+Motor function
+Movement analysis
+VPN
 proteomic
 application support
 helpdesk support
@@ -104,100 +104,100 @@ event organisation
 event organization
 administration
 ms-office
-microsoft office
-m office
+Microsoft Office
+m Office
 ms-office suite
-microsoft office suite
-m office suite
-active directory
-remote desktop
+Microsoft Office Suite
+m Office Suite
+active Directory
+remote Desktop
 voip
-citrix
-lotus notes
-adobe photoshop
-adobe premier
-wordpress
-dell computers
-macintosh
-ibm
-blackberry enterprise server
-lenovo
-polycom conference
-hp printers
-canon printers
-fuji xerox printers
-avaya
+Citrix
+Lotus Notes
+Adobe Photoshop
+Adobe Premier
+WordPress
+Dell Computers
+Macintosh
+IBM
+Blackberry enterprise server
+Lenovo
+Polycom Conference
+HP Printers
+Canon Printers
+Fuji Xerox Printers
+Avaya
 itil certify
-blackberry
+Blackberry
 ipad
 cloud storage
-google productivity suite
-onenote
+Google Productivity Suite
+OneNote
 evernote
 policy analysis
 improvement initiative
 end-user support
-information technology
+Information technology
 computer hardware
-software application
+Software application
 help desk support
-problem ticket and escalation
-network upgrade
-network administration
+Problem ticket and escalation
+Network upgrade
+Network administration
 troubleshoot
 window server
 create user manual
-conduct end user training
+Conduct end user training
 vendor relationship and transaction
-lotus note
-lotus domino
-software deployment
+Lotus note
+Lotus domino
+Software deployment
 lan/wan infrastructure
 lan infrastructure
 wan infrastructure
-video conference
+Video conference
 audio conferencing
 documentation
 workflow tracking
 asset management
 event support
-mobile support
+Mobile support
 telecom support
 migration
-network planning
-logistics
+Network planning
+Logistics
 user testing
 provision of av equipment
 gather requirement
 manage manpower
 manpower capacity allocation
-equipment provision
+Equipment provision
 datum backup
 datum recovery
 onsite technician dispatch
-network connectivity issue
-technical service enquiry
+Network connectivity issue
+Technical service enquiry
 configure model
-configure router
+Configure router
 configure switch
-software engineer
-software application design
+Software engineer
+Software application design
 application development
 app development
 test and optimization
 visual c#.net
 brainstorm
-problem solve
-desktop application
-dataset management
+Problem solve
+Desktop application
+Dataset management
 statistical analysis
-report generate
+Report generate
 computer network
-advance object orient
-advance object-oriented
-advanced object orient
-advanced object-oriented
+Advance object orient
+Advance object-oriented
+Advanced object orient
+Advanced object-oriented
 ios/android
-mobile application development
+Mobile application development
 artificial intelligence
-c
+web development

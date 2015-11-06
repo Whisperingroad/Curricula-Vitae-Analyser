@@ -32,7 +32,7 @@ public class Storage {
 	}
 	public void addResume(double score,String name, ArrayList<String> qualifications, ArrayList<String> experience,
 			ArrayList<String> language, ArrayList<String> particulars){
-		Resume resume = new Resume(score, name,qualifications,experience,language,particulars);
+		Resume resume = new Resume(score,name,qualifications,experience,language,particulars);
 		resumeList.add(resume);
 	}
 	

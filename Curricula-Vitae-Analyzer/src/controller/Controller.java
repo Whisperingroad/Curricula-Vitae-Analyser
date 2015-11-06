@@ -42,10 +42,10 @@ public class Controller
 	protected CvAnalyzer cvAnalyzer = new CvAnalyzer();
 	protected Storage storage = new Storage(); 
 
-	String resumePath = Constants.NICHOLAS + "Input\\";
-	String textResumePath = Constants.NICHOLAS + "Storage\\TextResumes\\";
-	String lemmatisedResumePath = Constants.NICHOLAS + "Storage\\LemmatisedResumes\\";
-	String libraryPath = Constants.NICHOLAS + "Library\\";
+	String resumePath = Constants.SEBASTIAN + "Input\\";
+	String textResumePath = Constants.SEBASTIAN + "Storage\\TextResumes\\";
+	String lemmatisedResumePath = Constants.SEBASTIAN + "Storage\\LemmatisedResumes\\";
+	String libraryPath = Constants.SEBASTIAN + "Library\\";
 
 	ArrayList<String> language = new ArrayList<String>();
 	ArrayList<String> qualification = new ArrayList<String>();
@@ -133,7 +133,7 @@ public class Controller
 	
 		ArrayList<String> jobReq = new ArrayList<String>(Arrays.asList(jobDescription.split("\\r?\\n")));
 		jobReq = textLemmatiser.lemmatiser(jobReq);
-		System.out.println(jobReq.toString());
+		//System.out.println(jobReq.toString());
 		jobDescriptionAnalyzer.setJobRequirement(jobReq);
 		jobDescriptionAnalyzer.execute(libraryPath);
 		
@@ -199,16 +199,7 @@ public class Controller
 	}
 
 	public ArrayList<Resume> startProcessing(File resumePath) throws IOException, FileNotFoundException
-	{
-		System.out.println("controller here");
-		System.out.println(experience.size());
-		for (int i=0;i<experience.size();i++)
-			System.out.println(experience.get(i));
-		System.out.println(language.size());
-		System.out.println(qualification.size());
-		System.out.println(nationality.size());
-		
-		
+	{		
 		storage.clearList();
 		File[] listOfCVs = resumePath.listFiles();
 		for (int i=0;i< listOfCVs.length ; i++)
@@ -217,7 +208,7 @@ public class Controller
 			ArrayList<String> resume = new ArrayList<String>(Arrays.asList(txtCV.split("\n")));	
 			ArrayList<String> lemmatisedResume = new ArrayList<String>(textLemmatiser.lemmatiser(resume));
 			cvAnalyzer.inputCV(lemmatisedResume);
-			double score = cvAnalyzer.execute(libraryPath, language, qualification, experience, nationality);
+			double score = cvAnalyzer.execute(libraryPath, language, qualification, experience, nationality, VVVIPList);
 			String candidateName = (listOfCVs[i].getName()).replace(lemmatisedResumePath, "");
 			candidateName = candidateName.replace(Constants.txtPostFix, "");
 			//nameScorePairsHash.put(candidateName, score);
