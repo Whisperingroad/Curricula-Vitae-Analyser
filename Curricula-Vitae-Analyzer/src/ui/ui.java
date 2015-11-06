@@ -33,11 +33,14 @@ public class ui extends JFrame implements ActionListener{
 
 	//to change to the relevant data type
 	List<String> resultFiles = new ArrayList<String>();
+	//List<float[]> resultScores = new ArrayList<float[]>();
+	ArrayList<Resume> candidateList;
 
 	// Constructor
 	public ui(ArrayList<Resume> resultList) {
 		String[] columnNames = {"CV name", "Score"};
 		model = new DefaultTableModel(columnNames, 0);
+		candidateList = new ArrayList<Resume>(resultList);
 		
 		if(resultList!=null){
 			removeRows();
@@ -51,6 +54,7 @@ public class ui extends JFrame implements ActionListener{
 				model.addRow( new Object[] { data1, data2 } );
 			}
 		}
+
 		
 		JTable table = new JTable(model){
             //Implement table cell tool tips.
@@ -61,25 +65,14 @@ public class ui extends JFrame implements ActionListener{
                 int colIndex = columnAtPoint(p);
                 int realColumnIndex = convertColumnIndexToModel(colIndex);
 
-                if (realColumnIndex == 0) { //Sport column
+                if (realColumnIndex == 0) { //file name column
                     tip = "<html>"+"File: "
                            + getValueAt(rowIndex, colIndex)
                            + "<br>"
                            + "Score: "
-                           + getValueAt(rowIndex, colIndex+1)
-                           + "</html>";
-                } else if (realColumnIndex == 2) { //Veggie column
-                    TableModel model = getModel();
-//                    String firstName = (String)model.getValueAt(rowIndex,0);
-//                    String lastName = (String)model.getValueAt(rowIndex,1);
-//                    Boolean veggie = (Boolean)model.getValueAt(rowIndex,4);
-//                    if (Boolean.TRUE.equals(veggie)) {
-//                        tip = firstName + " " + lastName
-//                              + " is a vegetarian";
-//                    } else {
-//                        tip = firstName + " " + lastName
-//                              + " is not a vegetarian";
-//                    }
+                           + getValueAt(rowIndex, colIndex+1)+"<br>";
+                    ArrayList<ArrayList<String>> fufilled = buildFufilledArray(rowIndex);
+            		tip = buildResultDialogMessage(tip, fufilled);
                 } else { 
                     //You can omit this part if you know you don't 
                     //have any renderers that supply their own tool 
@@ -89,6 +82,18 @@ public class ui extends JFrame implements ActionListener{
                 return tip;
             }
 		};
+		
+		table.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				JTable target = (JTable)e.getSource();
+				int row = target.getSelectedRow();
+				int col = target.getSelectedColumn();
+				if(col==0){
+					resultDetailsDialog(row,col,target);
+				}
+			}
+		});
+		
 		JScrollPane jScrollPanelTable = new JScrollPane(table);
 		
 		JPanel resultPanel = new JPanel();
@@ -104,7 +109,7 @@ public class ui extends JFrame implements ActionListener{
 
 		contentPane = (JPanel)this.getContentPane();
 		setSize(800,700);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		contentPane.add(resultPanel, BorderLayout.PAGE_START);
 		contentPane.add(buttonPanel);
@@ -115,67 +120,50 @@ public class ui extends JFrame implements ActionListener{
 
 	}
 
+	private void resultDetailsDialog(int row, int col, JTable table1){
+		JFrame frame = new JFrame();
+		String message = "<html>"
+				+ "File: " + table1.getValueAt(row, col) + "<br>"
+                + "Score: " + table1.getValueAt(row, col+1)+ "<br>"+"<br>"
+                + "Fufilled:" + "<br>";
+		
+		ArrayList<ArrayList<String>> fufilled = buildFufilledArray(row);
+		message = buildResultDialogMessage(message, fufilled);
+		JOptionPane.showMessageDialog(frame,
+				message,
+			    "Categories Fufilled",
+			    JOptionPane.PLAIN_MESSAGE);
+	}
+	
+	private ArrayList<ArrayList<String>> buildFufilledArray(int row){
+		ArrayList<ArrayList<String>> fufilled = new ArrayList<ArrayList<String>>();
+		fufilled.add(candidateList.get(row).getMatchedExperience());
+		fufilled.add(candidateList.get(row).getMatchedQualification());
+		fufilled.add(candidateList.get(row).getMatchedLanguage());
+		fufilled.add(candidateList.get(row).getMatchedParticulars());
+		return fufilled;
+	}
+	
+	private String buildResultDialogMessage(String message, ArrayList<ArrayList<String>> fufilled){
+		
+		String[] heading = {"Experience: ", "Qualification: ", "Language: ", "Particulars: "};
+		for(int j=0; j<heading.length; j++){
+			message += heading[j];
+			int listSize = fufilled.get(j).size();
+			for(int i=0; i<listSize; i++){
+				message += "<br>"+fufilled.get(j).get(i);
+			}
+			message += "<br>"+"<br>";
+		}
+		message += "</html>";
+		return message;
+	}
+	
 	public void actionPerformed(ActionEvent e){
 		if (e.getSource() == returnButton){
 			this.dispose();
 		}
 	}
-		/*
-		if (e.getSource() == readButton){
-			jobReq = textArea.getText();
-			controller.startJobProcess(jobReq);
-			experience = controller.getExperience();
-			language = controller.getLanguage();
-			nationality = controller.getNationality();
-			qualification = controller.getQualification();
-		//	jobDescriptionUI jdUI = new jobDescriptionUI(experience,language,nationality,qualification,controller);
-			
-		//	experience = jdUI.getExperienceList();
-		//	language = jdUI.getLanguageList();
-		//	nationality= jdUI.getNationality();
-		//	qualification = jdUI.getQualification();
-			//System.out.println(jobReq);
-
-		}else if (e.getSource() == browseButton){
-			filepath = fileChooser();
-			System.out.println("1getSelectedFile() : " + filepath);
-		}else if (e.getSource() == startButton){
-			if(filepath != null){
-				removeRows();
-				clearList();
-
-				Controller controller = new Controller();
-				ArrayList<String> resultList = new ArrayList<String>();
-				
-				try {
-					resultList = controller.startProcessing(filepath);
-				} catch (FileNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}	
-
-				if(resultList!=null){
-					String data1 = null;
-					String data2 = null;
-
-					for (int i = 0; i < resultList.size(); i+=2){
-						data1 = resultList.get(i);
-						data2 = resultList.get(i+1);
-						model.addRow( new Object[] { data1, data2 } );
-					}
-				}
-				else{
-					filePathInvalidDialog();
-				}
-			}else{
-				missingFolderErrorDialog();
-			}
-		}
-	}
-*/
 	private void removeRows(){
 		if (model.getRowCount() > 0) {
 			for (int i = model.getRowCount() - 1; i > -1; i--) {
