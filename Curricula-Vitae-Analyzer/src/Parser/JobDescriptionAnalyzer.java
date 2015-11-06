@@ -2,6 +2,7 @@ package Parser;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import utils.Constants;
@@ -127,17 +128,34 @@ public class JobDescriptionAnalyzer {
 	}
 
 	public void addRequirements(boolean[] categoryPresent, String paragraph, boolean impt){
-		
+
 		String attribute = null;
 		if (categoryPresent[0]){
 			for (int i = 0; i < languageListStorage.size(); i++){
 				attribute = languageListStorage.get(i);
 				attribute = (attribute.toLowerCase()).trim();
-				if (paragraph.contains(attribute)){
-					if (!language.contains(attribute)){
-						language.add(attribute);
-						if (impt == true){
-							VVVIPList.add(attribute);
+				
+				if (attribute.length() < 3){
+					ArrayList<String> words = new ArrayList<String>(Arrays.asList(paragraph.split("\\p{Punct}| ")));
+					for (String word : words)
+					{
+						if (word.length() < 3){
+							if (word.equals(attribute)){
+								language.add(attribute);
+								if (impt == true){
+									VVVIPList.add(attribute);
+								}
+							}
+						}
+					}
+				}
+				else {
+					if (paragraph.contains(attribute)){
+						if (!language.contains(attribute)){
+							language.add(attribute);
+							if (impt == true){
+								VVVIPList.add(attribute);
+							}
 						}
 					}
 				}
@@ -147,11 +165,28 @@ public class JobDescriptionAnalyzer {
 			for (int i = 0; i < qualificationListStorage.size(); i++){
 				attribute = qualificationListStorage.get(i);
 				attribute = (attribute.toLowerCase()).trim();
-				if (paragraph.contains(attribute)){
-					if (!qualification.contains(attribute)){
-						qualification.add(attribute);
-						if (impt == true){
-							VVVIPList.add(attribute);
+				
+				if (attribute.length() < 3){
+					ArrayList<String> words = new ArrayList<String>(Arrays.asList(paragraph.split("\\p{Punct}| ")));
+					for (String word : words)
+					{
+						if (word.length() < 3){
+							if (word.equals(attribute)){
+								qualification.add(attribute);
+								if (impt == true){
+									VVVIPList.add(attribute);
+								}
+							}
+						}
+					}
+				}
+				else {
+					if (paragraph.contains(attribute)){
+						if (!qualification.contains(attribute)){
+							qualification.add(attribute);
+							if (impt == true){
+								VVVIPList.add(attribute);
+							}
 						}
 					}
 				}
@@ -161,11 +196,30 @@ public class JobDescriptionAnalyzer {
 			for (int i = 0; i < experienceListStorage.size(); i++){
 				attribute = experienceListStorage.get(i);
 				attribute = (attribute.toLowerCase()).trim();
-				if (paragraph.contains(attribute)){
-					if (!experience.contains(attribute)){
-						experience.add(attribute);
-						if (impt == true){
-							VVVIPList.add(attribute);
+				
+				if (attribute.length() < 3){
+					ArrayList<String> words = new ArrayList<String>(Arrays.asList(paragraph.split("\\p{Punct}| ")));
+					for (String word : words)
+					{
+						if (word.length() < 3){
+							System.out.println("enter 1");
+							if (word.equals(attribute)){
+								System.out.println("enetere 2");
+								experience.add(attribute);
+								if (impt == true){
+									VVVIPList.add(attribute);
+								}
+							}
+						}
+					}
+				}
+				else {
+					if (paragraph.contains(attribute)){
+						if (!experience.contains(attribute)){
+							experience.add(attribute);
+							if (impt == true){
+								VVVIPList.add(attribute);
+							}
 						}
 					}
 				}
@@ -175,11 +229,28 @@ public class JobDescriptionAnalyzer {
 			for (int i = 0; i < nationalityListStorage.size(); i++){
 				attribute = nationalityListStorage.get(i);
 				attribute = (attribute.toLowerCase()).trim();
-				if (paragraph.contains(attribute)){
-					if (!nationality.contains(attribute)){
-						nationality.add(attribute);
-						if (impt == true){
-							VVVIPList.add(attribute);
+				
+				if (attribute.length() < 3){
+					ArrayList<String> words = new ArrayList<String>(Arrays.asList(paragraph.split("\\p{Punct}| ")));
+					for (String word : words)
+					{
+						if (word.length() < 3){
+							if (word.equals(attribute)){
+								nationality.add(attribute);
+								if (impt == true){
+									VVVIPList.add(attribute);
+								}
+							}
+						}
+					}
+				}
+				else {
+					if (paragraph.contains(attribute)){
+						if (!nationality.contains(attribute)){
+							nationality.add(attribute);
+							if (impt == true){
+								VVVIPList.add(attribute);
+							}
 						}
 					}
 				}
