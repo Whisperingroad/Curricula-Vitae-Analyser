@@ -53,6 +53,25 @@ public class CvAnalyzer {
 		return (score/size)*100;	
 	}
 	
+	public ArrayList<String> getQualification(){
+		return qualificationsFulfilled;
+	}
+	
+	public ArrayList<String> getExperience(){
+		return experienceFulfilled;
+	}
+	
+	
+	public ArrayList<String> getLanguage(){
+		return languageFulfilled;
+	}
+	
+	
+	public ArrayList<String> getParticulars(){
+		return particularsFulfilled;
+	}
+	
+	
 	public void clearLists(){
 		language.clear();
 		qualification.clear();

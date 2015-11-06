@@ -160,19 +160,52 @@ public class Controller
 			double score = cvAnalyzer.execute(libraryPath, language, qualification, experience, nationality);
 			String candidateName = (listOfCVs[i].getName()).replace(lemmatisedResumePath, "");
 			candidateName = candidateName.replace(Constants.txtPostFix, "");
-			nameScorePairsHash.put(candidateName, score);
+			//nameScorePairsHash.put(candidateName, score);
 			storage.getResume(i).setResume(score, candidateName);
+			storage.getResume(i).setMatchedExperience(cvAnalyzer.getExperience());
+			storage.getResume(i).setMatchedQualification(cvAnalyzer.getQualification());
+			storage.getResume(i).setMatchedLanguage(cvAnalyzer.getLanguage());
+			storage.getResume(i).setMatchedParticulars(cvAnalyzer.getParticulars());
+			System.out.println(storage.getResume(i).getName());
 		}
 		
 		 storage.sortResumeList();
-	/*	 
-		 ArrayList<String> resultList = new ArrayList<String>(); 
-		 for (int i=0;i< listOfCVs.length ; i++)
-		 {	 
-			 resultList.add(storage.getResume(i).getName());
-			 resultList.add(String.valueOf(storage.getResume(i).getScore()));
+		 
+		 for (int i = 0; i <storage.getResumeList().size(); i++){
+			 String s = storage.getResume(i).getName();
+			 System.out.println(s);
 		 }
-	*/	 
+		 
+		 System.out.println(storage.getResumeList().size());
+		 ArrayList<Resume> resultList = new ArrayList<Resume>(storage.getResumeList()); 
+		 for (int i=0;i< resultList.size() ; i++)
+		 {	 
+			 ArrayList<String> result = new ArrayList<String>(storage.getResume(i).getMatchedExperience());
+			 System.out.println(result.size());
+			 
+			 for (int j=0; j <result.size();j++){
+				 System.out.println("MATCHED E: " + result.get(j));
+			 }
+			 
+			 result = new ArrayList<String>(storage.getResume(i).getMatchedLanguage());
+			 System.out.println(result.size());
+			 for (int j=0; j <result.size();j++){
+				 System.out.println("MATCHED L: " + result.get(j));
+			 }
+			 
+			 result = new ArrayList<String>(storage.getResume(i).getMatchedParticulars());
+			 System.out.println(result.size());
+			 for (int j=0; j <result.size();j++){
+				 System.out.println("MATCHED P: " + result.get(j));
+			 }
+			 
+			 result = new ArrayList<String>(storage.getResume(i).getMatchedQualification());
+			 System.out.println(result.size());
+			 for (int j=0; j <result.size();j++){
+				 System.out.println("MATCHED Q: " + result.get(j));
+			 }
+		 }
+		 
 		 return storage.getResumeList();
 
 	}

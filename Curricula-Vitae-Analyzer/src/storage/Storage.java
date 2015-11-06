@@ -28,8 +28,8 @@ public class Storage {
 	}
 			
 	
-	public void addResume(String txtFile){
-		Resume resume = new Resume(txtFile);
+	public void addResume(String name){
+		Resume resume = new Resume(name);
 		resumeList.add(resume);
 	}
 	
