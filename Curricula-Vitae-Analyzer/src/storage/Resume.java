@@ -11,30 +11,14 @@ public class Resume {
 	private ArrayList<String> languageFulfilled;
 	private ArrayList<String> particularsFulfilled;
 	
-	public Resume(double score,String name){
+	public Resume(double score,String name,ArrayList<String> qualifications, ArrayList<String> experience,
+			ArrayList<String> language, ArrayList<String> particulars){
 		resumeScore = score;
 		candidateName = name;
-	}
-	/*
-	public void setResume(double score,String name){
-		resumeScore = score;
-		candidateName = name;
-	}
-	*/
-	public void setMatchedQualification(ArrayList<String> qualifications){
-		qualificationsFulfilled = qualifications;
-	}
-	
-	public void setMatchedExperience(ArrayList<String> experience){
-		experienceFulfilled = experience;
-	}
-	
-	public void setMatchedLanguage(ArrayList<String> language){
-		languageFulfilled = language;
-	}
-	
-	public void setMatchedParticulars(ArrayList<String> particulars){
-		particularsFulfilled = particulars;
+		qualificationsFulfilled = new ArrayList<String>(qualifications);
+		experienceFulfilled = new ArrayList<String>(experience);
+		languageFulfilled = new ArrayList<String>(language);
+		particularsFulfilled = new ArrayList<String>(particulars);
 	}
 	
 	public ArrayList<String> getMatchedQualification(){

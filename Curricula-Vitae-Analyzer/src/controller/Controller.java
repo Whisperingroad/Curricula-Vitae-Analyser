@@ -161,13 +161,16 @@ public class Controller
 			String candidateName = (listOfCVs[i].getName()).replace(lemmatisedResumePath, "");
 			candidateName = candidateName.replace(Constants.txtPostFix, "");
 			//nameScorePairsHash.put(candidateName, score);
-			storage.addResume(score, candidateName);
-			storage.getResume(i).setMatchedExperience(cvAnalyzer.getExperience());
-			storage.getResume(i).setMatchedQualification(cvAnalyzer.getQualification());
-			storage.getResume(i).setMatchedLanguage(cvAnalyzer.getLanguage());
-			storage.getResume(i).setMatchedParticulars(cvAnalyzer.getParticulars());
+			storage.addResume(score, candidateName,cvAnalyzer.getQualification(), 
+					cvAnalyzer.getExperience(), cvAnalyzer.getLanguage(),cvAnalyzer.getParticulars());
 		}
 		
+		for (int i = 0; i< storage.getResumeList().size(); i++){
+			System.out.println("CANDIDATE IS " + storage.getResume(i).getName() + " " + storage.getResume(i).getScore());
+			for (int j = 0; j< storage.getResume(i).getMatchedExperience().size(); j++){
+				System.out.println("EXPERIENCE " + storage.getResume(i).getMatchedExperience().get(j));
+			}
+		}
 		 storage.sortResumeList();
 		 return storage.getResumeList();
 

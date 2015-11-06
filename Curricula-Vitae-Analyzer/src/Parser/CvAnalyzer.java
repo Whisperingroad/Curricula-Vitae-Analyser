@@ -256,7 +256,7 @@ public class CvAnalyzer {
 			return false;
 		else
 		{
-			System.out.println("test 1: sentence contains 4 words and less");
+			//System.out.println("test 1: sentence contains 4 words and less");
 			return true;
 		}
 	}
@@ -270,7 +270,7 @@ public class CvAnalyzer {
 		{
 			if (checkHeader.contains(header.trim().toLowerCase()))
 			{
-				System.out.println("test 2: sentence contains defined headers");
+				//System.out.println("test 2: sentence contains defined headers");
 				return true;
 			}
 		}
