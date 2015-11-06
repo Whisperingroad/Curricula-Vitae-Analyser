@@ -79,7 +79,6 @@ public class Controller
 	
 	public void startJobProcess(String jobDescription){
 		JobDescriptionAnalyzer jobDescriptionAnalyzer = new JobDescriptionAnalyzer();
-		
 		ArrayList<String> jobReq = new ArrayList<String>(Arrays.asList(jobDescription.split("\\r?\\n")));
 		jobReq = textLemmatiser.lemmatiser(jobReq);
 		System.out.println(jobReq.toString());
@@ -163,8 +162,17 @@ public class Controller
 			nameScorePairsHash.put(candidateName, score);
 			storage.getResume(i).setResume(score, candidateName);
 		}
-		ArrayList<Resume> resumeList = storage.getResumeList();
-		return nameScorePairsHash;
+		
+		 storage.sortResumeList();
+		 
+		 ArrayList<String> resultList = new ArrayList<String>(); 
+		 for (int i=0;i< listOfCVs.length ; i++)
+		 {	 
+			 resultList.add(storage.getResume(i).getName());
+			 resultList.add(String.valueOf(storage.getResume(i).getScore()));
+		 }
+		 
+		return resultList;
 
 	}
 }

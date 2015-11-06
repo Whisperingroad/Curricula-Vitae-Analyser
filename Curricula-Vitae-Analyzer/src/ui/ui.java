@@ -33,7 +33,6 @@ public class ui extends JFrame implements ActionListener{
 
 	// Constructor
 	public ui() {
-
 		String[] columnNames = {"CV name", "Score"};
 		model = new DefaultTableModel(columnNames, 0);
 		JTable table = new JTable(model);
@@ -92,8 +91,9 @@ public class ui extends JFrame implements ActionListener{
 				removeRows();
 				clearList();
 
-				//	Controller controller = new Controller();
-				HashMap<String,Double> resultList = new HashMap<String,Double>();
+				Controller controller = new Controller();
+				ArrayList<String> resultList = new ArrayList<String>();
+				
 				try {
 					resultList = controller.startProcessing(filepath);
 				} catch (FileNotFoundException e1) {
@@ -103,13 +103,14 @@ public class ui extends JFrame implements ActionListener{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}	
+
 				if(resultList!=null){
 					String data1 = null;
-					double data2 = 0.0;
+					String data2 = null;
 
-					for (Entry<String, Double> f: resultList.entrySet()){
-						data1 = f.getKey();
-						data2 = f.getValue();
+					for (int i = 0; i < resultList.size(); i+=2){
+						data1 = resultList.get(i);
+						data2 = resultList.get(i+1);
 						model.addRow( new Object[] { data1, data2 } );
 					}
 				}

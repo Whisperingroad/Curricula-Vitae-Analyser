@@ -1,5 +1,7 @@
 package storage;
 
+import java.util.Comparator;
+
 public class Resume {
 	String textFile;
 	String candidateName;
@@ -25,4 +27,5 @@ public class Resume {
 	public String getName(){
 		return candidateName;
 	}
+	
 }
