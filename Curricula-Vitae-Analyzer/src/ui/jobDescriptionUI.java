@@ -447,34 +447,44 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 	
 	/* unused function
 	private void filePathInvalidDialog(){
-		JFrame frame = new JFrame("Folder invalid");
-		frame.setSize(300, 100);
-		browseError = new JPanel(new BorderLayout());
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-		String message = "Folder does not contain PDF or Word Documents";
-		JLabel content1 = new JLabel(message,JLabel.CENTER);
-		message = "Please choose another folder"; 
-		JLabel content2 = new JLabel(message,JLabel.CENTER);
-		browseError.add(content1, BorderLayout.NORTH);
-		browseError.add(content2, BorderLayout.CENTER);
-
-		frame.setContentPane(browseError);
-		frame.setVisible(true);
+		JFrame frame = new JFrame();
+		JOptionPane.showMessageDialog(frame,
+			    "Please select another folder",
+			    "Invalid Folder",
+			    JOptionPane.WARNING_MESSAGE);
+//		JFrame frame = new JFrame("Folder invalid");
+//		frame.setSize(300, 100);
+//		browseError = new JPanel(new BorderLayout());
+//		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//
+//		String message = "Folder does not contain PDF or Word Documents";
+//		JLabel content1 = new JLabel(message,JLabel.CENTER);
+//		message = "Please choose another folder"; 
+//		JLabel content2 = new JLabel(message,JLabel.CENTER);
+//		browseError.add(content1, BorderLayout.NORTH);
+//		browseError.add(content2, BorderLayout.CENTER);
+//
+//		frame.setContentPane(browseError);
+//		frame.setVisible(true);
 	}*/
 	
 	private void missingFolderErrorDialog(){
-		JFrame frame = new JFrame("Missing Folder");
-		frame.setSize(300, 100);
-		browseError = new JPanel(new BorderLayout());
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-		String message = "Please choose a folder for processing"; 
-		JLabel content = new JLabel(message,JLabel.CENTER);
-		browseError.add(content, BorderLayout.CENTER);
-
-		frame.setContentPane(browseError);
-		frame.setVisible(true);
+		JFrame frame = new JFrame();
+		JOptionPane.showMessageDialog(frame,
+			    "Please select a folder",
+			    "No Folder Selected",
+			    JOptionPane.WARNING_MESSAGE);
+//		JFrame frame = new JFrame("Missing Folder");
+//		frame.setSize(300, 100);
+//		browseError = new JPanel(new BorderLayout());
+//		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//
+//		String message = "Please choose a folder for processing"; 
+//		JLabel content = new JLabel(message,JLabel.CENTER);
+//		browseError.add(content, BorderLayout.CENTER);
+//
+//		frame.setContentPane(browseError);
+//		frame.setVisible(true);
 	}
 
 	private File fileChooser(){
