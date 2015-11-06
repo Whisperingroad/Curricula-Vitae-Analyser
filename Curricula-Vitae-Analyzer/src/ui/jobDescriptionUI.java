@@ -3,6 +3,8 @@ package ui;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,6 +12,7 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+import storage.Resume;
 import controller.Controller;
 
 /**
@@ -209,15 +212,6 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 			language = controller.getLanguage();
 			nationality = controller.getNationality();
 			qualification = controller.getQualification();
-			System.out.println("reading");
-			for (int i=0;i<experience.size();i++)
-				System.out.println(experience.get(i));
-			for (int i=0;i<language.size();i++)
-				System.out.println(language.get(i));
-			for (int i=0;i<nationality.size();i++)
-				System.out.println(nationality.get(i));
-			for (int i=0;i<qualification.size();i++)
-				System.out.println(qualification.get(i));
 			displayExperienceTable();
 			displayLanguageTable();
 			displayNationalityTable();
@@ -287,7 +281,22 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 		
 		else if (e.getSource() == doneButton){
 			if(filepath != null){
-				ui UI = new ui();
+				ArrayList<Resume> resultList = new ArrayList<Resume>();
+				try {
+					controller.setExperienceList(experience);
+					controller.setLanguageList(language);
+					controller.setNationalityList(nationality);
+					controller.setQualificationList(qualification);
+					resultList.clear();
+					resultList = controller.startProcessing(filepath);
+					ui UI = new ui(resultList);
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			/* checking purposes
 			System.out.println("processing");
 			for (int i=0;i<experience.size();i++)
@@ -304,6 +313,10 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 			controller.setqualificationList(qualification);
 			 */
 				flushArrayList();
+				displayExperienceTable();
+				displayLanguageTable();
+				displayNationalityTable();
+				displayQualificationTable();
 				//this.dispose();
 			}
 			else 

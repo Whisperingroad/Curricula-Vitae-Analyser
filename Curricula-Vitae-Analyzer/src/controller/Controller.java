@@ -48,8 +48,8 @@ public class Controller
 	
 	public String extractCV(File CV) throws IOException
 	{
-		String fileName = CV.getName();
-		storage.addResume(fileName);
+		//String fileName = CV.getName();
+		//storage.addResume(fileName);
 		//System.out.println("File Name is " + fileName);
 		Boolean extractComplete = TextExtractor.execute(CV);
 		if(extractComplete == true)
@@ -89,6 +89,7 @@ public class Controller
 		updateLists(jobDescriptionAnalyzer);
 		
 		// for testing purposes
+		System.out.println("testing");
 		System.out.println("language");
 		for (int i=0;i<language.size();i++)
 			System.out.println(language.get(i));
@@ -121,7 +122,7 @@ public class Controller
 		nationality.addAll(input);
 	}
 	
-	public void setqualificationList(ArrayList<String> input){
+	public void setQualificationList(ArrayList<String> input){
 		qualification.addAll(input);
 	}
 	
@@ -143,8 +144,7 @@ public class Controller
 
 	public ArrayList<Resume> startProcessing(File resumePath) throws IOException, FileNotFoundException
 	{
-
-		
+		storage.clearList();
 		System.out.println("check");
 		System.out.println(experience.size());
 		System.out.println(language.size());
@@ -161,51 +161,14 @@ public class Controller
 			String candidateName = (listOfCVs[i].getName()).replace(lemmatisedResumePath, "");
 			candidateName = candidateName.replace(Constants.txtPostFix, "");
 			//nameScorePairsHash.put(candidateName, score);
-			storage.getResume(i).setResume(score, candidateName);
+			storage.addResume(score, candidateName);
 			storage.getResume(i).setMatchedExperience(cvAnalyzer.getExperience());
 			storage.getResume(i).setMatchedQualification(cvAnalyzer.getQualification());
 			storage.getResume(i).setMatchedLanguage(cvAnalyzer.getLanguage());
 			storage.getResume(i).setMatchedParticulars(cvAnalyzer.getParticulars());
-			System.out.println(storage.getResume(i).getName());
 		}
 		
 		 storage.sortResumeList();
-		 
-		 for (int i = 0; i <storage.getResumeList().size(); i++){
-			 String s = storage.getResume(i).getName();
-			 System.out.println(s);
-		 }
-		 
-		 System.out.println(storage.getResumeList().size());
-		 ArrayList<Resume> resultList = new ArrayList<Resume>(storage.getResumeList()); 
-		 for (int i=0;i< resultList.size() ; i++)
-		 {	 
-			 ArrayList<String> result = new ArrayList<String>(storage.getResume(i).getMatchedExperience());
-			 System.out.println(result.size());
-			 
-			 for (int j=0; j <result.size();j++){
-				 System.out.println("MATCHED E: " + result.get(j));
-			 }
-			 
-			 result = new ArrayList<String>(storage.getResume(i).getMatchedLanguage());
-			 System.out.println(result.size());
-			 for (int j=0; j <result.size();j++){
-				 System.out.println("MATCHED L: " + result.get(j));
-			 }
-			 
-			 result = new ArrayList<String>(storage.getResume(i).getMatchedParticulars());
-			 System.out.println(result.size());
-			 for (int j=0; j <result.size();j++){
-				 System.out.println("MATCHED P: " + result.get(j));
-			 }
-			 
-			 result = new ArrayList<String>(storage.getResume(i).getMatchedQualification());
-			 System.out.println(result.size());
-			 for (int j=0; j <result.size();j++){
-				 System.out.println("MATCHED Q: " + result.get(j));
-			 }
-		 }
-		 
 		 return storage.getResumeList();
 
 	}

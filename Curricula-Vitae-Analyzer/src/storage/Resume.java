@@ -11,15 +11,16 @@ public class Resume {
 	private ArrayList<String> languageFulfilled;
 	private ArrayList<String> particularsFulfilled;
 	
-	public Resume(String fileName){
-		textFile = fileName;
+	public Resume(double score,String name){
+		resumeScore = score;
+		candidateName = name;
 	}
-	
+	/*
 	public void setResume(double score,String name){
 		resumeScore = score;
 		candidateName = name;
 	}
-	
+	*/
 	public void setMatchedQualification(ArrayList<String> qualifications){
 		qualificationsFulfilled = qualifications;
 	}

@@ -27,9 +27,11 @@ public class Storage {
 		return resumeList;
 	}
 			
-	
-	public void addResume(String name){
-		Resume resume = new Resume(name);
+	public void clearList(){
+		resumeList.clear();
+	}
+	public void addResume(double score,String name){
+		Resume resume = new Resume(score, name);
 		resumeList.add(resume);
 	}
 	
@@ -117,14 +119,4 @@ public class Storage {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
 
