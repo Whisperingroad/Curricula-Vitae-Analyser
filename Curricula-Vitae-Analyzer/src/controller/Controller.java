@@ -42,10 +42,10 @@ public class Controller
 	protected CvAnalyzer cvAnalyzer = new CvAnalyzer();
 	protected Storage storage = new Storage(); 
 
-	String resumePath = Constants.NICHOLAS + "Input\\";
-	String textResumePath = Constants.NICHOLAS + "Storage\\TextResumes\\";
-	String lemmatisedResumePath = Constants.NICHOLAS + "Storage\\LemmatisedResumes\\";
-	String libraryPath = Constants.NICHOLAS + "Library\\";
+	String resumePath = Constants.YIXIU + "Input\\";
+	String textResumePath = Constants.YIXIU + "Storage\\TextResumes\\";
+	String lemmatisedResumePath = Constants.YIXIU + "Storage\\LemmatisedResumes\\";
+	String libraryPath = Constants.YIXIU + "Library\\";
 
 	ArrayList<String> language = new ArrayList<String>();
 	ArrayList<String> qualification = new ArrayList<String>();
@@ -98,8 +98,8 @@ public class Controller
 
 	public String extractCV(File CV) throws IOException
 	{
-		String fileName = CV.getName();
-		storage.addResume(fileName);
+		//String fileName = CV.getName();
+		//storage.addResume(fileName);
 		//System.out.println("File Name is " + fileName);
 		Boolean extractComplete = TextExtractor.execute(CV);
 		if(extractComplete == true)
@@ -207,19 +207,18 @@ public class Controller
 			double score = cvAnalyzer.execute(libraryPath, language, qualification, experience, nationality);
 			String candidateName = (listOfCVs[i].getName()).replace(lemmatisedResumePath, "");
 			candidateName = candidateName.replace(Constants.txtPostFix, "");
-			nameScorePairsHash.put(candidateName, score);
-			storage.getResume(i).setResume(score, candidateName);
+			//nameScorePairsHash.put(candidateName, score);
+			storage.addResume(score, candidateName,cvAnalyzer.getQualification(), 
+					cvAnalyzer.getExperience(), cvAnalyzer.getLanguage(),cvAnalyzer.getParticulars());
 		}
 		
+		for (int i = 0; i< storage.getResumeList().size(); i++){
+			System.out.println("CANDIDATE IS " + storage.getResume(i).getName() + " " + storage.getResume(i).getScore());
+			for (int j = 0; j< storage.getResume(i).getMatchedExperience().size(); j++){
+				System.out.println("EXPERIENCE " + storage.getResume(i).getMatchedExperience().get(j));
+			}
+		}
 		 storage.sortResumeList();
-	/*	 
-		 ArrayList<String> resultList = new ArrayList<String>(); 
-		 for (int i=0;i< listOfCVs.length ; i++)
-		 {	 
-			 resultList.add(storage.getResume(i).getName());
-			 resultList.add(String.valueOf(storage.getResume(i).getScore()));
-		 }
-	*/	 
 		 return storage.getResumeList();
 	}
 	
