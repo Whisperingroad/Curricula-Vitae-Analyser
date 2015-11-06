@@ -203,7 +203,6 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 		contentPane.add(inputJDPanel);
 		contentPane.add(attributeTablePanel);
 		contentPane.add(tabDonePanel);
-		//contentPane.add(doneButton);
 
 		contentPane.setSize(600, 500);
 		contentPane.setVisible(true);
@@ -217,19 +216,10 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 			flushArrayList();
 			String jobReq = inputJDArea.getText();
 			controller.startJobProcess(jobReq);
-			experience = controller.getExperience();
-			language = controller.getLanguage();
-			nationality = controller.getNationality();
-			qualification = controller.getQualification();
-			System.out.println("reading");
-			for (int i=0;i<experience.size();i++)
-				System.out.println(experience.get(i));
-			for (int i=0;i<language.size();i++)
-				System.out.println(language.get(i));
-			for (int i=0;i<nationality.size();i++)
-				System.out.println(nationality.get(i));
-			for (int i=0;i<qualification.size();i++)
-				System.out.println(qualification.get(i));
+			experience.addAll(controller.getExperience());
+			language.addAll(controller.getLanguage());
+			nationality.addAll(controller.getNationality());
+			qualification.addAll(controller.getQualification());
 			displayExperienceTable();
 			displayLanguageTable();
 			displayNationalityTable();
@@ -294,12 +284,12 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 		
 		else if (e.getSource() == browseButton){
 			filepath = fileChooser();
-			System.out.println("1getSelectedFile() : " + filepath);
 		}
 		
 		else if (e.getSource() == doneButton){
 			if(filepath != null){
-				ArrayList<Resume> resultList = new ArrayList<Resume>();
+				ArrayList<Resume> resultList = new ArrayList<Resume>();				
+				
 				try {
 					controller.setExperienceList(experience);
 					controller.setLanguageList(language);
@@ -308,6 +298,7 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 					resultList.clear();
 					resultList = controller.startProcessing(filepath);
 					ui UI = new ui(resultList);
+					controller.writeAllToLib();
 				} catch (FileNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -331,6 +322,10 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 			controller.setqualificationList(qualification);
 			 */
 				flushArrayList();
+				displayExperienceTable();
+				displayLanguageTable();
+				displayNationalityTable();
+				displayQualificationTable();
 				//this.dispose();
 			}
 			else 
@@ -453,34 +448,44 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 	
 	/* unused function
 	private void filePathInvalidDialog(){
-		JFrame frame = new JFrame("Folder invalid");
-		frame.setSize(300, 100);
-		browseError = new JPanel(new BorderLayout());
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-		String message = "Folder does not contain PDF or Word Documents";
-		JLabel content1 = new JLabel(message,JLabel.CENTER);
-		message = "Please choose another folder"; 
-		JLabel content2 = new JLabel(message,JLabel.CENTER);
-		browseError.add(content1, BorderLayout.NORTH);
-		browseError.add(content2, BorderLayout.CENTER);
-
-		frame.setContentPane(browseError);
-		frame.setVisible(true);
+		JFrame frame = new JFrame();
+		JOptionPane.showMessageDialog(frame,
+			    "Please select another folder",
+			    "Invalid Folder",
+			    JOptionPane.WARNING_MESSAGE);
+//		JFrame frame = new JFrame("Folder invalid");
+//		frame.setSize(300, 100);
+//		browseError = new JPanel(new BorderLayout());
+//		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//
+//		String message = "Folder does not contain PDF or Word Documents";
+//		JLabel content1 = new JLabel(message,JLabel.CENTER);
+//		message = "Please choose another folder"; 
+//		JLabel content2 = new JLabel(message,JLabel.CENTER);
+//		browseError.add(content1, BorderLayout.NORTH);
+//		browseError.add(content2, BorderLayout.CENTER);
+//
+//		frame.setContentPane(browseError);
+//		frame.setVisible(true);
 	}*/
 	
 	private void missingFolderErrorDialog(){
-		JFrame frame = new JFrame("Missing Folder");
-		frame.setSize(300, 100);
-		browseError = new JPanel(new BorderLayout());
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-		String message = "Please choose a folder for processing"; 
-		JLabel content = new JLabel(message,JLabel.CENTER);
-		browseError.add(content, BorderLayout.CENTER);
-
-		frame.setContentPane(browseError);
-		frame.setVisible(true);
+		JFrame frame = new JFrame();
+		JOptionPane.showMessageDialog(frame,
+			    "Please select a folder",
+			    "No Folder Selected",
+			    JOptionPane.WARNING_MESSAGE);
+//		JFrame frame = new JFrame("Missing Folder");
+//		frame.setSize(300, 100);
+//		browseError = new JPanel(new BorderLayout());
+//		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//
+//		String message = "Please choose a folder for processing"; 
+//		JLabel content = new JLabel(message,JLabel.CENTER);
+//		browseError.add(content, BorderLayout.CENTER);
+//
+//		frame.setContentPane(browseError);
+//		frame.setVisible(true);
 	}
 
 	private File fileChooser(){

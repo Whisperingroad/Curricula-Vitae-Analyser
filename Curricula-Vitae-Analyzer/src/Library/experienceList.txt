@@ -1,203 +1,215 @@
-Python 
-C++ 
-Java 
-Javascript 
-sql 
-VBA 
-Ruby 
-Ruby on Rails 
-Swift 
-php 
-HTML 
-objectivec 
-objective c 
-objective-c 
-c# 
-postgresql 
-mysql 
-ajax 
-unix shell 
-object orient programming 
-oop concept 
-content management system 
-drupal 
-typo3 
-joomlum 
-reactj 
-golang 
-websocket 
-android development 
-mvp application design 
-visual studio 
-Eclipse 
-SQL server 
-.net framework 
-Android sdk 
-m access 
-Microsoft access 
-microsoft exchange 
-Windows 
-BMC Remedy 
-visual basic 
-datum structure 
-iOS application 
-iOS app 
-android platform 
-android application 
-android app 
-android animation 
-embedded software 
-debug 
-game development 
-uikit 
-coreanimation 
-uikitdynamic 
-catransition 
-multithread 
-multi-thread 
-autolayout 
-persistent storage 
-Cocoa touch ecosystem 
-mvc 
-Viper 
-xcode 
-integration test 
-touch-based user experience 
-datum structure 
-embed system 
-strong programming skill 
-Analytic capability 
-statistical and mathematical modeling 
-machine learning 
-datum mine 
-nanofabrication 
-common lisp 
+Python
+C++
+Java
+Javascript
+sql
+VBA
+Ruby
+Ruby on Rails
+Swift
+php
+HTML
+objectivec
+objective c
+objective-c
+c#
+postgresql
+mysql
+ajax
+unix shell
+object orient programming
+oop concept
+content management system
+drupal
+typo3
+joomlum
+reactj
+golang
+websocket
+android development
+mvp application design
+visual studio
+Eclipse
+SQL server
+.net framework
+Android sdk
+m access
+Microsoft access
+microsoft exchange
+Windows
+BMC Remedy
+visual basic
+datum structure
+iOS application
+iOS app
+android platform
+android application
+android app
+android animation
+embedded software
+debug
+game development
+uikit
+coreanimation
+uikitdynamic
+catransition
+multithread
+multi-thread
+autolayout
+persistent storage
+Cocoa touch ecosystem
+mvc
+Viper
+xcode
+integration test
+touch-based user experience
+datum structure
+embed system
+strong programming skill
+Analytic capability
+statistical and mathematical modeling
+machine learning
+datum mine
+nanofabrication
+common lisp
 c/c++
-Matlab 
-Octave 
-photolithography 
-System Administration 
-ion-milling 
-neurobiological 
-behavioral test 
-electrophysiological technique 
-protein composition 
-bioinformatic 
-cancer genetics 
-database mining 
-Data base mining 
-Motion capture 
-Motor function 
-Movement analysis 
-VPN 
-proteomic 
-application support 
-helpdesk support 
-technical support 
-customer service 
-network and infrastructure 
-network optimisation 
-network enhancement 
-it service management 
-project management 
-event organisation 
-event organization 
-administration 
-ms-office 
-Microsoft Office 
-m Office 
-ms-office suite 
-Microsoft Office Suite 
-m Office Suite 
-active Directory 
-remote Desktop 
-voip 
-Citrix 
-Lotus Notes 
-Adobe Photoshop 
-Adobe Premier 
-WordPress 
-Dell Computers 
-Macintosh 
-IBM 
-Blackberry enterprise server 
-Lenovo 
-Polycom Conference 
-HP Printers 
-Canon Printers 
-Fuji Xerox Printers 
-Avaya 
-itil certify 
-Blackberry 
-ipad 
-cloud storage 
-Google Productivity Suite 
-OneNote 
-evernote 
-policy analysis 
-improvement initiative 
-end-user support 
-Information technology 
-computer hardware 
-Software application 
-help desk support 
-Problem ticket and escalation 
-Network upgrade 
-Network administration 
-troubleshoot 
-window server 
-create user manual 
-Conduct end user training 
-vendor relationship and transaction 
-Lotus note 
-Lotus domino 
-Software deployment 
-lan/wan infrastructure 
-lan infrastructure 
-wan infrastructure 
-Video conference 
-audio conferencing 
-documentation 
-workflow tracking 
-asset management 
-event support 
-Mobile support 
-telecom support 
-migration 
-Network planning 
-Logistics 
-user testing 
-provision of av equipment 
-gather requirement 
-manage manpower 
-manpower capacity allocation 
-Equipment provision 
-datum backup 
-datum recovery 
-onsite technician dispatch 
-Network connectivity issue 
-Technical service enquiry 
-configure model 
-Configure router 
-configure switch 
-Software engineer 
-Software application design 
-application development 
-app development 
-test and optimization 
-visual c#.net 
+Matlab
+Octave
+photolithography
+System Administration
+ion-milling
+neurobiological
+behavioral test
+electrophysiological technique
+protein composition
+bioinformatic
+cancer genetics
+database mining
+Data base mining
+Motion capture
+Motor function
+Movement analysis
+VPN
+proteomic
+application support
+helpdesk support
+technical support
+customer service
+network and infrastructure
+network optimisation
+network enhancement
+it service management
+project management
+event organisation
+event organization
+administration
+ms-office
+Microsoft Office
+m Office
+ms-office suite
+Microsoft Office Suite
+m Office Suite
+active Directory
+remote Desktop
+voip
+Citrix
+Lotus Notes
+Adobe Photoshop
+Adobe Premier
+WordPress
+Dell Computers
+Macintosh
+IBM
+Blackberry enterprise server
+Lenovo
+Polycom Conference
+HP Printers
+Canon Printers
+Fuji Xerox Printers
+Avaya
+itil certify
+Blackberry
+ipad
+cloud storage
+Google Productivity Suite
+OneNote
+evernote
+policy analysis
+improvement initiative
+end-user support
+Information technology
+computer hardware
+Software application
+help desk support
+Problem ticket and escalation
+Network upgrade
+Network administration
+troubleshoot
+window server
+create user manual
+Conduct end user training
+vendor relationship and transaction
+Lotus note
+Lotus domino
+Software deployment
+lan/wan infrastructure
+lan infrastructure
+wan infrastructure
+Video conference
+audio conferencing
+documentation
+workflow tracking
+asset management
+event support
+Mobile support
+telecom support
+migration
+Network planning
+Logistics
+user testing
+provision of av equipment
+gather requirement
+manage manpower
+manpower capacity allocation
+Equipment provision
+datum backup
+datum recovery
+onsite technician dispatch
+Network connectivity issue
+Technical service enquiry
+configure model
+Configure router
+configure switch
+Software engineer
+Software application design
+application development
+app development
+test and optimization
+visual c#.net
 brainstorm
-Problem solve 
-Desktop application 
-Dataset management 
-statistical analysis 
-Report generate 
-computer network 
-Advance object orient 
-Advance object-oriented 
-Advanced object orient 
-Advanced object-oriented 
-ios/android 
-Mobile application development 
-artificial intelligence 
-web development 
+Problem solve
+Desktop application
+Dataset management
+statistical analysis
+Report generate
+computer network
+Advance object orient
+Advance object-oriented
+Advanced object orient
+Advanced object-oriented
+ios/android
+Mobile application development
+artificial intelligence
+web development
+java
+c++
+java
+java
+java
+ruby
+java
+ruby
+java
+ruby
+ruby
+ruby
