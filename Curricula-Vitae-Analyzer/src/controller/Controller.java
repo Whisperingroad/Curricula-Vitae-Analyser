@@ -24,10 +24,10 @@ public class Controller
 	protected CvAnalyzer cvAnalyzer = new CvAnalyzer();
 	protected Storage storage = new Storage(); 
 
-	String resumePath = Constants.YIXIU + "Input\\";
-	String textResumePath = Constants.YIXIU + "Storage\\TextResumes\\";
-	String lemmatisedResumePath = Constants.YIXIU + "Storage\\LemmatisedResumes\\";
-	String libraryPath = Constants.YIXIU + "Library\\";
+	String resumePath = Constants.NICHOLAS + "Input\\";
+	String textResumePath = Constants.NICHOLAS + "Storage\\TextResumes\\";
+	String lemmatisedResumePath = Constants.NICHOLAS + "Storage\\LemmatisedResumes\\";
+	String libraryPath = Constants.NICHOLAS + "Library\\";
 
 	ArrayList<String> language = new ArrayList<String>();
 	ArrayList<String> qualification = new ArrayList<String>();
@@ -121,7 +121,7 @@ public class Controller
 		nationality.addAll(input);
 	}
 	
-	public void setqualificationList(ArrayList<String> input){
+	public void setQualificationList(ArrayList<String> input){
 		qualification.addAll(input);
 	}
 	
@@ -143,8 +143,7 @@ public class Controller
 
 	public ArrayList<Resume> startProcessing(File resumePath) throws IOException, FileNotFoundException
 	{
-
-		
+		storage.clearList();
 		System.out.println("check");
 		System.out.println(experience.size());
 		System.out.println(language.size());

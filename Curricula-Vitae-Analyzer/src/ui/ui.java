@@ -10,10 +10,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import storage.Resume;
 import controller.Controller;
 
 /**
@@ -33,9 +35,23 @@ public class ui extends JFrame implements ActionListener{
 	List<String> resultFiles = new ArrayList<String>();
 
 	// Constructor
-	public ui() {
+	public ui(ArrayList<Resume> resultList) {
 		String[] columnNames = {"CV name", "Score"};
 		model = new DefaultTableModel(columnNames, 0);
+		
+		if(resultList!=null){
+			removeRows();
+			clearList();
+			String data1 = null;
+			double data2 = 0.0;
+
+			for (int i = 0; i < resultList.size(); i++){
+				data1 = resultList.get(i).getName();
+				data2 = resultList.get(i).getScore();
+				model.addRow( new Object[] { data1, data2 } );
+			}
+		}
+		
 		JTable table = new JTable(model){
             //Implement table cell tool tips.
             public String getToolTipText(MouseEvent e) {
@@ -159,7 +175,7 @@ public class ui extends JFrame implements ActionListener{
 			}
 		}
 	}
-
+*/
 	private void removeRows(){
 		if (model.getRowCount() > 0) {
 			for (int i = model.getRowCount() - 1; i > -1; i--) {
@@ -172,9 +188,6 @@ public class ui extends JFrame implements ActionListener{
 		while (!resultFiles.isEmpty())
 			resultFiles.remove(0);
 	}
-*/
-	public static void main(String[] args) {
-		new ui();
-	}
+
 }
 

@@ -27,7 +27,9 @@ public class Storage {
 		return resumeList;
 	}
 			
-	
+	public void clearList(){
+		resumeList.clear();
+	}
 	public void addResume(String txtFile){
 		Resume resume = new Resume(txtFile);
 		resumeList.add(resume);
