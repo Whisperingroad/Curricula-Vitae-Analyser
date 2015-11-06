@@ -207,10 +207,10 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 			flushArrayList();
 			String jobReq = inputJDArea.getText();
 			controller.startJobProcess(jobReq);
-			experience = controller.getExperience();
-			language = controller.getLanguage();
-			nationality = controller.getNationality();
-			qualification = controller.getQualification();
+			experience.addAll(controller.getExperience());
+			language.addAll(controller.getLanguage());
+			nationality.addAll(controller.getNationality());
+			qualification.addAll(controller.getQualification());
 			displayExperienceTable();
 			displayLanguageTable();
 			displayNationalityTable();
@@ -280,14 +280,7 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 		
 		else if (e.getSource() == doneButton){
 			if(filepath != null){
-				ArrayList<Resume> resultList = new ArrayList<Resume>();
-				System.out.println("checking here");
-				System.out.println(experience.size());
-				for (int i=0;i<experience.size();i++)
-					System.out.println(experience.get(i));
-				System.out.println(language.size());
-				System.out.println(qualification.size());
-				System.out.println(nationality.size());
+				ArrayList<Resume> resultList = new ArrayList<Resume>();				
 				
 				try {
 					controller.setExperienceList(experience);
