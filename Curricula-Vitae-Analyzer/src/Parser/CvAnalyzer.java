@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 
 public class CvAnalyzer {
@@ -58,6 +59,7 @@ public class CvAnalyzer {
 		qualification.clear();
 		experience.clear();
 		nationality.clear();
+
 		languageFulfilled.clear();
 		qualificationsFulfilled.clear();
 		experienceFulfilled.clear();
@@ -89,17 +91,21 @@ public class CvAnalyzer {
 				if (header == HeaderTypes.QUALIFICATION)
 				{
 					matchQualificationDetails(paragraph);
+					//matchRequirements(qualification, qualificationsFulfilled, paragraph);
 				}
 				else if (header == HeaderTypes.EXPERIENCE)
 				{
 					matchExperienceDetails(paragraph);
+					//matchRequirements(experience, experienceFulfilled, paragraph);
 				}
 				else if (header == HeaderTypes.LANGUAGE)
 				{
+					//matchRequirements(language, languageFulfilled, paragraph);
 					matchLanguageDetails(paragraph);
 				}
 				else if (header == HeaderTypes.PARTICULARS)
 				{
+					//matchRequirements(nationality, particularsFulfilled, paragraph);
 					matchParticularDetails(paragraph);
 				}
 			}
@@ -110,6 +116,42 @@ public class CvAnalyzer {
 			return 0.0;
 	}
 	
+	
+	
+	public void matchRequirements(ArrayList<String> requirements, ArrayList<String> requirementsFulfilled, String line)
+	{
+		for (int i = requirements.size()-1; i >= 0; i--)
+		{
+			String attribute = requirements.get(i);
+			attribute = (attribute.toLowerCase()).trim();
+			
+			// short attribute
+			// would be safer to get an exact match
+			if (attribute.length() < 4)
+			{
+				ArrayList<String> words = new ArrayList<String>(Arrays.asList(line.split("\\p{Punct}| ")));
+				for (String word : words)
+				{		
+					if (attribute.equals(word.trim()))
+					{
+						boolean isFulfilled = false;
+						for (String requirement : requirementsFulfilled)
+						{
+							if (requirement.equals(attribute))
+								isFulfilled = true;
+						}
+						if (isFulfilled == false)
+							score++;
+					}
+				}
+			}
+			else if (line.contains(attribute) && !requirementsFulfilled.contains(attribute))
+			{
+				requirementsFulfilled.add(attribute);
+				score++;
+			}
+		}
+	}
 	public void matchQualificationDetails(String line)
 	{
 		for (int i = qualification.size()-1; i >= 0; i--)
@@ -199,26 +241,30 @@ public class CvAnalyzer {
 	
 	public HeaderTypes checkForHeader(String line, HeaderTypes header)
 	{
-		// first check
-		if (checkWordLimit(line))
+		// first and second check
+		if (checkWordLimit(line) && checkForSymbols(line))
 		{
-			// passed first check
+			// passed first and second check
 			if(checkForDefinedHeaders(line,qualificationHeaders)== true)
 			{
+				System.out.println("qualification header is " + line);
 				return HeaderTypes.QUALIFICATION;
 			}
 			
 			else if (checkForDefinedHeaders(line,experienceHeaders)== true)
 			{
+				System.out.println("experience header is " + line);
 				return HeaderTypes.EXPERIENCE;
 			}
 			else if (checkForDefinedHeaders(line,languageHeaders)== true)
 			{
+				System.out.println("language header is " + line);
 				return HeaderTypes.LANGUAGE;
 			}
 			
 			else if (checkForDefinedHeaders(line,particularsHeaders)== true)
 			{
+				System.out.println("particulars header is " +line);
 				return HeaderTypes.PARTICULARS;
 			}
 			else 
@@ -231,17 +277,28 @@ public class CvAnalyzer {
 	// check if the sentence has less than 4 words
 	public boolean checkWordLimit(String line)
 	{
-		//System.out.println(line);
-		ArrayList<String> words = new ArrayList<String>(Arrays.asList(line.split(" |,|:")));
+		
+		ArrayList<String> words = new ArrayList<String>(Arrays.asList(line.split("\\p{Punct}| ")));
 		if (words.size() > 4)
 			return false;
 		else
 		{
-			System.out.println("test 1: sentence contains 4 words and less");
 			return true;
 		}
 	}
+	
 	// header check 2
+	// check if punctuation can be found in line
+	// headers should not contain commas and full stops
+	public boolean checkForSymbols(String line)
+	{
+		if (line.contains(",|."))
+			return false;
+		else
+			return true;
+	}
+	
+	// header check 3
 	// check if sentence contains defined headers
 	public boolean checkForDefinedHeaders(String line, ArrayList<String> headerType)
 	{
@@ -251,7 +308,7 @@ public class CvAnalyzer {
 		{
 			if (checkHeader.contains(header.trim().toLowerCase()))
 			{
-				System.out.println("test 2: sentence contains defined headers");
+				//System.out.println("test 2: sentence contains defined headers");
 				return true;
 			}
 		}
