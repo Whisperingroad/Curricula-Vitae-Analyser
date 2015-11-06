@@ -1,6 +1,6 @@
 english
 chinese
-Mandarin
+mandarin
 japanese
 korean
 spanish
@@ -14,3 +14,4 @@ indonesian
 german
 italian
 thai
+bangla

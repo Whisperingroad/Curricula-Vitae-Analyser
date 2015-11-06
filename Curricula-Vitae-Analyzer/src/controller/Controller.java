@@ -238,22 +238,24 @@ public class Controller
 	
 	public void writeAllToLib(){
 		for (int i = 0; i < experience.size(); i++){
-			if (!experienceListStorage.equals(experience.get(i)))
+			System.out.println(experience.size());
+			if (!experienceListStorage.contains(experience.get(i).toLowerCase())){
 				experienceListStorage.add(experience.get(i));
+			}
 		}
 		storage.writeData(experienceListStorage, libraryPath + "experienceList.txt");
 		for (int i = 0; i < language.size(); i++){
-			if (!languageListStorage.equals(language.get(i)))
+			if (!languageListStorage.contains(language.get(i).toLowerCase()))
 				languageListStorage.add(language.get(i));
 		}
 		storage.writeData(languageListStorage, libraryPath + "languageList.txt");
 		for (int i = 0; i < nationality.size(); i++){
-			if (!nationalityListStorage.equals(nationality.get(i)))
+			if (!nationalityListStorage.contains(nationality.get(i).toLowerCase()))
 				nationalityListStorage.add(nationality.get(i));
 		}
 		storage.writeData(nationalityListStorage, libraryPath + "nationalityList.txt");
 		for (int i = 0; i < qualification.size(); i++){
-			if (!qualificationListStorage.equals(qualification.get(i)))
+			if (!qualificationListStorage.contains(qualification.get(i).toLowerCase()))
 				qualificationListStorage.add(qualification.get(i));
 		}
 		storage.writeData(qualificationListStorage, libraryPath + "qualificationList.txt");

@@ -49,7 +49,7 @@ public class Storage {
 		// Repeat until all lines are read
 		while ((line = bufferedReader.readLine()) != null)
 		{
-			resume.add(line);
+			resume.add(line.toLowerCase());
 		}
 		bufferedReader.close();
 		return resume;

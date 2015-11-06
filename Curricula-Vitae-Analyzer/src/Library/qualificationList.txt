@@ -1,90 +1,90 @@
 bachelor in computer science
 degree in computer science
-bachelor of Science BSc Computer Science
-bachelor of Science BSc,Computer Science
-bachelor of science in Computer Science
-bachelor of Science Computer Science
-BSc Computer Science
-bsc in Computer Science
+bachelor of science bsc computer science
+bachelor of science bsc,computer science
+bachelor of science in computer science
+bachelor of science computer science
+bsc computer science
+bsc in computer science
 master in computer science
-master of Science MSc Computer Science
-master of Science MSc,Computer Science
-master of science in Computer Science
-master of Science Computer Science
-Msc Computer Science
-Msc in Computer Science
-phd.in Computer science
+master of science msc computer science
+master of science msc,computer science
+master of science in computer science
+master of science computer science
+msc computer science
+msc in computer science
+phd.in computer science
 phd in computer science
 bachelor in biomedical engineering
-bachelor of Engineering be biomedical engineering
-bachelor of Engineering be,biomedical engineering
-bachelor of Engineering B.Eng Biomedical engineering
-bachelor of Engineering B.Eng,biomedical engineering
-bachelor of Engineering B.Eng.biomedical engineering
-bachelor of Engineering B.Eng.,biomedical engineering
-bachelor of Engineering in Biomedical engineering
-bachelor of Engineering Biomedical engineering
+bachelor of engineering be biomedical engineering
+bachelor of engineering be,biomedical engineering
+bachelor of engineering b.eng biomedical engineering
+bachelor of engineering b.eng,biomedical engineering
+bachelor of engineering b.eng.biomedical engineering
+bachelor of engineering b.eng.,biomedical engineering
+bachelor of engineering in biomedical engineering
+bachelor of engineering biomedical engineering
 be biomedical engineering
 be in biomedical engineering
 master in biomedical engineering
-master of Engineering MEng Biomedical engineering
-master of Engineering MEng,biomedical engineering
-master of Engineering MEng.biomedical engineering
-master of Engineering MEng.,biomedical engineering
-master of Engineering M.Eng.biomedical engineering
-master of Engineering M.Eng.,biomedical engineering
-master of Engineering in Biomedical engineering
-master of Engineering Biomedical engineering
-MEng Biomedical engineering
-MEng.biomedical engineering
+master of engineering meng biomedical engineering
+master of engineering meng,biomedical engineering
+master of engineering meng.biomedical engineering
+master of engineering meng.,biomedical engineering
+master of engineering m.eng.biomedical engineering
+master of engineering m.eng.,biomedical engineering
+master of engineering in biomedical engineering
+master of engineering biomedical engineering
+meng biomedical engineering
+meng.biomedical engineering
 m.eng.biomedical engineering
 meng in biomedical engineering
-MEng.in biomedical engineering
+meng.in biomedical engineering
 m.eng.in biomedical engineering
 phd.in biomedical engineering
 phd in biomedical engineering
-bachelor in Computer engineering
-bachelor of Engineering be computer engineering
-bachelor of Engineering be,Computer engineering
-bachelor of Engineering B.Eng Computer engineering
-bachelor of Engineering B.Eng,Computer engineering
-bachelor of Engineering B.Eng.computer engineering
-bachelor of Engineering B.Eng.,Computer engineering
-bachelor of Engineering in Computer engineering
-bachelor of Engineering Computer engineering
-be Computer engineering
-be in Computer engineering
-master in Computer engineering
-master of Engineering MEng Computer engineering
-master of Engineering MEng,Computer engineering
-master of Engineering MEng.computer engineering
-master of Engineering MEng.,Computer engineering
-master of Engineering M.Eng.computer engineering
-master of Engineering M.Eng.,Computer engineering
-master of Engineering in Computer engineering
-master of Engineering Computer engineering
-MEng Computer engineering
-MEng.computer engineering
+bachelor in computer engineering
+bachelor of engineering be computer engineering
+bachelor of engineering be,computer engineering
+bachelor of engineering b.eng computer engineering
+bachelor of engineering b.eng,computer engineering
+bachelor of engineering b.eng.computer engineering
+bachelor of engineering b.eng.,computer engineering
+bachelor of engineering in computer engineering
+bachelor of engineering computer engineering
+be computer engineering
+be in computer engineering
+master in computer engineering
+master of engineering meng computer engineering
+master of engineering meng,computer engineering
+master of engineering meng.computer engineering
+master of engineering meng.,computer engineering
+master of engineering m.eng.computer engineering
+master of engineering m.eng.,computer engineering
+master of engineering in computer engineering
+master of engineering computer engineering
+meng computer engineering
+meng.computer engineering
 m.eng.computer engineering
-MEng in Computer engineering
-MEng.in Computer engineering
-m.eng.in Computer engineering
-phd.in Computer engineering
-phd in Computer engineering
+meng in computer engineering
+meng.in computer engineering
+m.eng.in computer engineering
+phd.in computer engineering
+phd in computer engineering
 bachelor in electrical engineering
 be in electrical engineering
 msc in electrical engineering
 phd in electrical engineering
 master in electrical engineering
-bachelor in Neuroscience
-master in Neuroscience
-phd in Neuroscience
-msc in Neuroscience
-bachelor in Biomedical Engineering
-master in Biomedical Engineering
-phd in Biomedical Engineering
-msc in Biomedical Engineering
-be in Biomedical Engineering
+bachelor in neuroscience
+master in neuroscience
+phd in neuroscience
+msc in neuroscience
+bachelor in biomedical engineering
+master in biomedical engineering
+phd in biomedical engineering
+msc in biomedical engineering
+be in biomedical engineering
 bachelor of science in information technology
 master of science in information technology
 phd of science in information technology
@@ -93,5 +93,5 @@ be in information technology
 be information technology
 b.eng.in information technolog
 itil foundation in it service management
-Dell certify system expert
-Dell system tear down
+dell certify system expert
+dell system tear down

@@ -1,2 +1,3 @@
-Singaporean
-Malaysian
+singaporean
+malaysian
+indian
