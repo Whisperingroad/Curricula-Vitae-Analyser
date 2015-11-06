@@ -31,8 +31,8 @@ public class Storage {
 		resumeList.clear();
 	}
 	public void addResume(double score,String name, ArrayList<String> qualifications, ArrayList<String> experience,
-			ArrayList<String> language, ArrayList<String> particulars){
-		Resume resume = new Resume(score,name,qualifications,experience,language,particulars);
+			ArrayList<String> language, ArrayList<String> particulars, ArrayList<String>important){
+		Resume resume = new Resume(score,name,qualifications,experience,language,particulars,important);
 		resumeList.add(resume);
 	}
 	
