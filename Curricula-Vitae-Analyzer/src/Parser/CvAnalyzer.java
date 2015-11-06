@@ -92,6 +92,10 @@ public class CvAnalyzer {
 		return particularsFulfilled;
 	}
 	
+	public ArrayList<String> getImportantRequirements(){
+		return importantRequirementsFulfilled;
+	}
+	
 	
 	public void clearLists(){
 		language.clear();
