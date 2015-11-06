@@ -89,6 +89,7 @@ public class Controller
 		updateLists(jobDescriptionAnalyzer);
 		
 		// for testing purposes
+		System.out.println("testing");
 		System.out.println("language");
 		for (int i=0;i<language.size();i++)
 			System.out.println(language.get(i));

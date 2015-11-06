@@ -116,62 +116,73 @@ public class JobDescriptionAnalyzer {
 						attribute = readFile.nextLine();
 						attribute = (attribute.toLowerCase()).trim();
 						if (paragraph.contains(attribute)){
-							if (impt == true){
-								VVVIPList.add(attribute);
+							if (i == 0 && !language.contains(attribute)){
+								language.add(attribute);
+								if (impt == true){
+									VVVIPList.add(attribute);
+								}
 							}
-							else{
-								if (i == 0 && !language.contains(attribute))
-									language.add(attribute);
-								else if (i == 1 && !qualification.contains(attribute))
-									qualification.add(attribute);
-								else if (i == 2 && !experience.contains(attribute))
-									experience.add(attribute);
-								else if (i == 3 && !nationality.contains(attribute))
-									nationality.add(attribute);
+							else if (i == 1 && !qualification.contains(attribute)){
+								qualification.add(attribute);
+								if (impt == true){
+									VVVIPList.add(attribute);
+								}
+							}
+							else if (i == 2 && !experience.contains(attribute)){
+								experience.add(attribute);
+								if (impt == true){
+									VVVIPList.add(attribute);
+								}
+							}
+							else if (i == 3 && !nationality.contains(attribute)){
+								nationality.add(attribute);
+								if (impt == true){
+									VVVIPList.add(attribute);
+								}
 							}
 						}
 					}
 					readFile.close();
 				}
-			} 
+			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	public void addSpecialCase(boolean[] categoryPresent, String paragraph, String rootPath, boolean impt){
-		//experience with years required
-		int yearExp = 4;
-		if (categoryPresent[yearExp]){
-			String numYear = findYearReq(paragraph);
-			reqYearExp.add(numYear);
-			if (paragraph.contains("relevant"))
-				reqYearExp.add(jobClass);
-			else{
-				String attribute = null;
-				String path = rootPath + "yearList.txt";
-				try {
-					File listPath = new File(path);
-					Scanner readFile = new Scanner(listPath);
-					while (readFile.hasNextLine()){
-						attribute = readFile.nextLine().trim().toLowerCase();
-						System.out.println(attribute);
-						if (paragraph.contains(attribute))
-							reqYearExp.add(attribute);
-					}
-					readFile.close();
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+public void addSpecialCase(boolean[] categoryPresent, String paragraph, String rootPath, boolean impt){
+	//experience with years required
+	int yearExp = 4;
+	if (categoryPresent[yearExp]){
+		String numYear = findYearReq(paragraph);
+		reqYearExp.add(numYear);
+		if (paragraph.contains("relevant"))
+			reqYearExp.add(jobClass);
+		else{
+			String attribute = null;
+			String path = rootPath + "yearList.txt";
+			try {
+				File listPath = new File(path);
+				Scanner readFile = new Scanner(listPath);
+				while (readFile.hasNextLine()){
+					attribute = readFile.nextLine().trim().toLowerCase();
+					System.out.println(attribute);
+					if (paragraph.contains(attribute))
+						reqYearExp.add(attribute);
 				}
+				readFile.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 	}
+}
 
-	private void clearAllArrayList(){
-		language.clear();
-		qualification.clear();
+private void clearAllArrayList(){
+	language.clear();
+	qualification.clear();
 		experience.clear();
 		nationality.clear();
 		reqYearExp.clear();

@@ -212,15 +212,6 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 			language = controller.getLanguage();
 			nationality = controller.getNationality();
 			qualification = controller.getQualification();
-			System.out.println("reading");
-			for (int i=0;i<experience.size();i++)
-				System.out.println(experience.get(i));
-			for (int i=0;i<language.size();i++)
-				System.out.println(language.get(i));
-			for (int i=0;i<nationality.size();i++)
-				System.out.println(nationality.get(i));
-			for (int i=0;i<qualification.size();i++)
-				System.out.println(qualification.get(i));
 			displayExperienceTable();
 			displayLanguageTable();
 			displayNationalityTable();
@@ -322,6 +313,10 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 			controller.setqualificationList(qualification);
 			 */
 				flushArrayList();
+				displayExperienceTable();
+				displayLanguageTable();
+				displayNationalityTable();
+				displayQualificationTable();
 				//this.dispose();
 			}
 			else 
