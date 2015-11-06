@@ -39,7 +39,7 @@ public class Storage {
 		return resumeList.get(index);
 	}
 	
-	public ArrayList<String> readData(File fileName) throws FileNotFoundException, IOException
+	public ArrayList<String> readData(String fileName) throws FileNotFoundException, IOException
 	{
 		ArrayList<String> resume = new ArrayList<String>();
 		FileReader fileReader = new FileReader(fileName);
@@ -52,7 +52,6 @@ public class Storage {
 		}
 		bufferedReader.close();
 		return resume;
-
 	}
 
 	public void writeData(String data, String fileName)

@@ -194,7 +194,6 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 		contentPane.add(inputJDPanel);
 		contentPane.add(attributeTablePanel);
 		contentPane.add(tabDonePanel);
-		//contentPane.add(doneButton);
 
 		contentPane.setSize(600, 500);
 		contentPane.setVisible(true);

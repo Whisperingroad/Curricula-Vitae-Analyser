@@ -41,11 +41,30 @@ public class Controller
 	// default constructor
 	public Controller()
 	{
-		
+		String experiencePath = libraryPath + "experience.txt";
+		System.out.println(experiencePath);
+		try {
+			ArrayList<String> experienceStorage = storage.readData(experiencePath);
+			for (int i=0;i<experienceStorage.size();i++)
+				System.out.println(experienceStorage.get(i));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	
 	
+	private File File(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
 	public String extractCV(File CV) throws IOException
 	{
 		String fileName = CV.getName();

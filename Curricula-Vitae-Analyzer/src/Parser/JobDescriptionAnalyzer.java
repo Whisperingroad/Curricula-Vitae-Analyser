@@ -151,49 +151,50 @@ public class JobDescriptionAnalyzer {
 		}
 	}
 
-public void addSpecialCase(boolean[] categoryPresent, String paragraph, String rootPath, boolean impt){
-	//experience with years required
-	int yearExp = 4;
-	if (categoryPresent[yearExp]){
-		String numYear = findYearReq(paragraph);
-		reqYearExp.add(numYear);
-		if (paragraph.contains("relevant"))
-			reqYearExp.add(jobClass);
-		else{
-			String attribute = null;
-			String path = rootPath + "yearList.txt";
-			try {
-				File listPath = new File(path);
-				Scanner readFile = new Scanner(listPath);
-				while (readFile.hasNextLine()){
-					attribute = readFile.nextLine().trim().toLowerCase();
-					System.out.println(attribute);
-					if (paragraph.contains(attribute))
-						reqYearExp.add(attribute);
+
+	public void addSpecialCase(boolean[] categoryPresent, String paragraph, String rootPath, boolean impt){
+		//experience with years required
+		int yearExp = 4;
+		if (categoryPresent[yearExp]){
+			String numYear = findYearReq(paragraph);
+			reqYearExp.add(numYear);
+			if (paragraph.contains("relevant"))
+				reqYearExp.add(jobClass);
+			else{
+				String attribute = null;
+				String path = rootPath + "yearList.txt";
+				try {
+					File listPath = new File(path);
+					Scanner readFile = new Scanner(listPath);
+					while (readFile.hasNextLine()){
+						attribute = readFile.nextLine().trim().toLowerCase();
+						System.out.println(attribute);
+						if (paragraph.contains(attribute))
+							reqYearExp.add(attribute);
+					}
+					readFile.close();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-				readFile.close();
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 		}
 	}
-}
 
-private void clearAllArrayList(){
-	language.clear();
-	qualification.clear();
+	private void clearAllArrayList(){
+		language.clear();
+		qualification.clear();
 		experience.clear();
 		nationality.clear();
 		reqYearExp.clear();
 		VVVIPList.clear();
 	}
-	
+
 	private String findYearReq(String input){
 		input = input.replaceAll("[^0-9]+", " ").trim();
 		return (input.substring(0, 1));
 	}
-	
+
 	private void checkList(){
 		System.out.println("language");
 		for (int i=0;i<language.size();i++){
