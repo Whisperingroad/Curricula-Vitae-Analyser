@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map.Entry;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import controller.Controller;
 
@@ -35,7 +36,43 @@ public class ui extends JFrame implements ActionListener{
 	public ui() {
 		String[] columnNames = {"CV name", "Score"};
 		model = new DefaultTableModel(columnNames, 0);
-		JTable table = new JTable(model);
+		JTable table = new JTable(model){
+            //Implement table cell tool tips.
+            public String getToolTipText(MouseEvent e) {
+                String tip = null;
+                java.awt.Point p = e.getPoint();
+                int rowIndex = rowAtPoint(p);
+                int colIndex = columnAtPoint(p);
+                int realColumnIndex = convertColumnIndexToModel(colIndex);
+
+                if (realColumnIndex == 0) { //Sport column
+                    tip = "<html>"+"File: "
+                           + getValueAt(rowIndex, colIndex)
+                           + "<br>"
+                           + "Score: "
+                           + getValueAt(rowIndex, colIndex+1)
+                           + "</html>";
+                } else if (realColumnIndex == 2) { //Veggie column
+                    TableModel model = getModel();
+//                    String firstName = (String)model.getValueAt(rowIndex,0);
+//                    String lastName = (String)model.getValueAt(rowIndex,1);
+//                    Boolean veggie = (Boolean)model.getValueAt(rowIndex,4);
+//                    if (Boolean.TRUE.equals(veggie)) {
+//                        tip = firstName + " " + lastName
+//                              + " is a vegetarian";
+//                    } else {
+//                        tip = firstName + " " + lastName
+//                              + " is not a vegetarian";
+//                    }
+                } else { 
+                    //You can omit this part if you know you don't 
+                    //have any renderers that supply their own tool 
+                    //tips.
+                    tip = super.getToolTipText(e);
+                }
+                return tip;
+            }
+		};
 		JScrollPane jScrollPanelTable = new JScrollPane(table);
 		
 		JPanel resultPanel = new JPanel();
