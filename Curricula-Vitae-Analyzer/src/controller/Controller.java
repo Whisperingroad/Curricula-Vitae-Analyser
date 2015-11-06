@@ -24,10 +24,10 @@ public class Controller
 	protected CvAnalyzer cvAnalyzer = new CvAnalyzer();
 	protected Storage storage = new Storage(); 
 
-	String resumePath = Constants.NICHOLAS + "Input\\";
-	String textResumePath = Constants.NICHOLAS + "Storage\\TextResumes\\";
-	String lemmatisedResumePath = Constants.NICHOLAS + "Storage\\LemmatisedResumes\\";
-	String libraryPath = Constants.NICHOLAS + "Library\\";
+	String resumePath = Constants.YIXIU + "Input\\";
+	String textResumePath = Constants.YIXIU + "Storage\\TextResumes\\";
+	String lemmatisedResumePath = Constants.YIXIU + "Storage\\LemmatisedResumes\\";
+	String libraryPath = Constants.YIXIU + "Library\\";
 
 	ArrayList<String> language = new ArrayList<String>();
 	ArrayList<String> qualification = new ArrayList<String>();
@@ -141,9 +141,10 @@ public class Controller
 		return qualification;
 	}
 
-	public HashMap<String,Double> startProcessing(File resumePath) throws IOException, FileNotFoundException
+	public ArrayList<Resume> startProcessing(File resumePath) throws IOException, FileNotFoundException
 	{
 
+		
 		System.out.println("check");
 		System.out.println(experience.size());
 		System.out.println(language.size());
@@ -164,15 +165,15 @@ public class Controller
 		}
 		
 		 storage.sortResumeList();
-		 
+	/*	 
 		 ArrayList<String> resultList = new ArrayList<String>(); 
 		 for (int i=0;i< listOfCVs.length ; i++)
 		 {	 
 			 resultList.add(storage.getResume(i).getName());
 			 resultList.add(String.valueOf(storage.getResume(i).getScore()));
 		 }
-		 
-		return resultList;
+	*/	 
+		 return storage.getResumeList();
 
 	}
 }

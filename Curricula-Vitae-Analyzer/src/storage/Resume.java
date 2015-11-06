@@ -1,11 +1,13 @@
 package storage;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 
 public class Resume {
 	String textFile;
 	String candidateName;
 	double resumeScore;
+	ArrayList<String> matchedCriteria;
 	
 	public Resume(String txtname){
 		textFile = txtname;
