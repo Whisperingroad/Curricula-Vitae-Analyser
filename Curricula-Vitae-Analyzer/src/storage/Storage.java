@@ -116,20 +116,6 @@ public class Storage {
 			
 		}
 	}
-	
-	public static void main(String[] args){
-		Storage test = new Storage();
-		Resume new1 = new Resume("1");
-		new1.setResume(15.5, "nc");
-		Resume new2 = new Resume("2");
-		new1.setResume(13.5, "nc");
-		Resume new3 = new Resume("3");
-		new1.setResume(17.5, "nc");
-		test.resumeList.add(new1);
-		test.resumeList.add(new2);
-		test.resumeList.add(new3);
-		test.sortResumeList();
-	}
 }
 
 

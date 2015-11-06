@@ -21,8 +21,7 @@ public class JobDescriptionAnalyzer {
 	private ArrayList<String> VVVIPList = new ArrayList<String>();
 	
 	private ArrayList<String> jobDescription = new ArrayList<String>();
-	
-	
+		
 	// loading the types of categories
 	public void loadCategories(String path){
 		int index = 0;
@@ -260,6 +259,7 @@ public class JobDescriptionAnalyzer {
 				addSpecialCase(categoryPresent, paragraph, path, impt);
 			}
 		}
+		
 		jobDescription.clear();
 	}
 	/*

@@ -5,11 +5,9 @@ import Parser.JobDescriptionAnalyzer;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.TreeMap;
 
 import extractor.TextExtractor;
 import Parser.CvAnalyzer;
@@ -22,30 +20,28 @@ import utils.Constants;
 public class Controller 
 {
 	protected Lemmatise textLemmatiser = new Lemmatise();
-	protected JobDescriptionAnalyzer jobDescriptionAnalyzer = new JobDescriptionAnalyzer();
+//	protected JobDescriptionAnalyzer jobDescriptionAnalyzer = new JobDescriptionAnalyzer();
 	protected CvAnalyzer cvAnalyzer = new CvAnalyzer();
 	protected Storage storage = new Storage(); 
 
-	String resumePath = Constants.YIXIU + "Input\\";
-	String textResumePath = Constants.YIXIU + "Storage\\TextResumes\\";
-	String lemmatisedResumePath = Constants.YIXIU + "Storage\\LemmatisedResumes\\";
-	String libraryPath = Constants.YIXIU + "Library\\";
-
+	String resumePath = Constants.NICHOLAS + "Input\\";
+	String textResumePath = Constants.NICHOLAS + "Storage\\TextResumes\\";
+	String lemmatisedResumePath = Constants.NICHOLAS + "Storage\\LemmatisedResumes\\";
+	String libraryPath = Constants.NICHOLAS + "Library\\";
 
 	ArrayList<String> language = new ArrayList<String>();
 	ArrayList<String> qualification = new ArrayList<String>();
 	ArrayList<String> experience = new ArrayList<String>();
 	ArrayList<String> nationality = new ArrayList<String>();
-	private ArrayList<String> reqYearExp = new ArrayList<String>();
-	private ArrayList<String> VVVIPList = new ArrayList<String>();
-
+	ArrayList<String> reqYearExp = new ArrayList<String>();
+	ArrayList<String> VVVIPList = new ArrayList<String>();
 
 	HashMap<String,Double> nameScorePairsHash =  new HashMap<String,Double>();
 
 	// default constructor
 	public Controller()
 	{
-
+		
 	}
 
 	
@@ -72,7 +68,7 @@ public class Controller
 		VVVIPList.clear();
 	}
 
-	private void updateLists(){	
+	private void updateLists(JobDescriptionAnalyzer jobDescriptionAnalyzer){	
 		language  = jobDescriptionAnalyzer.getLanguageReq();
 		qualification = jobDescriptionAnalyzer.getQualificationReq();
 		experience = jobDescriptionAnalyzer.getExperienceReq();
@@ -80,11 +76,10 @@ public class Controller
 		reqYearExp = jobDescriptionAnalyzer.getreqYearExp();
 		VVVIPList = jobDescriptionAnalyzer.getVVVIPList();
 	}
-
-	public HashMap<String,Double> startProcessing(String jobDescription, File resumePath) throws IOException, FileNotFoundException
-	{
-
-		// job description extraction
+	
+	public void startJobProcess(String jobDescription){
+		JobDescriptionAnalyzer jobDescriptionAnalyzer = new JobDescriptionAnalyzer();
+		
 		ArrayList<String> jobReq = new ArrayList<String>(Arrays.asList(jobDescription.split("\\r?\\n")));
 		jobReq = textLemmatiser.lemmatiser(jobReq);
 		System.out.println(jobReq.toString());
@@ -92,7 +87,7 @@ public class Controller
 		jobDescriptionAnalyzer.execute(libraryPath);
 		
 		clearLists();
-		updateLists();
+		updateLists(jobDescriptionAnalyzer);
 		
 		// for testing purposes
 		System.out.println("language");
@@ -113,7 +108,48 @@ public class Controller
 		System.out.println("VVVIPList");
 		for (int i=0;i<VVVIPList.size();i++)
 			System.out.println(VVVIPList.get(i));
-		
+	}
+	
+	public void setExperienceList(ArrayList<String> input){
+		experience.addAll(input);
+	}
+	
+	public void setLanguageList(ArrayList<String> input){
+		language.addAll(input);
+	}
+	
+	public void setNationalityList(ArrayList<String> input){
+		nationality.addAll(input);
+	}
+	
+	public void setqualificationList(ArrayList<String> input){
+		qualification.addAll(input);
+	}
+	
+	public ArrayList<String> getExperience(){
+		return experience;
+	}
+	
+	public ArrayList<String> getLanguage(){
+		return language;
+	}
+	
+	public ArrayList<String> getNationality(){
+		return nationality;
+	}
+	
+	public ArrayList<String> getQualification(){
+		return qualification;
+	}
+
+	public HashMap<String,Double> startProcessing(File resumePath) throws IOException, FileNotFoundException
+	{
+
+		System.out.println("check");
+		System.out.println(experience.size());
+		System.out.println(language.size());
+		System.out.println(nationality.size());
+		System.out.println(qualification.size());
 		File[] listOfCVs = resumePath.listFiles();
 		for (int i=0;i< listOfCVs.length ; i++)
 		{
