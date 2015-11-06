@@ -42,10 +42,10 @@ public class Controller
 	protected CvAnalyzer cvAnalyzer = new CvAnalyzer();
 	protected Storage storage = new Storage(); 
 
-	String resumePath = Constants.YIXIU + "Input\\";
-	String textResumePath = Constants.YIXIU + "Storage\\TextResumes\\";
-	String lemmatisedResumePath = Constants.YIXIU + "Storage\\LemmatisedResumes\\";
-	String libraryPath = Constants.YIXIU + "Library\\";
+	String resumePath = Constants.NICHOLAS + "Input\\";
+	String textResumePath = Constants.NICHOLAS + "Storage\\TextResumes\\";
+	String lemmatisedResumePath = Constants.NICHOLAS + "Storage\\LemmatisedResumes\\";
+	String libraryPath = Constants.NICHOLAS + "Library\\";
 
 	ArrayList<String> language = new ArrayList<String>();
 	ArrayList<String> qualification = new ArrayList<String>();
@@ -130,6 +130,7 @@ public class Controller
 		JobDescriptionAnalyzer jobDescriptionAnalyzer = new JobDescriptionAnalyzer(mainCategoriesStorage, experienceStorage, experienceListStorage, languageStorage,
 				languageListStorage, nationalityStorage, nationalityListStorage, qualificationStorage, qualificationListStorage, 
 				yearStorage, yearListStorage, modalsStorage);
+	
 		ArrayList<String> jobReq = new ArrayList<String>(Arrays.asList(jobDescription.split("\\r?\\n")));
 		jobReq = textLemmatiser.lemmatiser(jobReq);
 		System.out.println(jobReq.toString());
@@ -162,18 +163,22 @@ public class Controller
 	}
 	
 	public void setExperienceList(ArrayList<String> input){
+		experience.clear();
 		experience.addAll(input);
 	}
 	
 	public void setLanguageList(ArrayList<String> input){
+		language.clear();
 		language.addAll(input);
 	}
 	
 	public void setNationalityList(ArrayList<String> input){
+		nationality.clear();
 		nationality.addAll(input);
 	}
 	
 	public void setQualificationList(ArrayList<String> input){
+		qualification.clear();
 		qualification.addAll(input);
 	}
 	
@@ -195,6 +200,15 @@ public class Controller
 
 	public ArrayList<Resume> startProcessing(File resumePath) throws IOException, FileNotFoundException
 	{
+		System.out.println("controller here");
+		System.out.println(experience.size());
+		for (int i=0;i<experience.size();i++)
+			System.out.println(experience.get(i));
+		System.out.println(language.size());
+		System.out.println(qualification.size());
+		System.out.println(nationality.size());
+		
+		
 		storage.clearList();
 		File[] listOfCVs = resumePath.listFiles();
 		for (int i=0;i< listOfCVs.length ; i++)
