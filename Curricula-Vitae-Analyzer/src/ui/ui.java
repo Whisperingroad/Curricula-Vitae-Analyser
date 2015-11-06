@@ -41,26 +41,6 @@ public class ui extends JFrame implements ActionListener{
 		String[] columnNames = {"CV name", "Score"};
 		model = new DefaultTableModel(columnNames, 0);
 		candidateList = new ArrayList<Resume>(resultList);
-		System.out.println("Size of candidateList = "+ candidateList.size());
-		for(int i=0; i<resultList.size(); i++){
-			System.out.println("row: "+ i);
-			ArrayList<String> expsize = resultList.get(i).getMatchedExperience();
-			for(int j=0; j<expsize.size(); j++){
-				System.out.println("experience: "+expsize.get(j));
-			}
-			expsize = resultList.get(i).getMatchedQualification();
-			for(int j=0; j<expsize.size(); j++){
-				System.out.println("qual: "+expsize.get(j));
-			}
-			expsize = resultList.get(i).getMatchedLanguage();
-			for(int j=0; j<expsize.size(); j++){
-				System.out.println("lang: "+expsize.get(j));
-			}
-			expsize = resultList.get(i).getMatchedParticulars();
-			for(int j=0; j<expsize.size(); j++){
-				System.out.println("part: "+expsize.get(j));
-			}
-		}
 		
 		if(resultList!=null){
 			removeRows();
@@ -90,8 +70,9 @@ public class ui extends JFrame implements ActionListener{
                            + getValueAt(rowIndex, colIndex)
                            + "<br>"
                            + "Score: "
-                           + getValueAt(rowIndex, colIndex+1)
-                           + "</html>";
+                           + getValueAt(rowIndex, colIndex+1)+"<br>";
+                    ArrayList<ArrayList<String>> fufilled = buildFufilledArray(rowIndex);
+            		tip = buildResultDialogMessage(tip, fufilled);
                 } else { 
                     //You can omit this part if you know you don't 
                     //have any renderers that supply their own tool 
@@ -143,20 +124,26 @@ public class ui extends JFrame implements ActionListener{
 		JFrame frame = new JFrame();
 		String message = "<html>"
 				+ "File: " + table1.getValueAt(row, col) + "<br>"
-                + "Score: " + table1.getValueAt(row, col+1)+ "<br>"
+                + "Score: " + table1.getValueAt(row, col+1)+ "<br>"+"<br>"
                 + "Fufilled:" + "<br>";
-		ArrayList<ArrayList<String>> fufilled = new ArrayList<ArrayList<String>>();
-		fufilled.add(candidateList.get(row).getMatchedExperience());
-		fufilled.add(candidateList.get(row).getMatchedQualification());
-		fufilled.add(candidateList.get(row).getMatchedLanguage());
-		fufilled.add(candidateList.get(row).getMatchedParticulars());
 		
+		ArrayList<ArrayList<String>> fufilled = buildFufilledArray(row);
 		message = buildResultDialogMessage(message, fufilled);
 		JOptionPane.showMessageDialog(frame,
 				message,
 			    "Categories Fufilled",
 			    JOptionPane.PLAIN_MESSAGE);
 	}
+	
+	private ArrayList<ArrayList<String>> buildFufilledArray(int row){
+		ArrayList<ArrayList<String>> fufilled = new ArrayList<ArrayList<String>>();
+		fufilled.add(candidateList.get(row).getMatchedExperience());
+		fufilled.add(candidateList.get(row).getMatchedQualification());
+		fufilled.add(candidateList.get(row).getMatchedLanguage());
+		fufilled.add(candidateList.get(row).getMatchedParticulars());
+		return fufilled;
+	}
+	
 	private String buildResultDialogMessage(String message, ArrayList<ArrayList<String>> fufilled){
 		
 		String[] heading = {"Experience: ", "Qualification: ", "Language: ", "Particulars: "};
@@ -170,6 +157,7 @@ public class ui extends JFrame implements ActionListener{
 			}
 			message += "<br>"+"<br>";
 		}
+		message += "</html>";
 		return message;
 	}
 	
