@@ -149,11 +149,9 @@ public class ui extends JFrame implements ActionListener{
 		String[] heading = {"Experience: ", "Qualification: ", "Language: ", "Particulars: "};
 		for(int j=0; j<heading.length; j++){
 			message += heading[j];
-			System.out.println(heading[j]);
 			int listSize = fufilled.get(j).size();
 			for(int i=0; i<listSize; i++){
 				message += "<br>"+fufilled.get(j).get(i);
-				System.out.println(fufilled.get(j).get(i));
 			}
 			message += "<br>"+"<br>";
 		}

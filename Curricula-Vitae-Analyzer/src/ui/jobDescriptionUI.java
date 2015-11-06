@@ -275,7 +275,6 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 		
 		else if (e.getSource() == browseButton){
 			filepath = fileChooser();
-			System.out.println("1getSelectedFile() : " + filepath);
 		}
 		
 		else if (e.getSource() == doneButton){
