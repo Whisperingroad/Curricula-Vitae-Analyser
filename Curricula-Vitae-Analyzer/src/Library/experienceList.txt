@@ -201,3 +201,6 @@ ios/android
 Mobile application development
 artificial intelligence
 web development
+ruby
+ruby
+ruby
