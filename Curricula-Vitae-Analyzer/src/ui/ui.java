@@ -1,3 +1,4 @@
+
 package ui;
 
 import java.awt.*;
@@ -6,15 +7,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
-import java.util.TreeMap;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -24,54 +19,21 @@ import controller.Controller;
 /**
  * Created by workshop on 9/18/2015.
  */
+
 public class ui extends JFrame implements ActionListener{
 
-	JPanel contentPane, browseError;
-	JButton readButton, startButton, browseButton;
-//	JTextField textField;
-	JTextArea textArea;
+	JPanel contentPane;
+	JButton returnButton;
 	JTable table;
 	DefaultTableModel model;
-	File filepath;
 
 	int resultSize = 20;
-	String jobReq = null;
 
 	//to change to the relevant data type
 	List<String> resultFiles = new ArrayList<String>();
 
 	// Constructor
 	public ui() {
-		textArea = new JTextArea(5, 20);
-
-		textArea.setColumns(40);
-		textArea.setLineWrap(true);
-		textArea.setRows(10);
-		textArea.setWrapStyleWord(true);
-
-		JScrollPane jScrollPanelTxtArea = new JScrollPane(textArea);
-
-		readButton = new JButton("Read Job Description");
-		readButton.addActionListener(this);
-
-		startButton = new JButton("Start Processing");
-		startButton.addActionListener(this);
-
-		browseButton = new JButton("Browse Folder");
-		browseButton.addActionListener(this);
-
-		JPanel queryPanel = new JPanel();
-		queryPanel.add(jScrollPanelTxtArea);
-		JPanel buttonPanel = new JPanel(new BorderLayout());
-		queryPanel.add(buttonPanel, BorderLayout.EAST);
-		buttonPanel.add(readButton, BorderLayout.NORTH);
-		buttonPanel.add(startButton, BorderLayout.CENTER);
-		buttonPanel.add(browseButton, BorderLayout.SOUTH);
-
-		JPanel resultPanel = new JPanel();
-
-		resultPanel.setLayout(new GridLayout(1, 40, 60, 60));
-
 		String[] columnNames = {"CV name", "Score"};
 		model = new DefaultTableModel(columnNames, 0);
 		JTable table = new JTable(model){
@@ -112,17 +74,24 @@ public class ui extends JFrame implements ActionListener{
             }
 		};
 		JScrollPane jScrollPanelTable = new JScrollPane(table);
-
+		
+		JPanel resultPanel = new JPanel();
+		resultPanel.setLayout(new GridLayout(1, 40, 60, 60));
 		resultPanel.add(jScrollPanelTable);
 
-		resultPanel.setBorder(BorderFactory.createEmptyBorder(30,16,10,16));
+		resultPanel.setBorder(BorderFactory.createEmptyBorder(90,16,20,16));
+		
+		returnButton = new JButton("Back to Home");
+		returnButton.addActionListener(this);
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.add(returnButton);
 
 		contentPane = (JPanel)this.getContentPane();
 		setSize(800,700);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		contentPane.add(queryPanel, BorderLayout.PAGE_START);
-		contentPane.add(resultPanel, BorderLayout.CENTER);
+		contentPane.add(resultPanel, BorderLayout.PAGE_START);
+		contentPane.add(buttonPanel);
 
 		contentPane.setSize(600, 500);
 		contentPane.setVisible(true);
@@ -131,8 +100,24 @@ public class ui extends JFrame implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e){
+		if (e.getSource() == returnButton){
+			this.dispose();
+		}
+	}
+		/*
 		if (e.getSource() == readButton){
 			jobReq = textArea.getText();
+			controller.startJobProcess(jobReq);
+			experience = controller.getExperience();
+			language = controller.getLanguage();
+			nationality = controller.getNationality();
+			qualification = controller.getQualification();
+		//	jobDescriptionUI jdUI = new jobDescriptionUI(experience,language,nationality,qualification,controller);
+			
+		//	experience = jdUI.getExperienceList();
+		//	language = jdUI.getLanguageList();
+		//	nationality= jdUI.getNationality();
+		//	qualification = jdUI.getQualification();
 			//System.out.println(jobReq);
 
 		}else if (e.getSource() == browseButton){
@@ -147,7 +132,7 @@ public class ui extends JFrame implements ActionListener{
 				ArrayList<String> resultList = new ArrayList<String>();
 				
 				try {
-					resultList = controller.startProcessing(jobReq,filepath);
+					resultList = controller.startProcessing(filepath);
 				} catch (FileNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -187,71 +172,7 @@ public class ui extends JFrame implements ActionListener{
 		while (!resultFiles.isEmpty())
 			resultFiles.remove(0);
 	}
-
-	private void filePathInvalidDialog(){
-		JFrame frame = new JFrame();
-		JOptionPane.showMessageDialog(frame,
-			    "Please select another folder",
-			    "Invalid Folder",
-			    JOptionPane.WARNING_MESSAGE);
-//		JFrame frame = new JFrame("Folder invalid");
-//		frame.setSize(300, 100);
-//		browseError = new JPanel(new BorderLayout());
-//		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-//
-//		String message = "Folder does not contain PDF or Word Documents";
-//		JLabel content1 = new JLabel(message,JLabel.CENTER);
-//		message = "Please choose another folder"; 
-//		JLabel content2 = new JLabel(message,JLabel.CENTER);
-//		browseError.add(content1, BorderLayout.NORTH);
-//		browseError.add(content2, BorderLayout.CENTER);
-//
-//		frame.setContentPane(browseError);
-//		frame.setVisible(true);
-	}
-	private void missingFolderErrorDialog(){
-		JFrame frame = new JFrame();
-		JOptionPane.showMessageDialog(frame,
-			    "Please select a folder",
-			    "No Folder Selected",
-			    JOptionPane.WARNING_MESSAGE);
-//		JFrame frame = new JFrame("Missing Folder");
-//		frame.setSize(300, 100);
-//		browseError = new JPanel(new BorderLayout());
-//		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-//
-//		String message = "Please choose a folder for processing"; 
-//		JLabel content = new JLabel(message,JLabel.CENTER);
-//		browseError.add(content, BorderLayout.CENTER);
-//
-//		frame.setContentPane(browseError);
-//		frame.setVisible(true);
-	}
-
-	private File fileChooser(){
-		JFileChooser chooser = new JFileChooser();
-		String folder = null;
-		if(filepath!=null){
-			folder = filepath.toString();
-		}else{
-			folder = ".";
-		}
-		chooser.setCurrentDirectory(new java.io.File(folder));
-		chooser.setDialogTitle("Browse Folder");
-		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-		chooser.setAcceptAllFileFilterUsed(false);
-		File filePath = null;
-
-		if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-			System.out.println("getCurrentDirectory(): " + chooser.getCurrentDirectory());
-			System.out.println("getSelectedFile() : " + chooser.getSelectedFile());
-			filePath = chooser.getSelectedFile();
-		} else {
-			System.out.println("No Selection ");
-		}
-		return filePath;
-	}
-
+*/
 	public static void main(String[] args) {
 		new ui();
 	}
