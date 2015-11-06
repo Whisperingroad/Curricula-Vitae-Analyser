@@ -66,7 +66,7 @@ public class WordDocumentExtractor
 		return text;
 	}
 
-	public static String extractDocxText(String inputFile) throws FileNotFoundException, IOException{
+	public static String extractDocxText(String inputFile) throws FileNotFoundException, IOException, org.apache.poi.POIXMLException{
 		String text = "";
 		//try {
 		XWPFDocument docx = new XWPFDocument(

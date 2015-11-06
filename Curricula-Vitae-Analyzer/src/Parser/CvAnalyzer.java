@@ -114,7 +114,9 @@ public class CvAnalyzer {
 		importantRequirements.addAll(importantRequirementsInput);
 	}
 
-	public double execute(String path, ArrayList<String> languageInput,ArrayList<String> qualificationInput,ArrayList<String> experienceInput,ArrayList<String> nationalityInput, ArrayList<String> importantRequirementsInput) throws IOException
+	public double execute(String path, ArrayList<String> languageInput,ArrayList<String> qualificationInput,
+			ArrayList<String> experienceInput,ArrayList<String> nationalityInput, 
+			ArrayList<String> importantRequirementsInput) throws IOException, FileNotFoundException
 	{
 		clearLists();
 		loadAllHeaderTypes(path);

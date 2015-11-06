@@ -42,10 +42,16 @@ public class Controller
 	protected CvAnalyzer cvAnalyzer = new CvAnalyzer();
 	protected Storage storage = new Storage(); 
 
-	String resumePath = Constants.SEBASTIAN + "Input\\";
-	String textResumePath = Constants.SEBASTIAN + "Storage\\TextResumes\\";
-	String lemmatisedResumePath = Constants.SEBASTIAN + "Storage\\LemmatisedResumes\\";
-	String libraryPath = Constants.SEBASTIAN + "Library\\";
+	String resumePath = System.getProperty("user.dir") + "\\src\\Input\\";
+	String textResumePath = System.getProperty("user.dir") + "\\src\\Storage\\TextResumes\\";
+	String lemmatisedResumePath = System.getProperty("user.dir") + "\\src\\Storage\\LemmatisedResumes\\";
+	String libraryPath = System.getProperty("user.dir") + "\\src\\Library\\";
+/*
+	String resumePath = Constants.YIXIU + "Input\\";
+	String textResumePath = Constants.YIXIU + "Storage\\TextResumes\\";
+	String lemmatisedResumePath = Constants.YIXIU + "Storage\\LemmatisedResumes\\";
+	String libraryPath = Constants.YIXIU + "Library\\";
+*/
 
 	ArrayList<String> language = new ArrayList<String>();
 	ArrayList<String> qualification = new ArrayList<String>();
@@ -95,7 +101,7 @@ public class Controller
 */
 
 
-	public String extractCV(File CV) throws IOException
+	public String extractCV(File CV) throws IOException,NullPointerException,org.apache.poi.POIXMLException
 	{
 		//String fileName = CV.getName();
 		//storage.addResume(fileName);
@@ -198,8 +204,10 @@ public class Controller
 		return qualification;
 	}
 
-	public ArrayList<Resume> startProcessing(File resumePath) throws IOException, FileNotFoundException
-	{		
+
+	public ArrayList<Resume> startProcessing(File resumePath) throws IOException, FileNotFoundException, NullPointerException,org.apache.poi.POIXMLException
+	{
+
 		storage.clearList();
 		File[] listOfCVs = resumePath.listFiles();
 		for (int i=0;i< listOfCVs.length ; i++)

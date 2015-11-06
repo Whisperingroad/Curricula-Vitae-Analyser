@@ -60,10 +60,16 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 		controller = new Controller();
 		}
 		catch(FileNotFoundException e){
-			e.printStackTrace();
+			//e.printStackTrace();
+			errorDialog("File not found!");
 		}
 		catch(IOException e1){
-			e1.printStackTrace();
+			//e1.printStackTrace();
+			errorDialog("File cannot be opened!");
+		}
+		catch (NullPointerException e1) {
+			//e1.printStackTrace();
+			errorDialog("Wrong file format exists!");
 		}
 		
 		inputJDArea = new JTextArea(5, 20);
@@ -312,10 +318,20 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 					ui UI = new ui(resultList);
 					controller.writeAllToLib();
 				} catch (FileNotFoundException e1) {
-					e1.printStackTrace();
+					//e1.printStackTrace();
+					errorDialog("File not found!");
 				} catch (IOException e1) {
-					e1.printStackTrace();
+					//e1.printStackTrace();
+					errorDialog("File cannot be opened!");
 				}
+				 catch (NullPointerException e1) {
+						//e1.printStackTrace();
+					errorDialog("Wrong file format exists!");
+				}
+				catch (org.apache.poi.POIXMLException e1){
+					errorDialog("Please close all input files!");
+				}
+				
 			/* checking purposes
 			System.out.println("processing");
 			for (int i=0;i<experience.size();i++)
@@ -497,6 +513,14 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 //		frame.setContentPane(browseError);
 //		frame.setVisible(true);
 	}
+	
+	private void errorDialog(String text){
+		JFrame frame = new JFrame();
+		JOptionPane.showMessageDialog(frame,
+			    text,
+			    "Error",
+			    JOptionPane.WARNING_MESSAGE);
+	}
 
 	private File fileChooser(){
 		JFileChooser chooser = new JFileChooser();
@@ -531,6 +555,5 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 	
 	public static void main(String[] args) {
 		new jobDescriptionUI();
-	
 	}
 }
