@@ -1,46 +1,47 @@
 package Parser;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
-
-import utils.Constants;
-
 
 public class JobDescriptionAnalyzer {
-	private int numCategories = 5;
+	private int numCategories 		= 5;
+	private int languageNum 		= 0;
+	private int qualificationNum 	= 1;
+	private int experienceNum 		= 2;
+	private int nationalityNum 		= 3;
+	
 	private String[] categories = new String[numCategories];
 	
 	private String jobClass = null;
 	
 	//loading of Dictionary
-	protected ArrayList<String> experienceStorage = new ArrayList<String>();
-	protected ArrayList<String> experienceListStorage = new ArrayList<String>();
-	protected ArrayList<String> languageStorage = new ArrayList<String>();
-	protected ArrayList<String> languageListStorage = new ArrayList<String>();
-	protected ArrayList<String> mainCategoriesStorage = new ArrayList<String>();
-	protected ArrayList<String> modalsStorage = new ArrayList<String>();
-	protected ArrayList<String> nationalityStorage = new ArrayList<String>();
-	protected ArrayList<String> nationalityListStorage = new ArrayList<String>();
-	protected ArrayList<String> qualificationStorage = new ArrayList<String>();
-	protected ArrayList<String> qualificationListStorage = new ArrayList<String>();
-	protected ArrayList<String> yearStorage = new ArrayList<String>();
-	protected ArrayList<String> yearListStorage = new ArrayList<String>();
+	protected ArrayList<String> experienceStorage 			= new ArrayList<String>();
+	protected ArrayList<String> experienceListStorage 		= new ArrayList<String>();
+	protected ArrayList<String> languageStorage 			= new ArrayList<String>();
+	protected ArrayList<String> languageListStorage 		= new ArrayList<String>();
+	protected ArrayList<String> mainCategoriesStorage 		= new ArrayList<String>();
+	protected ArrayList<String> modalsStorage 				= new ArrayList<String>();
+	protected ArrayList<String> nationalityStorage 			= new ArrayList<String>();
+	protected ArrayList<String> nationalityListStorage 		= new ArrayList<String>();
+	protected ArrayList<String> qualificationStorage 		= new ArrayList<String>();
+	protected ArrayList<String> qualificationListStorage	= new ArrayList<String>();
+	protected ArrayList<String> yearStorage 				= new ArrayList<String>();
+	protected ArrayList<String> yearListStorage 			= new ArrayList<String>();
 	
-	private ArrayList<String> language = new ArrayList<String>();
-	private ArrayList<String> qualification = new ArrayList<String>();
-	private ArrayList<String> experience = new ArrayList<String>();
-	private ArrayList<String> nationality = new ArrayList<String>();
-	private ArrayList<String> reqYearExp = new ArrayList<String>();
-	private ArrayList<String> VVVIPList = new ArrayList<String>();
+	//Attributes required
+	protected ArrayList<String> language 					= new ArrayList<String>();
+	protected ArrayList<String> qualification 				= new ArrayList<String>();
+	protected ArrayList<String> experience 					= new ArrayList<String>();
+	protected ArrayList<String> nationality 				= new ArrayList<String>();
+	protected ArrayList<String> reqYearExp 					= new ArrayList<String>();
+	protected ArrayList<String> VVVIPList 					= new ArrayList<String>();
 	
-	private ArrayList<String> jobDescription = new ArrayList<String>();
+	protected ArrayList<String> jobDescription 				= new ArrayList<String>();
 		
 	//constructor
 	public JobDescriptionAnalyzer(ArrayList<String> mainCategoriesInput, ArrayList<String> experienceInput, ArrayList<String> experienceListInput, ArrayList<String> languageInput,
 			ArrayList<String> languageListInput, ArrayList<String> nationalityInput, ArrayList<String> nationalityListInput, ArrayList<String> qualificationInput, ArrayList<String> qualificationListInput, 
 			ArrayList<String> yearInput, ArrayList<String> yearListInput, ArrayList<String> modalsInput){
+		
 		//loading of dictionaries into ArrayList
 		mainCategoriesStorage.addAll(mainCategoriesInput);
 		experienceStorage.addAll(experienceInput);
@@ -66,62 +67,23 @@ public class JobDescriptionAnalyzer {
 	// looking through libraries of all categories
 	// comparing with a single line of job description
 	public boolean[] findCategory(String paragraph){
-		String word = null;
 		// values default to false
 		boolean[] categoryPresent = new boolean[numCategories];
-		
-		for (int i = 0; i < languageStorage.size(); i++){
-			word = languageStorage.get(i);
-			word = word.toLowerCase();
-			word = word.trim();
-			if (paragraph.contains(word))
-			{
-				categoryPresent[0] = true;
-			}
-		}
-		for (int i = 0; i < qualificationStorage.size(); i++){
-			word = qualificationStorage.get(i);
-			word = word.toLowerCase();
-			word = word.trim();
-			if (paragraph.contains(word))
-			{
-				categoryPresent[1] = true;
-			}
-		}
-		for (int i = 0; i < experienceStorage.size(); i++){
-			word = experienceStorage.get(i);
-			word = word.toLowerCase();
-			word = word.trim();
-			if (paragraph.contains(word))
-			{
-				categoryPresent[2] = true;
-			}
-		}
-		for (int i = 0; i < nationalityStorage.size(); i++){
-			word = nationalityStorage.get(i);
-			word = word.toLowerCase();
-			word = word.trim();
-			if (paragraph.contains(word))
-			{
-				categoryPresent[3] = true;
-			}
-		}
-		for (int i = 0; i < yearStorage.size(); i++){
-			word = yearStorage.get(i);
-			word = word.toLowerCase();
-			word = word.trim();
-			if (paragraph.contains(word))
-			{
-				categoryPresent[4] = true;
-			}
-		}
+		if (findLanguageVerb(paragraph))
+			categoryPresent[languageNum] = true;
+		if (findQualificationVerb(paragraph))
+			categoryPresent[qualificationNum] = true;
+		if (findExperienceVerb(paragraph))
+			categoryPresent[experienceNum] = true;
+		if (findNationalityVerb(paragraph))
+			categoryPresent[nationalityNum] = true;
 		return categoryPresent;
 	}
 	
 	//check whether sentence contains modals
-	boolean checkModal(String paragraph){
+	boolean checkModal(String line){
 		for (int i = 0; i < modalsStorage.size(); i++){
-			if (paragraph.contains(modalsStorage.get(i)))
+			if (line.contains(modalsStorage.get(i)))
 				return true;
 		}
 		return false;
@@ -196,12 +158,14 @@ public class JobDescriptionAnalyzer {
 			for (int i = 0; i < experienceListStorage.size(); i++){
 				attribute = experienceListStorage.get(i);
 				attribute = (attribute.toLowerCase()).trim();
-				
 				if (attribute.length() < 3){
-					ArrayList<String> words = new ArrayList<String>(Arrays.asList(paragraph.split("\\p{Punct}| ")));
+					System.out.println("attribute " + attribute);
+					ArrayList<String> words = new ArrayList<String>(Arrays.asList(paragraph.split("\\s+|,|:|.")));
 					for (String word : words)
 					{
+						System.out.println("word is" + word);
 						if (word.length() < 3){
+							System.out.println(word);
 							System.out.println("enter 1");
 							if (word.equals(attribute)){
 								System.out.println("enetere 2");
@@ -291,6 +255,46 @@ public class JobDescriptionAnalyzer {
 	private String findYearReq(String input){
 		input = input.replaceAll("[^0-9]+", " ").trim();
 		return (input.substring(0, 1));
+	}
+	
+	private boolean findLanguageVerb(String line){
+		String verb = null;
+		for (int size = 0; size < languageStorage.size(); size++){
+			verb = languageStorage.get(size).trim().toLowerCase();
+			if (line.contains(verb))
+				return true;
+		}
+		return false;
+	}
+	
+	private boolean findQualificationVerb(String line){
+		String verb = null;
+		for (int size = 0; size < qualificationStorage.size(); size++){
+			verb = qualificationStorage.get(size).trim().toLowerCase();
+			if (line.contains(verb))
+				return true;
+		}
+		return false;
+	}
+	
+	private boolean findExperienceVerb(String line){
+		String verb = null;
+		for (int size = 0; size < experienceStorage.size(); size++){
+			verb = experienceStorage.get(size).trim().toLowerCase();
+			if (line.contains(verb))
+				return true;
+		}
+		return false;
+	}
+	
+	private boolean findNationalityVerb(String line){
+		String verb = null;
+		for (int size = 0; size < nationalityStorage.size(); size++){
+			verb = nationalityStorage.get(size).trim().toLowerCase();
+			if (line.contains(verb))
+				return true;
+		}
+		return false;
 	}
 
 	private void checkList(){
