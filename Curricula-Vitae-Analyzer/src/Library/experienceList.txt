@@ -201,4 +201,3 @@ ios/android
 mobile application development
 artificial intelligence
 web development
-c
