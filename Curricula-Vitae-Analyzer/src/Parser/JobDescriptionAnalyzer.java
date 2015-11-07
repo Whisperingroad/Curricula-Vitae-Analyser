@@ -79,147 +79,84 @@ public class JobDescriptionAnalyzer {
 			categoryPresent[nationalityNum] = true;
 		return categoryPresent;
 	}
-	
-	//check whether sentence contains modals
-	boolean checkModal(String line){
-		for (int i = 0; i < modalsStorage.size(); i++){
-			if (line.contains(modalsStorage.get(i)))
+
+	public void addRequirements(boolean[] categoryPresent, String paragraph, boolean impt){
+		if (categoryPresent[languageNum])
+			findAddAttribute(paragraph, languageListStorage, languageNum, impt);
+		if (categoryPresent[qualificationNum])
+			findAddAttribute(paragraph, qualificationListStorage, qualificationNum, impt);
+		if (categoryPresent[experienceNum])
+			findAddAttribute(paragraph, experienceListStorage, experienceNum, impt);
+		if (categoryPresent[nationalityNum])
+			findAddAttribute(paragraph, nationalityListStorage, nationalityNum, impt);
+	}
+		
+
+	private void findAddAttribute(String line, ArrayList<String> verbs, int category, boolean impt){
+		String attribute = null;
+		for (int size = 0; size < verbs.size(); size++){
+			attribute = verbs.get(size).toLowerCase().trim();
+			if (checkWordLength(attribute)){
+				ArrayList<String> words = parseSentence(line);
+				if (compareWord(words, attribute)){
+					if (category == languageNum)
+						language.add(attribute);
+					else if (category == qualificationNum)
+						qualification.add(attribute);
+					else if (category == experienceNum)
+						experience.add(attribute);
+					else if (category == nationalityNum)
+						nationality.add(attribute);
+					if (impt)
+						VVVIPList.add(attribute);
+				}
+			}
+			else{
+				if (line.contains(attribute)){
+					if (category == languageNum){
+						if (!language.contains(attribute)){
+							language.add(attribute);
+						}
+					}
+					if (category == qualificationNum){
+						if (!qualification.contains(attribute)){
+							qualification.add(attribute);
+						}
+					}
+					else if (category == experienceNum){
+						if (!experience.contains(attribute)){
+							experience.add(attribute);
+						}
+					}
+					if (category == nationalityNum){
+						if (!nationality.contains(attribute)){
+							nationality.add(attribute);
+						}
+					}
+					if (impt)
+						VVVIPList.add(attribute);
+				}
+			}
+		}
+	}
+
+	private boolean compareWord(ArrayList<String> words, String attribute){
+		for (int size = 0; size < words.size(); size++){
+			if (words.get(size).equals(attribute))
 				return true;
 		}
 		return false;
 	}
 
-	public void addRequirements(boolean[] categoryPresent, String paragraph, boolean impt){
+	private boolean checkWordLength(String word){
+		if (word.length() < 3)
+			return true;
+		else 
+			return false;
+	}
 
-		String attribute = null;
-		if (categoryPresent[0]){
-			for (int i = 0; i < languageListStorage.size(); i++){
-				attribute = languageListStorage.get(i);
-				attribute = (attribute.toLowerCase()).trim();
-				
-				if (attribute.length() < 3){
-					ArrayList<String> words = new ArrayList<String>(Arrays.asList(paragraph.split("\\p{Punct}| ")));
-					for (String word : words)
-					{
-						if (word.length() < 3){
-							if (word.equals(attribute)){
-								language.add(attribute);
-								if (impt == true){
-									VVVIPList.add(attribute);
-								}
-							}
-						}
-					}
-				}
-				else {
-					if (paragraph.contains(attribute)){
-						if (!language.contains(attribute)){
-							language.add(attribute);
-							if (impt == true){
-								VVVIPList.add(attribute);
-							}
-						}
-					}
-				}
-			}
-		}
-		if (categoryPresent[1]){
-			for (int i = 0; i < qualificationListStorage.size(); i++){
-				attribute = qualificationListStorage.get(i);
-				attribute = (attribute.toLowerCase()).trim();
-				
-				if (attribute.length() < 3){
-					ArrayList<String> words = new ArrayList<String>(Arrays.asList(paragraph.split("\\p{Punct}| ")));
-					for (String word : words)
-					{
-						if (word.length() < 3){
-							if (word.equals(attribute)){
-								qualification.add(attribute);
-								if (impt == true){
-									VVVIPList.add(attribute);
-								}
-							}
-						}
-					}
-				}
-				else {
-					if (paragraph.contains(attribute)){
-						if (!qualification.contains(attribute)){
-							qualification.add(attribute);
-							if (impt == true){
-								VVVIPList.add(attribute);
-							}
-						}
-					}
-				}
-			}
-		}
-		if (categoryPresent[2]){
-			for (int i = 0; i < experienceListStorage.size(); i++){
-				attribute = experienceListStorage.get(i);
-				attribute = (attribute.toLowerCase()).trim();
-				if (attribute.length() < 3){
-					System.out.println("attribute " + attribute);
-					ArrayList<String> words = new ArrayList<String>(Arrays.asList(paragraph.split("\\s+|,|:|.")));
-					for (String word : words)
-					{
-						System.out.println("word is" + word);
-						if (word.length() < 3){
-							System.out.println(word);
-							System.out.println("enter 1");
-							if (word.equals(attribute)){
-								System.out.println("enetere 2");
-								experience.add(attribute);
-								if (impt == true){
-									VVVIPList.add(attribute);
-								}
-							}
-						}
-					}
-				}
-				else {
-					if (paragraph.contains(attribute)){
-						if (!experience.contains(attribute)){
-							experience.add(attribute);
-							if (impt == true){
-								VVVIPList.add(attribute);
-							}
-						}
-					}
-				}
-			}
-		}
-		if (categoryPresent[3]){
-			for (int i = 0; i < nationalityListStorage.size(); i++){
-				attribute = nationalityListStorage.get(i);
-				attribute = (attribute.toLowerCase()).trim();
-				
-				if (attribute.length() < 3){
-					ArrayList<String> words = new ArrayList<String>(Arrays.asList(paragraph.split("\\p{Punct}| ")));
-					for (String word : words)
-					{
-						if (word.length() < 3){
-							if (word.equals(attribute)){
-								nationality.add(attribute);
-								if (impt == true){
-									VVVIPList.add(attribute);
-								}
-							}
-						}
-					}
-				}
-				else {
-					if (paragraph.contains(attribute)){
-						if (!nationality.contains(attribute)){
-							nationality.add(attribute);
-							if (impt == true){
-								VVVIPList.add(attribute);
-							}
-						}
-					}
-				}
-			}
-		}
+	private ArrayList<String> parseSentence(String line){
+		return new ArrayList<String>(Arrays.asList(line.split("(?!\\+)(?!:)\\p{Punct}| ")));
 	}
 
 	//adding the number of years of experience in the field required
@@ -296,6 +233,15 @@ public class JobDescriptionAnalyzer {
 		}
 		return false;
 	}
+	
+	//check whether sentence contains modals
+		boolean findModal(String line){
+			for (int i = 0; i < modalsStorage.size(); i++){
+				if (line.contains(modalsStorage.get(i)))
+					return true;
+			}
+			return false;
+		}
 
 	private void checkList(){
 		System.out.println("language");
@@ -363,7 +309,7 @@ public class JobDescriptionAnalyzer {
 			String paragraph = jobDescription.get(size).toLowerCase();
 			System.out.println("JOB DESCIRPTION:" + paragraph);
 			categoryPresent = findCategory(paragraph);
-			if (checkModal(paragraph)){
+			if (findModal(paragraph)){
 				impt = true;
 				addRequirements(categoryPresent, paragraph, impt);
 			}
@@ -373,7 +319,8 @@ public class JobDescriptionAnalyzer {
 				addSpecialCase(categoryPresent, paragraph, impt);
 			}
 		}
-		
+		System.out.println("jd check");
+		checkList();
 		jobDescription.clear();
 	}
 	/*
