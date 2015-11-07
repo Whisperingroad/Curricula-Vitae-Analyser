@@ -42,10 +42,11 @@ public class Controller
 	protected CvAnalyzer cvAnalyzer = new CvAnalyzer();
 	protected Storage storage = new Storage(); 
 
-	String resumePath = Constants.SEBASTIAN + "Input\\";
-	String textResumePath = Constants.SEBASTIAN + "Storage\\TextResumes\\";
-	String lemmatisedResumePath = Constants.SEBASTIAN + "Storage\\LemmatisedResumes\\";
-	String libraryPath = Constants.SEBASTIAN + "Library\\";
+	String resumePath =  System.getProperty("user.dir") + "\\src\\Input\\";
+	String textResumePath =  System.getProperty("user.dir") + "\\src\\Storage\\TextResumes\\";
+	String lemmatisedResumePath =  System.getProperty("user.dir") + "\\src\\Storage\\LemmatisedResumes\\";
+	String libraryPath =  System.getProperty("user.dir") + "\\src\\Library\\";
+
 
 	ArrayList<String> language = new ArrayList<String>();
 	ArrayList<String> qualification = new ArrayList<String>();
