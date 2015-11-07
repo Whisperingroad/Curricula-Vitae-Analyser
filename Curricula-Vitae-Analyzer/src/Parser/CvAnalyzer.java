@@ -183,7 +183,7 @@ public class CvAnalyzer {
 			// would be safer to get an exact match
 			if (attribute.length() < 4)
 			{
-				ArrayList<String> words = new ArrayList<String>(Arrays.asList(line.split("(?!\\+)\\p{Punct}| ")));			
+				ArrayList<String> words = new ArrayList<String>(Arrays.asList(line.split("(?!\\+)(?!#)\\p{Punct}| ")));			
 				for (String word : words)
 				{						
 					// attribute is found in sentence
@@ -294,8 +294,8 @@ public class CvAnalyzer {
 	// check if the sentence has less than 4 words
 	public boolean checkWordLimit(String line)
 	{
-		
-		ArrayList<String> words = new ArrayList<String>(Arrays.asList(line.split("(?!\\:)\\p{Punct}| ")));
+		// split into words when punctuation or space is encountered
+		ArrayList<String> words = new ArrayList<String>(Arrays.asList(line.split("\\p{Punct}| ")));
 		if (words.size() > 4)
 			return false;
 		else
@@ -306,10 +306,10 @@ public class CvAnalyzer {
 	
 	// header check 2
 	// check if punctuation can be found in line
-	// headers should not contain commas and full stops
+	// headers should not contain punctuation except for ":"
 	public boolean checkForSymbols(String line)
 	{
-		if (line.contains(",|."))
+		if (line.contains("(?!:)\\p{Punct}"))
 			return false;
 		else
 			return true;
