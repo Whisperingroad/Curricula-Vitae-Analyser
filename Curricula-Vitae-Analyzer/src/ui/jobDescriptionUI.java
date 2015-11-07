@@ -12,6 +12,7 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ImageIcon;
+import javax.swing.border.EmptyBorder;
 
 import utils.Constants;
 
@@ -72,6 +73,9 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 			errorDialog("Wrong file format exists!");
 		}
 		
+		JLabel reminderJD = new JLabel("Please enter Job Title in first line:");
+		reminderJD.setBorder(new EmptyBorder(5,5,5,5));
+		
 		inputJDArea = new JTextArea(5, 20);
 		inputJDArea.setColumns(50);
 		inputJDArea.setLineWrap(true);
@@ -84,10 +88,14 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 		
 		readJDButton = new JButton("Read Job Description");
 		readJDButton.addActionListener(this);
-		JPanel inputJDPanel = new JPanel();
-		inputJDPanel.add(jScrollPanelInputJDArea);
-		inputJDPanel.add(readJDButton);
+		JPanel inputJDPanel = new JPanel(new BorderLayout());
+		inputJDPanel.add(reminderJD, BorderLayout.NORTH);
+		inputJDPanel.add(jScrollPanelInputJDArea, BorderLayout.CENTER);
+		//inputJDPanel.add(readJDButton);
+		JPanel readJDButtonPanel = new JPanel();
 		
+		readJDButtonPanel.add(readJDButton);
+		inputJDPanel.add(readJDButtonPanel, BorderLayout.EAST);
 		
 		//Attribute Table Panel
 		String[] experienceColumns = {"Experience"};
