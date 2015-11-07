@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 import java.util.regex.Pattern;
 
 
@@ -185,9 +184,12 @@ public class CvAnalyzer {
 			if (attribute.length() < 4)
 			{
 				System.out.println(line);
-				ArrayList<String> words = new ArrayList<String>(Arrays.asList(line.split("\\p{Punct}| ")));			
+				ArrayList<String> words = new ArrayList<String>(Arrays.asList(line.split("(?!\\+)\\p{Punct}| ")));			
 				for (String word : words)
-				{		
+				{	
+					System.out.println("check how does split sentences look like " + word);
+					
+					
 					// attribute is found in sentence
 					if (attribute.equals(word.trim()))
 					{
@@ -297,7 +299,7 @@ public class CvAnalyzer {
 	public boolean checkWordLimit(String line)
 	{
 		
-		ArrayList<String> words = new ArrayList<String>(Arrays.asList(line.split("\\p{Punct}| ")));
+		ArrayList<String> words = new ArrayList<String>(Arrays.asList(line.split("(?!\\:)\\p{Punct}| ")));
 		if (words.size() > 4)
 			return false;
 		else
