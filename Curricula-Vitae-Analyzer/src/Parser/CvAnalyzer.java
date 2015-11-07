@@ -175,7 +175,7 @@ public class CvAnalyzer {
 			// would be safer to get an exact match
 			if (attribute.length() < 4)
 			{
-				ArrayList<String> words = new ArrayList<String>(Arrays.asList(line.split("(?!\\+)(?!#)\\p{Punct}| ")));			
+				ArrayList<String> words = new ArrayList<String>(Arrays.asList(line.split("(?!\\+)(?!#)(?!-)\\p{Punct}| ")));			
 				for (String word : words)
 				{						
 					// attribute is found in sentence
