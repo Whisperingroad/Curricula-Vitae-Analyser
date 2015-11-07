@@ -233,16 +233,17 @@ public class JobDescriptionAnalyzer {
 		}
 		return false;
 	}
-	
-	//check whether sentence contains modals
-		boolean findModal(String line){
-			for (int i = 0; i < modalsStorage.size(); i++){
-				if (line.contains(modalsStorage.get(i)))
-					return true;
-			}
-			return false;
-		}
 
+	//check whether sentence contains modals
+	boolean findModal(String line){
+		for (int i = 0; i < modalsStorage.size(); i++){
+			if (line.contains(modalsStorage.get(i)))
+				return true;
+		}
+		return false;
+	}
+
+	//for checking purposes
 	private void checkList(){
 		System.out.println("language");
 		for (int i=0;i<language.size();i++){
@@ -319,8 +320,6 @@ public class JobDescriptionAnalyzer {
 				addSpecialCase(categoryPresent, paragraph, impt);
 			}
 		}
-		System.out.println("jd check");
-		checkList();
 		jobDescription.clear();
 	}
 	/*

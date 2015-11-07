@@ -11,15 +11,6 @@ import java.util.List;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.ImageIcon;
-
-import utils.Constants;
-
-
-
-
-import com.sun.org.apache.bcel.internal.classfile.ConstantNameAndType;
-
 import storage.Resume;
 import controller.Controller;
 
