@@ -81,7 +81,7 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 		inputJDArea.setLineWrap(true);
 		inputJDArea.setRows(10);
 		inputJDArea.setWrapStyleWord(true);
-		inputJDArea.setText("Please enter Job Title in first line");
+		inputJDArea.setText("Job Description: ");
 
 		JScrollPane jScrollPanelInputJDArea = new JScrollPane(inputJDArea);
 		

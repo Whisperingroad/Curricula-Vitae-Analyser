@@ -1,46 +1,47 @@
 package Parser;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
-
-import utils.Constants;
-
 
 public class JobDescriptionAnalyzer {
-	private int numCategories = 5;
+	private int numCategories 		= 5;
+	private int languageNum 		= 0;
+	private int qualificationNum 	= 1;
+	private int experienceNum 		= 2;
+	private int nationalityNum 		= 3;
+	
 	private String[] categories = new String[numCategories];
 	
 	private String jobClass = null;
 	
 	//loading of Dictionary
-	protected ArrayList<String> experienceStorage = new ArrayList<String>();
-	protected ArrayList<String> experienceListStorage = new ArrayList<String>();
-	protected ArrayList<String> languageStorage = new ArrayList<String>();
-	protected ArrayList<String> languageListStorage = new ArrayList<String>();
-	protected ArrayList<String> mainCategoriesStorage = new ArrayList<String>();
-	protected ArrayList<String> modalsStorage = new ArrayList<String>();
-	protected ArrayList<String> nationalityStorage = new ArrayList<String>();
-	protected ArrayList<String> nationalityListStorage = new ArrayList<String>();
-	protected ArrayList<String> qualificationStorage = new ArrayList<String>();
-	protected ArrayList<String> qualificationListStorage = new ArrayList<String>();
-	protected ArrayList<String> yearStorage = new ArrayList<String>();
-	protected ArrayList<String> yearListStorage = new ArrayList<String>();
+	protected ArrayList<String> experienceStorage 			= new ArrayList<String>();
+	protected ArrayList<String> experienceListStorage 		= new ArrayList<String>();
+	protected ArrayList<String> languageStorage 			= new ArrayList<String>();
+	protected ArrayList<String> languageListStorage 		= new ArrayList<String>();
+	protected ArrayList<String> mainCategoriesStorage 		= new ArrayList<String>();
+	protected ArrayList<String> modalsStorage 				= new ArrayList<String>();
+	protected ArrayList<String> nationalityStorage 			= new ArrayList<String>();
+	protected ArrayList<String> nationalityListStorage 		= new ArrayList<String>();
+	protected ArrayList<String> qualificationStorage 		= new ArrayList<String>();
+	protected ArrayList<String> qualificationListStorage	= new ArrayList<String>();
+	protected ArrayList<String> yearStorage 				= new ArrayList<String>();
+	protected ArrayList<String> yearListStorage 			= new ArrayList<String>();
 	
-	private ArrayList<String> language = new ArrayList<String>();
-	private ArrayList<String> qualification = new ArrayList<String>();
-	private ArrayList<String> experience = new ArrayList<String>();
-	private ArrayList<String> nationality = new ArrayList<String>();
-	private ArrayList<String> reqYearExp = new ArrayList<String>();
-	private ArrayList<String> VVVIPList = new ArrayList<String>();
+	//Attributes required
+	protected ArrayList<String> language 					= new ArrayList<String>();
+	protected ArrayList<String> qualification 				= new ArrayList<String>();
+	protected ArrayList<String> experience 					= new ArrayList<String>();
+	protected ArrayList<String> nationality 				= new ArrayList<String>();
+	protected ArrayList<String> reqYearExp 					= new ArrayList<String>();
+	protected ArrayList<String> VVVIPList 					= new ArrayList<String>();
 	
-	private ArrayList<String> jobDescription = new ArrayList<String>();
+	protected ArrayList<String> jobDescription 				= new ArrayList<String>();
 		
 	//constructor
 	public JobDescriptionAnalyzer(ArrayList<String> mainCategoriesInput, ArrayList<String> experienceInput, ArrayList<String> experienceListInput, ArrayList<String> languageInput,
 			ArrayList<String> languageListInput, ArrayList<String> nationalityInput, ArrayList<String> nationalityListInput, ArrayList<String> qualificationInput, ArrayList<String> qualificationListInput, 
 			ArrayList<String> yearInput, ArrayList<String> yearListInput, ArrayList<String> modalsInput){
+		
 		//loading of dictionaries into ArrayList
 		mainCategoriesStorage.addAll(mainCategoriesInput);
 		experienceStorage.addAll(experienceInput);
@@ -66,196 +67,96 @@ public class JobDescriptionAnalyzer {
 	// looking through libraries of all categories
 	// comparing with a single line of job description
 	public boolean[] findCategory(String paragraph){
-		String word = null;
 		// values default to false
 		boolean[] categoryPresent = new boolean[numCategories];
-		
-		for (int i = 0; i < languageStorage.size(); i++){
-			word = languageStorage.get(i);
-			word = word.toLowerCase();
-			word = word.trim();
-			if (paragraph.contains(word))
-			{
-				categoryPresent[0] = true;
-			}
-		}
-		for (int i = 0; i < qualificationStorage.size(); i++){
-			word = qualificationStorage.get(i);
-			word = word.toLowerCase();
-			word = word.trim();
-			if (paragraph.contains(word))
-			{
-				categoryPresent[1] = true;
-			}
-		}
-		for (int i = 0; i < experienceStorage.size(); i++){
-			word = experienceStorage.get(i);
-			word = word.toLowerCase();
-			word = word.trim();
-			if (paragraph.contains(word))
-			{
-				categoryPresent[2] = true;
-			}
-		}
-		for (int i = 0; i < nationalityStorage.size(); i++){
-			word = nationalityStorage.get(i);
-			word = word.toLowerCase();
-			word = word.trim();
-			if (paragraph.contains(word))
-			{
-				categoryPresent[3] = true;
-			}
-		}
-		for (int i = 0; i < yearStorage.size(); i++){
-			word = yearStorage.get(i);
-			word = word.toLowerCase();
-			word = word.trim();
-			if (paragraph.contains(word))
-			{
-				categoryPresent[4] = true;
-			}
-		}
+		if (findLanguageVerb(paragraph))
+			categoryPresent[languageNum] = true;
+		if (findQualificationVerb(paragraph))
+			categoryPresent[qualificationNum] = true;
+		if (findExperienceVerb(paragraph))
+			categoryPresent[experienceNum] = true;
+		if (findNationalityVerb(paragraph))
+			categoryPresent[nationalityNum] = true;
 		return categoryPresent;
 	}
-	
-	//check whether sentence contains modals
-	boolean checkModal(String paragraph){
-		for (int i = 0; i < modalsStorage.size(); i++){
-			if (paragraph.contains(modalsStorage.get(i)))
+
+	public void addRequirements(boolean[] categoryPresent, String paragraph, boolean impt){
+		if (categoryPresent[languageNum])
+			findAddAttribute(paragraph, languageListStorage, languageNum, impt);
+		if (categoryPresent[qualificationNum])
+			findAddAttribute(paragraph, qualificationListStorage, qualificationNum, impt);
+		if (categoryPresent[experienceNum])
+			findAddAttribute(paragraph, experienceListStorage, experienceNum, impt);
+		if (categoryPresent[nationalityNum])
+			findAddAttribute(paragraph, nationalityListStorage, nationalityNum, impt);
+	}
+		
+
+	private void findAddAttribute(String line, ArrayList<String> verbs, int category, boolean impt){
+		String attribute = null;
+		for (int size = 0; size < verbs.size(); size++){
+			attribute = verbs.get(size).toLowerCase().trim();
+			if (checkWordLength(attribute)){
+				ArrayList<String> words = parseSentence(line);
+				if (compareWord(words, attribute)){
+					if (category == languageNum)
+						language.add(attribute);
+					else if (category == qualificationNum)
+						qualification.add(attribute);
+					else if (category == experienceNum)
+						experience.add(attribute);
+					else if (category == nationalityNum)
+						nationality.add(attribute);
+					if (impt)
+						VVVIPList.add(attribute);
+				}
+			}
+			else{
+				if (line.contains(attribute)){
+					if (category == languageNum){
+						if (!language.contains(attribute)){
+							language.add(attribute);
+						}
+					}
+					if (category == qualificationNum){
+						if (!qualification.contains(attribute)){
+							qualification.add(attribute);
+						}
+					}
+					else if (category == experienceNum){
+						if (!experience.contains(attribute)){
+							experience.add(attribute);
+						}
+					}
+					if (category == nationalityNum){
+						if (!nationality.contains(attribute)){
+							nationality.add(attribute);
+						}
+					}
+					if (impt)
+						VVVIPList.add(attribute);
+				}
+			}
+		}
+	}
+
+	private boolean compareWord(ArrayList<String> words, String attribute){
+		for (int size = 0; size < words.size(); size++){
+			if (words.get(size).equals(attribute))
 				return true;
 		}
 		return false;
 	}
 
-	public void addRequirements(boolean[] categoryPresent, String paragraph, boolean impt){
+	private boolean checkWordLength(String word){
+		if (word.length() < 3)
+			return true;
+		else 
+			return false;
+	}
 
-		String attribute = null;
-		if (categoryPresent[0]){
-			for (int i = 0; i < languageListStorage.size(); i++){
-				attribute = languageListStorage.get(i);
-				attribute = (attribute.toLowerCase()).trim();
-				
-				if (attribute.length() < 3){
-					ArrayList<String> words = new ArrayList<String>(Arrays.asList(paragraph.split("\\p{Punct}| ")));
-					for (String word : words)
-					{
-						if (word.length() < 3){
-							if (word.equals(attribute)){
-								language.add(attribute);
-								if (impt == true){
-									VVVIPList.add(attribute);
-								}
-							}
-						}
-					}
-				}
-				else {
-					if (paragraph.contains(attribute)){
-						if (!language.contains(attribute)){
-							language.add(attribute);
-							if (impt == true){
-								VVVIPList.add(attribute);
-							}
-						}
-					}
-				}
-			}
-		}
-		if (categoryPresent[1]){
-			for (int i = 0; i < qualificationListStorage.size(); i++){
-				attribute = qualificationListStorage.get(i);
-				attribute = (attribute.toLowerCase()).trim();
-				
-				if (attribute.length() < 3){
-					ArrayList<String> words = new ArrayList<String>(Arrays.asList(paragraph.split("\\p{Punct}| ")));
-					for (String word : words)
-					{
-						if (word.length() < 3){
-							if (word.equals(attribute)){
-								qualification.add(attribute);
-								if (impt == true){
-									VVVIPList.add(attribute);
-								}
-							}
-						}
-					}
-				}
-				else {
-					if (paragraph.contains(attribute)){
-						if (!qualification.contains(attribute)){
-							qualification.add(attribute);
-							if (impt == true){
-								VVVIPList.add(attribute);
-							}
-						}
-					}
-				}
-			}
-		}
-		if (categoryPresent[2]){
-			for (int i = 0; i < experienceListStorage.size(); i++){
-				attribute = experienceListStorage.get(i);
-				attribute = (attribute.toLowerCase()).trim();
-				
-				if (attribute.length() < 3){
-					ArrayList<String> words = new ArrayList<String>(Arrays.asList(paragraph.split("\\p{Punct}| ")));
-					for (String word : words)
-					{
-						if (word.length() < 3){
-							System.out.println("enter 1");
-							if (word.equals(attribute)){
-								System.out.println("enetere 2");
-								experience.add(attribute);
-								if (impt == true){
-									VVVIPList.add(attribute);
-								}
-							}
-						}
-					}
-				}
-				else {
-					if (paragraph.contains(attribute)){
-						if (!experience.contains(attribute)){
-							experience.add(attribute);
-							if (impt == true){
-								VVVIPList.add(attribute);
-							}
-						}
-					}
-				}
-			}
-		}
-		if (categoryPresent[3]){
-			for (int i = 0; i < nationalityListStorage.size(); i++){
-				attribute = nationalityListStorage.get(i);
-				attribute = (attribute.toLowerCase()).trim();
-				
-				if (attribute.length() < 3){
-					ArrayList<String> words = new ArrayList<String>(Arrays.asList(paragraph.split("\\p{Punct}| ")));
-					for (String word : words)
-					{
-						if (word.length() < 3){
-							if (word.equals(attribute)){
-								nationality.add(attribute);
-								if (impt == true){
-									VVVIPList.add(attribute);
-								}
-							}
-						}
-					}
-				}
-				else {
-					if (paragraph.contains(attribute)){
-						if (!nationality.contains(attribute)){
-							nationality.add(attribute);
-							if (impt == true){
-								VVVIPList.add(attribute);
-							}
-						}
-					}
-				}
-			}
-		}
+	private ArrayList<String> parseSentence(String line){
+		return new ArrayList<String>(Arrays.asList(line.split("(?!\\+)(?!#)(?!-)\\p{Punct}| ")));
 	}
 
 	//adding the number of years of experience in the field required
@@ -292,6 +193,55 @@ public class JobDescriptionAnalyzer {
 		input = input.replaceAll("[^0-9]+", " ").trim();
 		return (input.substring(0, 1));
 	}
+	
+	private boolean findLanguageVerb(String line){
+		String verb = null;
+		for (int size = 0; size < languageStorage.size(); size++){
+			verb = languageStorage.get(size).trim().toLowerCase();
+			if (line.contains(verb))
+				return true;
+		}
+		return false;
+	}
+	
+	private boolean findQualificationVerb(String line){
+		String verb = null;
+		for (int size = 0; size < qualificationStorage.size(); size++){
+			verb = qualificationStorage.get(size).trim().toLowerCase();
+			if (line.contains(verb))
+				return true;
+		}
+		return false;
+	}
+	
+	private boolean findExperienceVerb(String line){
+		String verb = null;
+		for (int size = 0; size < experienceStorage.size(); size++){
+			verb = experienceStorage.get(size).trim().toLowerCase();
+			if (line.contains(verb))
+				return true;
+		}
+		return false;
+	}
+	
+	private boolean findNationalityVerb(String line){
+		String verb = null;
+		for (int size = 0; size < nationalityStorage.size(); size++){
+			verb = nationalityStorage.get(size).trim().toLowerCase();
+			if (line.contains(verb))
+				return true;
+		}
+		return false;
+	}
+	
+	//check whether sentence contains modals
+		boolean findModal(String line){
+			for (int i = 0; i < modalsStorage.size(); i++){
+				if (line.contains(modalsStorage.get(i)))
+					return true;
+			}
+			return false;
+		}
 
 	private void checkList(){
 		System.out.println("language");
@@ -359,7 +309,7 @@ public class JobDescriptionAnalyzer {
 			String paragraph = jobDescription.get(size).toLowerCase();
 			System.out.println("JOB DESCIRPTION:" + paragraph);
 			categoryPresent = findCategory(paragraph);
-			if (checkModal(paragraph)){
+			if (findModal(paragraph)){
 				impt = true;
 				addRequirements(categoryPresent, paragraph, impt);
 			}
@@ -369,7 +319,8 @@ public class JobDescriptionAnalyzer {
 				addSpecialCase(categoryPresent, paragraph, impt);
 			}
 		}
-		
+		System.out.println("jd check");
+		checkList();
 		jobDescription.clear();
 	}
 	/*
