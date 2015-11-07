@@ -39,7 +39,7 @@ public class Controller
 
 	protected Lemmatise textLemmatiser = new Lemmatise();
 //	protected JobDescriptionAnalyzer jobDescriptionAnalyzer = new JobDescriptionAnalyzer();
-	protected CvAnalyzer cvAnalyzer = new CvAnalyzer();
+	protected CvAnalyzer cvAnalyzer;
 	protected Storage storage = new Storage(); 
 
 	String resumePath =  System.getProperty("user.dir") + "\\src\\Input\\";
@@ -210,11 +210,11 @@ public class Controller
 			String txtCV = extractCV(listOfCVs[i]);
 			ArrayList<String> resume = new ArrayList<String>(Arrays.asList(txtCV.split("\n")));	
 			ArrayList<String> lemmatisedResume = new ArrayList<String>(textLemmatiser.lemmatiser(resume));
+			cvAnalyzer = new CvAnalyzer(experienceHeadersStorage,qualificationHeadersStorage,languageHeadersStorage,particularsHeadersStorage);
 			cvAnalyzer.inputCV(lemmatisedResume);
-			double score = cvAnalyzer.execute(libraryPath, language, qualification, experience, nationality, VVVIPList);
+			double score = cvAnalyzer.execute(language, qualification, experience, nationality, VVVIPList);
 			String candidateName = (listOfCVs[i].getName()).replace(lemmatisedResumePath, "");
 			candidateName = candidateName.replace(Constants.txtPostFix, "");
-			//nameScorePairsHash.put(candidateName, score);
 			storage.addResume(score, candidateName,cvAnalyzer.getQualification(), 
 					cvAnalyzer.getExperience(), cvAnalyzer.getLanguage(),
 					cvAnalyzer.getParticulars(),cvAnalyzer.getImportantRequirements());

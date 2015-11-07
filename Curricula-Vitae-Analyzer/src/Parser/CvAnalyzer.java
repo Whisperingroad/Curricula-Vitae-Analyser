@@ -37,6 +37,17 @@ public class CvAnalyzer {
 	
 	public enum HeaderTypes {QUALIFICATION, EXPERIENCE, LANGUAGE, PARTICULARS, INVALID};
 	
+	
+	// populate all the headers CvAnalyzer is constructed
+	public CvAnalyzer(ArrayList<String> experienceTypeHeaders, ArrayList<String> qualificationTypeHeaders, ArrayList<String> languageTypeHeaders, ArrayList<String> particularsTypeHeaders)
+	{
+		experienceHeaders.addAll(experienceTypeHeaders);
+		qualificationHeaders.addAll(qualificationTypeHeaders);
+		languageHeaders.addAll(languageTypeHeaders);
+		particularsHeaders.addAll(particularsTypeHeaders);
+		
+	}
+	
 	private double computeTotalAttribute()
 	{
 		return (language.size() + qualification.size() + experience.size() + nationality.size());
@@ -60,14 +71,7 @@ public class CvAnalyzer {
 		}
 		return candidateScore;
 	}
-	
-	private boolean checkAvail(){
-		if (computeTotalAttribute() == 0)
-			return false;
-		else 
-			return true;
-	}
-	
+		
 	public void inputCV(ArrayList<String> input){
 		CV.clear();
 		CV.addAll(input);
@@ -117,21 +121,19 @@ public class CvAnalyzer {
 		importantRequirements.addAll(importantRequirementsInput);
 	}
 
-	public double execute(String path, ArrayList<String> languageInput,ArrayList<String> qualificationInput,
+	public double execute(ArrayList<String> languageInput,ArrayList<String> qualificationInput,
 			ArrayList<String> experienceInput,ArrayList<String> nationalityInput, 
 			ArrayList<String> importantRequirementsInput) throws IOException, FileNotFoundException
 	{
 		clearLists();
-		loadAllHeaderTypes(path);
 		addLists(languageInput,qualificationInput, experienceInput, nationalityInput, importantRequirementsInput);
 
-		if (checkAvail() == true){
-			//score = 0;
+		if (computeTotalAttribute()!= 0)
+		{
 			String lineInCV = null;
 			
 			// loop through the entire CV for the first time to look
 			// for important requirements
-			
 			for (int i = 0; i < CV.size(); i++ )
 			{	
 				lineInCV = CV.get(i).toLowerCase().trim();
@@ -166,11 +168,9 @@ public class CvAnalyzer {
 					//matchParticularDetails(paragraph);
 				}
 			}			
-			double score = computeScore();
-			return score;
 		}
-		else
-			return 0.0;
+		double score = computeScore();
+		return score;
 	}
 	
 	public void matchRequirements(ArrayList<String> requirements, ArrayList<String> requirementsFulfilled, String line)
@@ -183,13 +183,9 @@ public class CvAnalyzer {
 			// would be safer to get an exact match
 			if (attribute.length() < 4)
 			{
-				System.out.println(line);
-				ArrayList<String> words = new ArrayList<String>(Arrays.asList(line.split("(?!\\+)\\p{Punct}| ")));			
+				ArrayList<String> words = new ArrayList<String>(Arrays.asList(line.split("(?!\\+)(?!#)\\p{Punct}| ")));			
 				for (String word : words)
-				{	
-					System.out.println("check how does split sentences look like " + word);
-					
-					
+				{						
 					// attribute is found in sentence
 					if (attribute.equals(word.trim()))
 					{
@@ -298,8 +294,8 @@ public class CvAnalyzer {
 	// check if the sentence has less than 4 words
 	public boolean checkWordLimit(String line)
 	{
-		
-		ArrayList<String> words = new ArrayList<String>(Arrays.asList(line.split("(?!\\:)\\p{Punct}| ")));
+		// split into words when punctuation or space is encountered
+		ArrayList<String> words = new ArrayList<String>(Arrays.asList(line.split("\\p{Punct}| ")));
 		if (words.size() > 4)
 			return false;
 		else
@@ -310,10 +306,10 @@ public class CvAnalyzer {
 	
 	// header check 2
 	// check if punctuation can be found in line
-	// headers should not contain commas and full stops
+	// headers should not contain punctuation except for ":"
 	public boolean checkForSymbols(String line)
 	{
-		if (line.contains(",|."))
+		if (line.contains("(?!:)\\p{Punct}"))
 			return false;
 		else
 			return true;
