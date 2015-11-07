@@ -156,7 +156,7 @@ public class JobDescriptionAnalyzer {
 	}
 
 	private ArrayList<String> parseSentence(String line){
-		return new ArrayList<String>(Arrays.asList(line.split("(?!\\+)(?!#)\\p{Punct}| ")));
+		return new ArrayList<String>(Arrays.asList(line.split("(?!\\+)(?!#)(?!-)\\p{Punct}| ")));
 	}
 
 	//adding the number of years of experience in the field required

@@ -11,7 +11,6 @@ import java.util.regex.Pattern;
 
 public class CvAnalyzer {
 
-	//private double score;
 	private ArrayList<String> language = new ArrayList<String>();
 	private ArrayList<String> qualification = new ArrayList<String>();
 	private ArrayList<String> experience = new ArrayList<String>();
@@ -27,7 +26,6 @@ public class CvAnalyzer {
 	
 	private double HIGHSCORE = 9;
 	private double SCORE = 1;
-	
 	
 	// for headers
 	private ArrayList<String> qualificationHeaders = new ArrayList<String>();
@@ -45,7 +43,6 @@ public class CvAnalyzer {
 		qualificationHeaders.addAll(qualificationTypeHeaders);
 		languageHeaders.addAll(languageTypeHeaders);
 		particularsHeaders.addAll(particularsTypeHeaders);
-		
 	}
 	
 	private double computeTotalAttribute()
@@ -98,8 +95,7 @@ public class CvAnalyzer {
 	public ArrayList<String> getImportantRequirements(){
 		return importantRequirementsFulfilled;
 	}
-	
-	
+		
 	public void clearLists(){
 		language.clear();
 		qualification.clear();
@@ -149,23 +145,19 @@ public class CvAnalyzer {
 				header = checkForHeader(lineInCV, header);
 				if (header == HeaderTypes.QUALIFICATION)
 				{
-					//matchQualificationDetails(paragraph);
 					matchRequirements(qualification, qualificationsFulfilled, lineInCV);
 				}
 				else if (header == HeaderTypes.EXPERIENCE)
 				{
-					//matchExperienceDetails(paragraph);
 					matchRequirements(experience, experienceFulfilled, lineInCV);
 				}
 				else if (header == HeaderTypes.LANGUAGE)
 				{
 					matchRequirements(language, languageFulfilled, lineInCV);
-					//matchLanguageDetails(paragraph);
 				}
 				else if (header == HeaderTypes.PARTICULARS)
 				{
 					matchRequirements(nationality, particularsFulfilled, lineInCV);
-					//matchParticularDetails(paragraph);
 				}
 			}			
 		}
@@ -183,7 +175,7 @@ public class CvAnalyzer {
 			// would be safer to get an exact match
 			if (attribute.length() < 4)
 			{
-				ArrayList<String> words = new ArrayList<String>(Arrays.asList(line.split("(?!\\+)(?!#)\\p{Punct}| ")));			
+				ArrayList<String> words = new ArrayList<String>(Arrays.asList(line.split("(?!\\+)(?!#)(?!-)\\p{Punct}| ")));			
 				for (String word : words)
 				{						
 					// attribute is found in sentence
