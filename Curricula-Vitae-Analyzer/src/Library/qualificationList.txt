@@ -78,7 +78,6 @@ bachelor in neuroscience
 master in neuroscience
 phd in neuroscience
 msc in neuroscience
-bachelor in biomedical engineering
 master in biomedical engineering
 phd in biomedical engineering
 msc in biomedical engineering

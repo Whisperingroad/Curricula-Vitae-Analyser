@@ -47,7 +47,6 @@ public class Controller
 	String lemmatisedResumePath =  System.getProperty("user.dir") + "\\src\\Storage\\LemmatisedResumes\\";
 	String libraryPath =  System.getProperty("user.dir") + "\\src\\Library\\";
 
-
 	ArrayList<String> language = new ArrayList<String>();
 	ArrayList<String> qualification = new ArrayList<String>();
 	ArrayList<String> experience = new ArrayList<String>();
@@ -136,7 +135,7 @@ public class Controller
 		jobReq = textLemmatiser.lemmatiser(jobReq);
 		//System.out.println(jobReq.toString());
 		jobDescriptionAnalyzer.setJobRequirement(jobReq);
-		jobDescriptionAnalyzer.execute(libraryPath);
+		jobDescriptionAnalyzer.execute();
 		
 		clearLists();
 		updateLists(jobDescriptionAnalyzer);
@@ -165,22 +164,22 @@ public class Controller
 	
 	public void setExperienceList(ArrayList<String> input){
 		experience.clear();
-		experience.addAll(input);
+		experience.addAll(textLemmatiser.lemmatiser(input));
 	}
 	
 	public void setLanguageList(ArrayList<String> input){
 		language.clear();
-		language.addAll(input);
+		language.addAll(textLemmatiser.lemmatiser(input));
 	}
 	
 	public void setNationalityList(ArrayList<String> input){
 		nationality.clear();
-		nationality.addAll(input);
+		nationality.addAll(textLemmatiser.lemmatiser(input));
 	}
 	
 	public void setQualificationList(ArrayList<String> input){
 		qualification.clear();
-		qualification.addAll(input);
+		qualification.addAll(textLemmatiser.lemmatiser(input));
 	}
 	
 	public ArrayList<String> getExperience(){
@@ -240,21 +239,23 @@ public class Controller
 				experienceListStorage.add(experience.get(i));
 			}
 		}
-		storage.writeData(experienceListStorage, libraryPath + "experienceList.txt");
+		//textLemmatiser.lemmatiser(experienceListStorage);
+		//storage.writeData(experienceListStorage, libraryPath + "experienceList.txt");
+		storage.writeData(textLemmatiser.lemmatiser(experienceListStorage), libraryPath + "experienceList.txt");
 		for (int i = 0; i < language.size(); i++){
 			if (!languageListStorage.contains(language.get(i).toLowerCase()))
 				languageListStorage.add(language.get(i));
 		}
-		storage.writeData(languageListStorage, libraryPath + "languageList.txt");
+		storage.writeData(textLemmatiser.lemmatiser(languageListStorage), libraryPath + "languageList.txt");
 		for (int i = 0; i < nationality.size(); i++){
 			if (!nationalityListStorage.contains(nationality.get(i).toLowerCase()))
 				nationalityListStorage.add(nationality.get(i));
 		}
-		storage.writeData(nationalityListStorage, libraryPath + "nationalityList.txt");
+		storage.writeData(textLemmatiser.lemmatiser(nationalityListStorage), libraryPath + "nationalityList.txt");
 		for (int i = 0; i < qualification.size(); i++){
 			if (!qualificationListStorage.contains(qualification.get(i).toLowerCase()))
 				qualificationListStorage.add(qualification.get(i));
 		}
-		storage.writeData(qualificationListStorage, libraryPath + "qualificationList.txt");
+		storage.writeData(textLemmatiser.lemmatiser(qualificationListStorage), libraryPath + "qualificationList.txt");
 	}
 }
