@@ -47,7 +47,6 @@ public class Controller
 	String lemmatisedResumePath =  System.getProperty("user.dir") + "\\src\\Storage\\LemmatisedResumes\\";
 	String libraryPath =  System.getProperty("user.dir") + "\\src\\Library\\";
 
-
 	ArrayList<String> language = new ArrayList<String>();
 	ArrayList<String> qualification = new ArrayList<String>();
 	ArrayList<String> experience = new ArrayList<String>();
@@ -136,7 +135,7 @@ public class Controller
 		jobReq = textLemmatiser.lemmatiser(jobReq);
 		//System.out.println(jobReq.toString());
 		jobDescriptionAnalyzer.setJobRequirement(jobReq);
-		jobDescriptionAnalyzer.execute(libraryPath);
+		jobDescriptionAnalyzer.execute();
 		
 		clearLists();
 		updateLists(jobDescriptionAnalyzer);

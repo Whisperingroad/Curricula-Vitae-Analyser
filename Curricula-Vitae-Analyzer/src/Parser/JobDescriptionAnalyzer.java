@@ -3,23 +3,23 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class JobDescriptionAnalyzer {
-	private int numCategories 		= 5;
 	private int languageNum 		= 0;
 	private int qualificationNum 	= 1;
 	private int experienceNum 		= 2;
 	private int nationalityNum 		= 3;
+	private int numCategories 		= 5;
 	
 	private String[] categories = new String[numCategories];
 	
 	private String jobClass = null;
 	
 	//loading of Dictionary
+	protected ArrayList<String> mainCategoriesStorage 		= new ArrayList<String>();
+	protected ArrayList<String> modalsStorage 				= new ArrayList<String>();
 	protected ArrayList<String> experienceStorage 			= new ArrayList<String>();
 	protected ArrayList<String> experienceListStorage 		= new ArrayList<String>();
 	protected ArrayList<String> languageStorage 			= new ArrayList<String>();
 	protected ArrayList<String> languageListStorage 		= new ArrayList<String>();
-	protected ArrayList<String> mainCategoriesStorage 		= new ArrayList<String>();
-	protected ArrayList<String> modalsStorage 				= new ArrayList<String>();
 	protected ArrayList<String> nationalityStorage 			= new ArrayList<String>();
 	protected ArrayList<String> nationalityListStorage 		= new ArrayList<String>();
 	protected ArrayList<String> qualificationStorage 		= new ArrayList<String>();
@@ -100,43 +100,61 @@ public class JobDescriptionAnalyzer {
 				ArrayList<String> words = parseSentence(line);
 				if (compareWord(words, attribute)){
 					if (category == languageNum)
-						language.add(attribute);
+						checkAddLanguage(attribute);
 					else if (category == qualificationNum)
-						qualification.add(attribute);
+						checkAddQualification(attribute);
 					else if (category == experienceNum)
-						experience.add(attribute);
+						checkAddExperience(attribute);
 					else if (category == nationalityNum)
-						nationality.add(attribute);
+						checkAddNationality(attribute);
 					if (impt)
-						VVVIPList.add(attribute);
+						checkAddVVVIP(attribute);
 				}
 			}
 			else{
 				if (line.contains(attribute)){
-					if (category == languageNum){
-						if (!language.contains(attribute)){
-							language.add(attribute);
-						}
-					}
-					if (category == qualificationNum){
-						if (!qualification.contains(attribute)){
-							qualification.add(attribute);
-						}
-					}
-					else if (category == experienceNum){
-						if (!experience.contains(attribute)){
-							experience.add(attribute);
-						}
-					}
-					if (category == nationalityNum){
-						if (!nationality.contains(attribute)){
-							nationality.add(attribute);
-						}
-					}
+					if (category == languageNum)
+						checkAddLanguage(attribute);
+					if (category == qualificationNum)
+						checkAddQualification(attribute);
+					else if (category == experienceNum)
+						checkAddExperience(attribute);
+					if (category == nationalityNum)
+						checkAddNationality(attribute);
 					if (impt)
-						VVVIPList.add(attribute);
+						checkAddVVVIP(attribute);
 				}
 			}
+		}
+	}
+	
+	private void checkAddLanguage(String attribute){
+		if (!language.contains(attribute)){
+			language.add(attribute);
+		}
+	}
+	
+	private void checkAddQualification(String attribute){
+		if (!qualification.contains(attribute)){
+			qualification.add(attribute);
+		}
+	}
+	
+	private void checkAddExperience(String attribute){
+		if (!experience.contains(attribute)){
+			experience.add(attribute);
+		}
+	}
+	
+	private void checkAddNationality(String attribute){
+		if (!nationality.contains(attribute)){
+			nationality.add(attribute);
+		}
+	}
+	
+	private void checkAddVVVIP(String attribute){
+		if (!VVVIPList.contains(attribute)){
+			VVVIPList.add(attribute);
 		}
 	}
 
@@ -299,7 +317,7 @@ public class JobDescriptionAnalyzer {
 		return VVVIPList;
 	}
 
-	public void execute(String path) {
+	public void execute() {
 		clearAllArrayList();
 		boolean impt = false;
 		boolean[] categoryPresent = new boolean[numCategories];
