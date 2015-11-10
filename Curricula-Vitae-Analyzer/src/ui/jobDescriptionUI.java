@@ -193,7 +193,7 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 		
 		attributeTab.setPreferredSize(new Dimension(500, 180));
 		
-		browseButton = new JButton("Browse Files");
+		browseButton = new JButton("Select Files");
 		browseButton.addActionListener(this);
 		doneButton = new JButton("Start Processing");
 		doneButton.addActionListener(this);
@@ -522,7 +522,7 @@ public class jobDescriptionUI extends JFrame implements ActionListener{
 			folder = ".";
 		}
 		chooser.setCurrentDirectory(new java.io.File(folder));
-		chooser.setDialogTitle("Browse Folder");
+		chooser.setDialogTitle("Select Folder");
 		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		chooser.setAcceptAllFileFilterUsed(false);
 		File filePath = null;

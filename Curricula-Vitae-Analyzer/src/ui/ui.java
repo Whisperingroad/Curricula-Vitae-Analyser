@@ -116,13 +116,13 @@ public class ui extends JFrame implements ActionListener{
 		String message = "<html>"
 				+ "File: " + table1.getValueAt(row, col) + "<br>"
                 + "Score: " + table1.getValueAt(row, col+1)+ "<br>"+"<br>"
-                + "Fufilled:" + "<br>";
+                + "Fulfilled:" + "<br>";
 		
 		ArrayList<ArrayList<String>> fufilled = buildFufilledArray(row);
 		message = buildResultDialogMessage(message, fufilled);
 		JOptionPane.showMessageDialog(frame,
 				message,
-			    "Requirements Fufilled",
+			    "Requirements Fulfilled",
 			    JOptionPane.PLAIN_MESSAGE);
 	}
 	

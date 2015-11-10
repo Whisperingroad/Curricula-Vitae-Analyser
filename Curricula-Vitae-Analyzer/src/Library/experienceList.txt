@@ -5,7 +5,7 @@ javascript
 sql
 vba
 ruby
-ruby on rails
+ruby on rail
 swift
 php
 html
@@ -36,12 +36,12 @@ android sdk
 m access
 microsoft access
 microsoft exchange
-windows
+window
 bmc remedy
 visual basic
 datum structure
-ios application
-ios app
+io application
+io app
 android platform
 android application
 android app
@@ -84,7 +84,7 @@ protein composition
 bioinformatic
 cancer genetics
 database mining
-data base mining
+datum base mining
 motion capture
 motor function
 movement analysis
@@ -112,19 +112,19 @@ active directory
 remote desktop
 voip
 citrix
-lotus notes
+lotus note
 adobe photoshop
 adobe premier
 wordpress
-dell computers
+dell computer
 macintosh
 ibm
 blackberry enterprise server
 lenovo
 polycom conference
-hp printers
-canon printers
-fuji xerox printers
+hp printer
+canon printer
+fujus xerox printer
 avaya
 itil certify
 blackberry
