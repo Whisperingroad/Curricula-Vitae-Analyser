@@ -1,0 +1,11 @@
+diploma
+degree
+master
+phd
+msc
+certification
+bachelor
+bsc
+b.eng
+b.eng
+b.eng.

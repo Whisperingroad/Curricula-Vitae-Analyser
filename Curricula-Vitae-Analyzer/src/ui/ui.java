@@ -131,14 +131,10 @@ public class ui extends JFrame implements ActionListener{
 		String message = "<html>"
 				+ "File: " + table1.getValueAt(row, col) + "<br>"
                 + "Score: " + table1.getValueAt(row, col+1)+ "<br>"+"<br>"
-                + "Fufilled:" + "<br>";
+                + "Fulfilled:" + "<br>";
 		
 		ArrayList<ArrayList<String>> fufilled = buildFufilledArray(row);
 		message = buildResultDialogMessage(message, fufilled);
-//		JOptionPane.showMessageDialog(frame,
-//				message,
-//			    "Requirements Fufilled",
-//			    JOptionPane.PLAIN_MESSAGE);
 		JFrame frame = new JFrame("Result");
 		frame.setSize(300, 500);
 		JPanel browseError = new JPanel(new BorderLayout());
@@ -148,6 +144,7 @@ public class ui extends JFrame implements ActionListener{
 
 		frame.setContentPane(browseError);
 		frame.setVisible(true);
+
 	}
 	
 	private ArrayList<ArrayList<String>> buildFufilledArray(int row){

@@ -45,7 +45,7 @@ public class Controller
 	String resumePath =  System.getProperty("user.dir") + "\\src\\Input\\";
 	String textResumePath =  System.getProperty("user.dir") + "\\src\\Storage\\TextResumes\\";
 	String lemmatisedResumePath =  System.getProperty("user.dir") + "\\src\\Storage\\LemmatisedResumes\\";
-	String libraryPath =  System.getProperty("user.dir") + "\\src\\Library\\";
+	String libraryPath =  System.getProperty("user.dir") + "\\src\\Storage\\Library\\";
 
 	ArrayList<String> language = new ArrayList<String>();
 	ArrayList<String> qualification = new ArrayList<String>();
