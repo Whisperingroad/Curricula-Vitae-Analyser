@@ -1,0 +1,204 @@
+python
+c++
+java
+javascript
+sql
+vba
+ruby
+ruby on rail
+swift
+php
+html
+objectivec
+objective c
+objective-c
+c#
+postgresql
+mysql
+ajax
+unix shell
+object orient programming
+oop concept
+content management system
+drupal
+typo3
+joomlum
+reactj
+golang
+websocket
+android development
+mvp application design
+visual studio
+eclipse
+sql server
+.net framework
+android sdk
+m access
+microsoft access
+microsoft exchange
+window
+bmc remedy
+visual basic
+datum structure
+io application
+io app
+android platform
+android application
+android app
+android animation
+embedded software
+debug
+game development
+uikit
+coreanimation
+uikitdynamic
+catransition
+multithread
+multi-thread
+autolayout
+persistent storage
+cocoa touch ecosystem
+mvc
+viper
+xcode
+integration test
+touch-based user experience
+datum structure
+embed system
+strong programming skill
+analytic capability
+statistical and mathematical modeling
+machine learning
+datum mine
+nanofabrication
+common lisp
+matlab
+octave
+photolithography
+system administration
+ion-milling
+neurobiological
+behavioral test
+electrophysiological technique
+protein composition
+bioinformatic
+cancer genetics
+database mining
+datum base mining
+motion capture
+motor function
+movement analysis
+vpn
+proteomic
+application support
+helpdesk support
+technical support
+customer service
+network and infrastructure
+network optimisation
+network enhancement
+it service management
+project management
+event organisation
+event organization
+administration
+ms-office
+microsoft office
+m office
+ms-office suite
+microsoft office suite
+m office suite
+active directory
+remote desktop
+voip
+citrix
+lotus note
+adobe photoshop
+adobe premier
+wordpress
+dell computer
+macintosh
+ibm
+blackberry enterprise server
+lenovo
+polycom conference
+hp printer
+canon printer
+fujus xerox printer
+avaya
+itil certify
+blackberry
+ipad
+cloud storage
+google productivity suite
+onenote
+evernote
+policy analysis
+improvement initiative
+end-user support
+information technology
+computer hardware
+software application
+help desk support
+problem ticket and escalation
+network upgrade
+network administration
+troubleshoot
+window server
+create user manual
+conduct end user training
+vendor relationship and transaction
+lotus note
+lotus domino
+software deployment
+lan/wan infrastructure
+lan infrastructure
+wan infrastructure
+video conference
+audio conferencing
+documentation
+workflow tracking
+asset management
+event support
+mobile support
+telecom support
+migration
+network planning
+logistics
+user testing
+provision of av equipment
+gather requirement
+manage manpower
+manpower capacity allocation
+equipment provision
+datum backup
+datum recovery
+onsite technician dispatch
+network connectivity issue
+technical service enquiry
+configure model
+configure router
+configure switch
+software engineer
+software application design
+application development
+app development
+test and optimization
+visual c#.net
+brainstorm
+problem solve
+desktop application
+dataset management
+statistical analysis
+report generate
+computer network
+advance object orient
+advance object-oriented
+advanced object orient
+advanced object-oriented
+ios/android
+mobile application development
+artificial intelligence
+web development
+c
+fly
