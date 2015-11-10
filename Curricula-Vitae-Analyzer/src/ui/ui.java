@@ -5,8 +5,11 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+
 import storage.Resume;
 
 /**
@@ -37,11 +40,11 @@ public class ui extends JFrame implements ActionListener{
 			removeRows();
 			clearList();
 			String data1 = null;
-			double data2 = 0.0;
+			String data2 = null;
 
 			for (int i = 0; i < resultList.size(); i++){
 				data1 = resultList.get(i).getName();
-				data2 = resultList.get(i).getScore();
+				data2 = ""+resultList.get(i).getScore()+"    /    100";
 				model.addRow( new Object[] { data1, data2 } );
 			}
 		}
@@ -73,6 +76,18 @@ public class ui extends JFrame implements ActionListener{
                 return tip;
             }
 		};
+		
+		DefaultTableCellRenderer r = new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object
+                value, boolean isSelected, boolean hasFocus, int row, int column) {
+                super.getTableCellRendererComponent(
+                    table, value, isSelected, hasFocus, row, column);
+                setHorizontalAlignment(JLabel.CENTER);
+                return this;
+            }
+        };
+        table.getColumnModel().getColumn(1).setCellRenderer(r);
 		
 		table.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
@@ -112,7 +127,7 @@ public class ui extends JFrame implements ActionListener{
 	}
 
 	private void resultDetailsDialog(int row, int col, JTable table1){
-		JFrame frame = new JFrame();
+		//JFrame frame = new JFrame();
 		String message = "<html>"
 				+ "File: " + table1.getValueAt(row, col) + "<br>"
                 + "Score: " + table1.getValueAt(row, col+1)+ "<br>"+"<br>"
@@ -120,10 +135,16 @@ public class ui extends JFrame implements ActionListener{
 		
 		ArrayList<ArrayList<String>> fufilled = buildFufilledArray(row);
 		message = buildResultDialogMessage(message, fufilled);
-		JOptionPane.showMessageDialog(frame,
-				message,
-			    "Requirements Fulfilled",
-			    JOptionPane.PLAIN_MESSAGE);
+		JFrame frame = new JFrame("Result");
+		frame.setSize(300, 500);
+		JPanel browseError = new JPanel(new BorderLayout());
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		JLabel content = new JLabel(message,JLabel.CENTER);
+		browseError.add(content, BorderLayout.CENTER);
+
+		frame.setContentPane(browseError);
+		frame.setVisible(true);
+
 	}
 	
 	private ArrayList<ArrayList<String>> buildFufilledArray(int row){
