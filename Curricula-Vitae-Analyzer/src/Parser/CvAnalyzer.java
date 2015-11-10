@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.regex.Pattern;
@@ -162,6 +163,8 @@ public class CvAnalyzer {
 			}			
 		}
 		double score = computeScore();
+		DecimalFormat df = new DecimalFormat("#.##");      
+		score = Double.valueOf(df.format(score));
 		return score;
 	}
 	
